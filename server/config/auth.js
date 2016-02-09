@@ -1,0 +1,43 @@
+/**
+ * Created by Mordekaiser on 08/02/16.
+ */
+var passport = require('passport'),
+    mongoose = require('mongoose');
+
+// Does the authentication trough passport
+exports.authenticate = function (req, res, next) {
+    req.body.username = req.body.username.toLowerCase();
+    var auth = passport.authenticate('local', function (err, user, token) {
+        if(err) {return next(err);}
+        if(!user) {res.send({success: false})}
+        // Passport login the user and create a session
+        req.logIn(user, function (err) {
+            if(err) {
+                return next(err);
+            }
+
+            res.send({success: true, user: user, token: token});
+        });
+    });
+    auth(req, res, next);
+};
+
+exports.requireApiLogin = function (req, res, next) {
+    if(!req.isAuthenticated()) {
+        res.status(403);
+        res.end();
+    } else {
+        next();
+    }
+};
+
+exports.requiresRole = function (role) {
+    return function (req, res, next) {
+        if(!req.isAuthenticated() || req.user.roles.indexOf(role) === -1) {
+            res.status(403);
+            res.end();
+        } else {
+            next();
+        }
+    }
+};

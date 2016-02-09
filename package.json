@@ -1,0 +1,35 @@
+{
+  "name": "litus",
+  "version": "0.0.0",
+  "description": "sistema de citas para usuarios y abogados",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josleugim/litus.git"
+  },
+  "author": "@josleugim",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/josleugim/litus/issues"
+  },
+  "homepage": "https://github.com/josleugim/litus",
+  "dependencies": {
+    "body-parser": "~1.14.2",
+    "cookie-parser": "~1.4.1",
+    "crypto": "0.0.3",
+    "express": "~4.13.4",
+    "express-session": "~1.13.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.6",
+    "jade": "~1.11.0",
+    "mongoose": "^4.4.2",
+    "morgan": "~1.6.1",
+    "passport": "~0.3.2",
+    "passport-local": "~1.0.0",
+    "request": "~2.69.0",
+    "stylus": "~0.53.0"
+  }
+}

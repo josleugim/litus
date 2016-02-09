@@ -1,0 +1,28 @@
+{
+  "name": "litus",
+  "description": "sistema de citas para usuarios y abogados",
+  "main": "index.js",
+  "authors": [
+    "@josleugim"
+  ],
+  "license": "BSD-2-Clause",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "toastr": "~2.1.2",
+    "angular": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "bootstrap": "~3.3.6",
+    "speakingurl": "~9.0.0"
+  }
+}
