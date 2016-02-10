@@ -12,7 +12,18 @@ var sectionSchema = mongoose.Schema({
     slug: {type: String},
     content: {type: String},
     isActive: {type: Boolean},
-    timestamps: true
+    timestamps: {}
 });
 
-module.exports = mongoose.model('Section', sectionSchema);
+var Section = mongoose.model('Section', sectionSchema);
+
+function createDefaultSections() {
+    Section.find({}).exec(function (err, collection) {
+        if(collection.length === 0) {
+            Section.create({title: 'Nosotros', slug: 'nosotros', content: 'Contenido de nosotros', isActive: true});
+            Section.create({title: 'Garantía', slug: 'garantia', content: 'Contenido de garantía', isActive: true});
+        }
+    });
+}
+
+exports.createDefaultSections = createDefaultSections;

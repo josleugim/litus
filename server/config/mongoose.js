@@ -1,8 +1,8 @@
 /**
  * Created by Mordekaiser on 05/02/16.
  */
-var mongoose = require('mongoose');
-    //userModel = require('../models/User');
+var mongoose = require('mongoose'),
+    sectionModel = require('../models/Section');
 
 module.exports = function (config) {
     mongoose.connect(config.db);
@@ -13,5 +13,5 @@ module.exports = function (config) {
         console.log('Litus db opened');
     });
 
-    //userModel.createDefaultUsers;
+    sectionModel.createDefaultSections();
 };

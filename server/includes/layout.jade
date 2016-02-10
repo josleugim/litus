@@ -4,11 +4,18 @@
 doctype
 html
     head
-        title CMS NISSAN API
+        title Litus
         link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
     body(ng-app='app')
+        ul.nav.nav-tabs
+            li(role="presentation")
+                a(href="/") Home
+            li(role="presentation")
+                a(href="/nosotros") Nosotros
+            li(role="presentation")
+                a(href="/garantia") Garantía
         include currentUser
         block main-content
         include scripts
