@@ -1,11 +1,12 @@
 /**
  * Created by Mordekaiser on 05/02/16.
  */
-var auth = require('./auth');
+var auth = require('./auth'),
+    sections = require('../controllers/sections');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
-    app.get('/api/sections');
+    app.get('/api/sections', sections.get);
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);

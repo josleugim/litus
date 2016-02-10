@@ -1,14 +1,26 @@
 /**
  * Created by Mordekaiser on 09/02/2016.
  */
-angular.module('app', ['ngResource', 'ngRoute']);
+(function () {
+    var app = angular.module('app', ['ngResource', 'ngRoute']);
 
-angular.module('app').config(function ($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
+    app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
-    $routeProvider
-        .when('/', {templateUrl: 'partials/home/index', controller: 'mvHomeCtrl'})
-});
+        $routeProvider
+            .when('/', {
+                templateUrl: 'partials/home/index',
+                controller: 'HomeCtrl',
+                resolve: {
+                    sections: function () {
+
+                    }
+                }
+            })
+            .when('/nosotros', {templateUrl: 'partials/nosotros/index', controller: 'mvNosotrosCtrl'})
+            .otherwise('/')
+    }]);
+}());
