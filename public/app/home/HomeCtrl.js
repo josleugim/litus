@@ -3,30 +3,24 @@
  */
 (function () {
     angular.module('app')
-        .controller('HomeCtrl', ['sectionService', '$scope', HomeCtrl]);
+        .controller('HomeCtrl', function ($scope, sectionService) {
+            sectionService.getAllSections()
+                .then(function (res) {
+                    $scope.sections = res.data;
+                })
+                .catch(errorCallback)
+                .finally(getAllSectionsComplete);
+        });
 
-    function HomeCtrl(sectionService, $scope) {
+    function getSectionsNotification() {
 
-        sectionService.getAllSections()
-            .then(getSectionsSuccess, null, getSectionsNotification)
-            .catch(errorCallback)
-            .finally(getAllSectionsComplete);
+    }
 
-        function getSectionsSuccess(sections) {
-            console.log(sections);
-            $scope.sections = sections;
-        }
+    function errorCallback(errorMsg) {
+        console.log(errorMsg);
+    }
 
-        function getSectionsNotification() {
-
-        }
-
-        function errorCallback(errorMsg) {
-            console.log(errorMsg);
-        }
-
-        function getAllSectionsComplete() {
-            console.log('complete');
-        }
+    function getAllSectionsComplete() {
+        console.log('complete');
     }
 }());
