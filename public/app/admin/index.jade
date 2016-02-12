@@ -1,0 +1,23 @@
+//
+   Created by Mordekaiser on 11/02/16.
+
+.navbar.navbar-default
+    .container-fluid
+        .navbar-header
+            button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
+                span(class="sr-only") Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            a(class="navbar-brand", href="#") Litus
+        .collapse.navbar-collapse(id="collapse-1")
+            ul(class="nav navbar-nav")
+                li
+                    a(href="#") Cerrar sesión
+
+.container-fluid
+    .row(ng-repeat="section in sections")
+        .col-md-4
+            p {{section.title}} |
+                a(href="/admin-litus/edit/{{section._id}}") Modificar |
+                a(href="/admin-litus/details/{{section._id}}") Detalles

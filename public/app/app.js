@@ -20,7 +20,18 @@
                     }
                 }
             })
-            .when('/nosotros', {templateUrl: 'partials/nosotros/index', controller: 'mvNosotrosCtrl'})
+            .when('/nosotros', {
+                templateUrl: 'partials/nosotros/index',
+                controller: 'NosotrosCtrl'
+            })
+            .when('/admin-litus', {
+                templateUrl: 'partials/admin/index',
+                controller: 'AdminCtrl'
+            })
+            .when('/admin-litus/edit/:id', {
+                templateUrl: 'partials/admin/edit',
+                controller: 'EditCtrl'
+            })
             .otherwise('/')
     }]);
 }());

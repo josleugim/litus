@@ -1,12 +1,12 @@
 /**
- * Created by Mordekaiser on 09/02/2016.
+ * Created by Mordekaiser on 10/02/16.
  */
 (function () {
     angular.module('app')
-        .controller('HomeCtrl', function ($scope, sectionService) {
-            sectionService.getAllSections()
+        .controller('NosotrosCtrl', function ($scope, sectionService) {
+            sectionService.getSectionBySlug('nosotros')
                 .then(function (res) {
-                    $scope.sections = res.data;
+                    $scope.section = res.data;
                 })
                 .catch(errorCallback)
                 .finally(getAllSectionsComplete);

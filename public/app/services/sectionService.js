@@ -8,7 +8,7 @@
    function sectionService($q, $http) {
        return {
            getAllSections: getAllSections,
-           getSectionByID: getSectionByID
+          getSectionBySlug: getSectionBySlug
        };
 
        function getAllSections() {
@@ -27,10 +27,10 @@
                })
        }
 
-       function getSectionByID(sectionID) {
+       function getSectionBySlug(slug) {
            return $http({
                method: 'GET',
-               url: 'api/sections/' + sectionID
+               url: 'api/sections/' + slug
            })
                .success(function (response) {
                    return response.data;
