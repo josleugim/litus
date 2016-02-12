@@ -14,6 +14,13 @@ module.exports = function (app) {
         res.render('../../public/app/' + req.params[0]);
     });
 
+    app.get('/admin/*', function (req, res) {
+        // Bootstrapped the user
+        res.render('admin', {
+            bootstrappedUser: req.user
+        });
+    });
+
     app.get('*', function (req, res) {
         // Bootstrapped the user
         res.render('index', {

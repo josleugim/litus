@@ -1,0 +1,26 @@
+//
+   Created by Mordekaiser on 11/02/2016.
+doctype
+html
+    head
+        title Litus Admin
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="/vendor/toastr/toastr.css")
+        link(rel="stylesheet", href="/css/site.css")
+    body(ng-app='app')
+        .navbar.navbar-default
+            .container-fluid
+                .navbar-header
+                    button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
+                        span(class="sr-only") Toggle navigation
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                    a(class="navbar-brand", href="#") Administrador
+                .collapse.navbar-collapse(id="collapse-1")
+                    ul(class="nav navbar-nav")
+                        li
+                            a(href="#") Cerrar sesión
+        include currentUser
+        block admin-content
+        include scripts

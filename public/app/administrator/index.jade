@@ -1,0 +1,8 @@
+//
+   Created by Mordekaiser on 11/02/16.
+.container-fluid
+    .row(ng-repeat="section in sections")
+        .col-md-4
+            p {{section.title}} |
+                a(href="/admin/edit/{{section._id}}") Modificar |
+                a(href="/admin/details/{{section._id}}") Detalles

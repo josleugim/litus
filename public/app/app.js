@@ -11,27 +11,21 @@
         });
 
         $routeProvider
-            .when('/', {
-                templateUrl: 'partials/home/index',
-                controller: 'HomeCtrl',
-                resolve: {
-                    sections: function () {
-
-                    }
-                }
+            .when('/admin/edit/:id', {
+                templateUrl: 'partials/administrator/edit',
+                controller: 'EditCtrl'
+            })
+            .when('/admin', {
+                templateUrl: 'partials/administrator/index',
+                controller: 'AdminCtrl'
             })
             .when('/nosotros', {
                 templateUrl: 'partials/nosotros/index',
                 controller: 'NosotrosCtrl'
             })
-            .when('/admin-litus', {
-                templateUrl: 'partials/admin/index',
-                controller: 'AdminCtrl'
+            .when('/', {
+                templateUrl: 'partials/home/index',
+                controller: 'HomeCtrl'
             })
-            .when('/admin-litus/edit/:id', {
-                templateUrl: 'partials/admin/edit',
-                controller: 'EditCtrl'
-            })
-            .otherwise('/')
     }]);
 }());
