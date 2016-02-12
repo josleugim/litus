@@ -4,5 +4,5 @@
     .row(ng-repeat="section in sections")
         .col-md-4
             p {{section.title}} |
-                a(href="/admin/edit/{{section._id}}") Modificar |
-                a(href="/admin/details/{{section._id}}") Detalles
+                a(href="/admin/edit/{{section.slug}}") Modificar |
+                a(href="/admin/details/{{section.slug}}") Detalles

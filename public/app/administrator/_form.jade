@@ -2,11 +2,12 @@
    Created by Mordekaiser on 11/02/16.
 
 .well
-    .form
+    form(name="sectionForm")
         .form-group
             label Título
-            input(type="text", class="form-group" disabled)
+            input(type="text", name="title", class="form-group", ng-model="title", disabled)
         .form-group
             label Contenido
-            input(type="text", class="form-group")
-        button(class="btn btn-default", type="submit") Modificar
+            textarea(class="form-group", name="content", ng-model="content", rows="5")
+        button.btn.btn-primary(ng-click="editSection()", ng-disabled="sectionForm.$invalid") Modificar
+        a(href="/admin") Regresar

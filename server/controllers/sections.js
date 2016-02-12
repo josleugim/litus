@@ -34,13 +34,11 @@ exports.getBySlug = function(req, res) {
     });
 };
 
-exports.editSectionByID = function (req, res) {
+exports.editSectionBySlug = function (req, res) {
     console.log('PUT Section by ID');
-    var data = {
-        content: req.body.content
-    };
 
-    var query = {_id: req.params._id};
+    var data = {content: req.body.content};
+    var query = {slug: req.query.slug};
 
     Section.update(query, {$set: data}, function (err) {
         if (err) {
