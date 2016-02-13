@@ -8,6 +8,9 @@
             input(type="text", name="title", class="form-group", ng-model="title", disabled)
         .form-group
             label Contenido
-            textarea(class="form-group", name="content", ng-model="content", rows="5")
+            textarea(class="form-group", name="content", id="content", ng-model="content", rows="5")
         button.btn.btn-primary(ng-click="editSection()", ng-disabled="sectionForm.$invalid") Modificar
         a(href="/admin") Regresar
+
+script.
+    CKEDITOR.replace('content')

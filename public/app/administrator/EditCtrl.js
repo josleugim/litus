@@ -17,15 +17,15 @@
                 if(!$scope.sectionForm.content.$pristine)
                     data.content = $scope.content;
 
-                console.log(data);
-                sectionService.editSectionBySlug($routeParams.slug, data).then(function (success) {
+                console.log(CKEDITOR.instances.content.getData());
+                /*sectionService.editSectionBySlug($routeParams.slug, data).then(function (success) {
                     if(success) {
                         mvNotifier.notify('Sección actualizada');
                         $timeout($location.path('admin/'), 1500);
                     } else {
                         mvNotifier.notify('Ocurrio un error al actualizar la sección');
                     }
-                })
+                })*/
             }
         });
 
