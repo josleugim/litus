@@ -25,6 +25,10 @@
                 templateUrl: '../../partials/administrator/edit',
                 controller: 'EditCtrl'
             })
+            .when('/registro', {
+                templateUrl: 'partials/home/registration',
+                controller: 'RegistrationCtrl'
+            })
             .when('/nosotros', {
                 templateUrl: 'partials/nosotros/index',
                 controller: 'NosotrosCtrl'
