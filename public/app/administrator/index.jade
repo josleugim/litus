@@ -1,8 +1,15 @@
 //
    Created by Mordekaiser on 11/02/16.
 .container-fluid
+    .row
+        .col-md-3
+            p <strong>Secciones</strong>
+        .col-md-3
+            p <strong>Opciones</strong>
     .row(ng-repeat="section in sections")
-        .col-md-4
-            p {{section.title}} |
-                a(href="/admin/edit/{{section.slug}}") Modificar |
-                a(href="/admin/details/{{section.slug}}") Detalles
+        .col-md-3
+            p {{section.title}}
+        .col-md-3
+            a(href="/admin/edit/{{section.slug}}") Modificar |
+            a(href="/admin/details/{{section.slug}}") Detalles
+        .col-md-6

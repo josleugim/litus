@@ -1,0 +1,21 @@
+//
+   Created by Mordekaiser on 16/02/16.
+
+.well
+    div(ng-bind-html="section.content")
+
+    form(name="contactForm")
+        .form-group
+            label Nombre
+            input(type="text", name="name", class="form-group", ng-model="name", required)
+            span(class="error", ng-show="contactForm.name.$error.required") *
+        .form-group
+            label Email
+            input(class="form-group", type="email", name="email", ng-model="email", required)
+            span(class="error", ng-show="contactForm.email.$error.required") *
+            span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
+        .form-group
+            label Mensaje
+            textarea(class="form-group", name="message", ng-model="message", required)
+            span(class="error", ng-show="contactForm.message.$error.required") *
+        button.btn.btn-primary(ng-click="contact()", ng-disabled="contactForm.$invalid") Enviar

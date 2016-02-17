@@ -44,7 +44,6 @@
        function editSectionBySlug(query, data) {
            var dfd = $q.defer();
 
-           console.log(query);
            $http({
                method: 'PUT',
                url: ApiUrl + 'api/sections/',

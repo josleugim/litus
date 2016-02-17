@@ -1,17 +1,19 @@
 /**
- * Created by Mordekaiser on 10/02/16.
+ * Created by Mordekaiser on 16/02/16.
  */
 (function () {
     angular.module('app')
-        .controller('NosotrosCtrl', function ($scope, sectionService) {
-            sectionService.getSectionBySlug('nosotros')
+        .controller('ContactoCtrl', function ($scope, sectionService) {
+            sectionService.getSectionBySlug('contacto')
                 .then(function (res) {
-                    var str = res.data.content.replace(/^"(.*)"$/, '$1');
-                    res.data.content = str;
                     $scope.section = res.data;
                 })
                 .catch(errorCallback)
                 .finally(getAllSectionsComplete);
+
+            $scope.contact = function () {
+
+            }
         });
 
     function errorCallback(errorMsg) {

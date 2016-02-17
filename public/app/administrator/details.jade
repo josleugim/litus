@@ -1,0 +1,9 @@
+//
+   Created by Mordekaiser on 16/02/16.
+
+.well
+    p
+        a(href="/admin") Regresar |
+        a(href="/admin/edit/{{section.slug}}") Modificar
+    h2 {{section.title}}
+    div(ng-bind-html="section.content")
