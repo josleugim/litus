@@ -25,10 +25,29 @@
             input(class="form-group", type="password", name="validatePassword", ng-model="validatePassword", required)
             span(class="error", ng-show="registerForm.validatePassword.$error.required") *
         .form-group
+            label Teléfono
+            input(type="number", name="phone", class="form-group", ng-model="phone", required)
+            span(class="error", ng-show="registerForm.phone.$error.required") *
+        .form-group
             label Tipo de persona
-            select(name="economicActivities")
+            select(name="economicActivities", ng-model="economicActivities", required, economic-activities)
                 option(value="fisica") Física
                 option(value="moral") Moral
+        .form-group(id="constitutiveAct")
+            label Acta constitutiva
+            input(type="file", name="constitutiveAct", class="form-group", ng-model="constitutiveAct", required)
+            span(class="error", ng-show="registerForm.constitutiveAct.$error.required") *
+        .form-group
+            label Cédula profesional
+            input(type="file", name="professionalLicense", class="form-group", ng-model="professionalLicense", required)
+            span(class="error", ng-show="registerForm.professionalLicense.$error.required") *
+        .form-group
+            label Área de especialidad
+            select(name="specialityArea", ng-model="specialityArea", required)
+                option(value="penal") Penal
+                option(value="civil") Civil
+                option(value="administracion") Administración
+            span(class="error", ng-show="registerForm.specialityArea.$error.required") *
         .form-group
             label Descripción
             textarea(class="form-group", name="description", ng-model="description", required)
