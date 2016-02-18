@@ -1,0 +1,10 @@
+//
+   Created by Mordekaiser on 17/02/16.
+
+.well
+    form.navbar-form
+        .form-group
+            input.form-control(placeholder="Email", ng-model="email", type="text")
+        .form-group
+            input.form-control(type="password", placeholder="Contraseña", ng-model="password")
+        button.btn.btn-primary(ng-click="signin(email, password)") Iniciar sesión

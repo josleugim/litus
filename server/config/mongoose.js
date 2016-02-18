@@ -2,7 +2,8 @@
  * Created by Mordekaiser on 05/02/16.
  */
 var mongoose = require('mongoose'),
-    sectionModel = require('../models/Section');
+    sectionModel = require('../models/Section'),
+    userModel = require('../models/User');
 
 module.exports = function (config) {
     mongoose.connect(config.db);
@@ -14,4 +15,5 @@ module.exports = function (config) {
     });
 
     sectionModel.createDefaultSections();
+    userModel.createDefaultUsers();
 };

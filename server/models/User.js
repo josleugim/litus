@@ -29,27 +29,26 @@ var userSchema = mongoose.Schema({
         type: String,
         required: '{PATH} password requerido'
     },
-    economicActivities: {
-        type: String,
-        required: '{PATH} requerido'
-    },
+    economicActivities: {type: String},
     constitutiveAct: {type: String},
-    professionalLicense: {
-        type: String,
-        required: 'Cédula profesional requerida'
-    },
-    specialityArea: {
-        type: String,
-        required: 'Área de especialidad requerida'
-    },
+    professionalLicense: {type: String},
+    specialityArea: {type: String},
     description: {type: String},
-    roles: [{type: String}],
+    roles: [{
+        type: String,
+        required: 'Requerido',
+        default: 'cliente'
+    }],
     rating: [{
         _id: false,
         rate: {type: Number},
         user_id: {type: String}
     }],
-    isActive: {type: Boolean}
+    isActive: {
+        type: Boolean,
+        required: 'Requerido',
+        default: true
+    }
 });
 
 userSchema.plugin(timestamps);
@@ -79,8 +78,15 @@ function createDefaultUsers() {
             hash = encrypt.hashPwd(salt, 'demo');
             User.create({
                 name: 'José Miguel',
-                lastName: 'Ramírez'
+                lastName: 'Ramírez',
+                email: 'josleugim@gmail.com',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ["admin"],
+                isActive: true
             })
         }
     })
 }
+
+exports.createDefaultUsers = createDefaultUsers;

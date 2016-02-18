@@ -4,36 +4,22 @@
 var passport = require('passport'),
     mongoose = require('mongoose'),
     LocalStrategy = require('passport-local').Strategy,
-    //User = mongoose.model('User'),
-    request = require('request');
+    User = mongoose.model('User');
 
 module.exports = function() {
 
     // Using our db to make the login trough passport
     passport.use(new LocalStrategy(
         function (username, password, done) {
-            /*User.findOne({username:username}).exec(function (err, user) {
-             console.log(user);
-             if(user && user.authenticate(password)) {
-             return done(null, user);
-             } else {
-             return done(null, false);
-             }
-             });*/
-            // request the login trough the API
-            request({
-                url: "http://localhost:5000/api/v1/login/",
-                method: "POST",
-                json: true,
-                body: {username: username, hashed_pwd: password}
-            }, function (err, response, body) {
-                var user = body.user,
-                    token = body.token;
-                if(err) {return next(err);}
-
-                if(!user) return done(null, false);
-
-                return done(null, user, token);
+            console.log('Local');
+            User.findOne({email: username}).exec(function (err, user) {
+                // when the user is return we validate the password
+                if (user && user.authenticate(password)) {
+                    return done(null, user);
+                } else {
+                    console.log(err);
+                    return done(null, false);
+                }
             });
         }
     ));
