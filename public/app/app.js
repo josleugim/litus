@@ -44,6 +44,30 @@
                 templateUrl: 'partials/nosotros/index',
                 controller: 'NosotrosCtrl'
             })
+            .when('/garantia', {
+                templateUrl: 'partials/garantia/index',
+                controller: 'garantiaCtrl'
+            })
+            .when('/abogados', {
+                templateUrl: 'partials/abogados/index',
+                controller: 'abogadosCtrl'
+            })
+            .when('/referidos', {
+                templateUrl: 'partials/referidos/index',
+                controller: 'referidosCtrl'
+            })
+            .when('/ayuda', {
+                templateUrl: 'partials/ayuda/index',
+                controller: 'ayudaCtrl'
+            })
+            .when('/unete-a-litus', {
+                templateUrl: 'partials/unete/index',
+                controller: 'UneteCtrl'
+            })
+            .when('/terminos-y-condiciones', {
+                templateUrl: 'partials/terminos/index',
+                controller: 'TerminosCtrl'
+            })
             .when('/contacto', {
                 templateUrl: 'partials/contacto/index',
                 controller: 'ContactoCtrl'
@@ -65,4 +89,7 @@
             }
         });
     });
+
+    app.run(['$templateCache', function ( $templateCache ) {
+        $templateCache.removeAll(); }]);
 }());

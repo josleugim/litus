@@ -2,7 +2,7 @@
  * Created by Mordekaiser on 17/02/16.
  */
 (function () {
-    angular.module('app').controller('loginCtrl', function ($scope, mvIdentity, mvNotifier, authService, $location) {
+    angular.module('app').controller('loginCtrl', function ($scope, mvIdentity, mvNotifier, authService, $location, $route) {
         $scope.identity = mvIdentity;
         $scope.signin = function (email, password) {
             authService.authenticate(email, password).then(function (success) {

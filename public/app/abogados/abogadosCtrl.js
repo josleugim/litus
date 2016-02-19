@@ -1,13 +1,12 @@
 /**
- * Created by Mordekaiser on 11/02/16.
+ * Created by Mordekaiser on 19/02/16.
  */
 (function () {
     angular.module('app')
-        .controller('AdminCtrl', function ($scope, sectionService) {
-            console.log('Admin ctrl');
-            sectionService.getAllSections()
+        .controller('abogadosCtrl', function ($scope, sectionService) {
+            sectionService.getSectionBySlug('abogados')
                 .then(function (res) {
-                    $scope.sections = res.data;
+                    $scope.section = res.data;
                 })
                 .catch(errorCallback)
                 .finally(getAllSectionsComplete);

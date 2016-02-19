@@ -8,7 +8,7 @@ html
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
     body(ng-app='app')
-        .navbar.navbar-default
+        .navbar.navbar-default(ng-controller="loginCtrl")
             .container-fluid
                 .navbar-header
                     button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
@@ -20,7 +20,7 @@ html
                 .collapse.navbar-collapse(id="collapse-1")
                     ul(class="nav navbar-nav")
                         li
-                            a(href="/logout") Cerrar sesión
+                            a(href="/logout", ng-click="signout()") Cerrar sesión
         include currentUser
         block admin-content
         include scripts

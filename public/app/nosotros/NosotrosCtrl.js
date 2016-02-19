@@ -6,8 +6,6 @@
         .controller('NosotrosCtrl', function ($scope, sectionService) {
             sectionService.getSectionBySlug('nosotros')
                 .then(function (res) {
-                    var str = res.data.content.replace(/^"(.*)"$/, '$1');
-                    res.data.content = str;
                     $scope.section = res.data;
                 })
                 .catch(errorCallback)
