@@ -9,7 +9,7 @@ html
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
     body(ng-app='app')
-        ul.nav.nav-tabs
+        ul.nav.nav-tabs(ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
             li(role="presentation")
                 a(href="/") Home
             li(role="presentation")
@@ -34,6 +34,23 @@ html
                 a(href="/registro?type=usuario") Registro de usuarios
             li(role="presentation")
                 a(href="/login") Iniciar sesión
+            li(role="presentation")
+                a(href="/admin") Admin
+        .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
+            .container-fluid
+                .navbar-header
+                    button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
+                        span(class="sr-only") Toggle navigation
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                    a(class="navbar-brand", href="#") Administrador
+                .collapse.navbar-collapse(id="collapse-1")
+                    ul(class="nav navbar-nav")
+                        li(ng-show="identity.isAuthorized('abogado')")
+                            a(href="/perfil/edit") Modificar cuenta
+                        li
+                            a(href="/logout", ng-click="signout()") Cerrar sesión
         include currentUser
         block main-content
         include scripts

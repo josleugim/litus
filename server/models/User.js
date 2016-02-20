@@ -84,7 +84,18 @@ function createDefaultUsers() {
                 hashed_pwd: hash,
                 roles: ["admin"],
                 isActive: true
-            })
+            });
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPwd(salt, 'demo');
+            User.create({
+                name: 'Pedro',
+                lastName: 'Perez Pacheco',
+                email: 'cliente@domain.com',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ["cliente"],
+                isActive: true
+            });
         }
     })
 }

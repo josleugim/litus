@@ -12,6 +12,16 @@
                 auth: function(authService) {
                     return authService.authUserRoute('admin');
                 }
+            },
+            client: {
+                auth: function(authService) {
+                    return authService.authUserRoute('cliente');
+                }
+            },
+            lawyer: {
+                auth: function(authService) {
+                    return authService.authUserRoute('abogado');
+                }
             }
         };
 
@@ -21,11 +31,6 @@
         });
 
         $routeProvider
-            .when('/admin', {
-                templateUrl: 'partials/administrator/index',
-                controller: 'AdminCtrl',
-                resolve: routeRoleChecks.admin
-            })
             .when('/admin/details/:slug', {
                 templateUrl: '../../partials/administrator/details',
                 controller: 'DetailsCtrl',
@@ -35,6 +40,16 @@
                 templateUrl: '../../partials/administrator/edit',
                 controller: 'EditCtrl',
                 resolve: routeRoleChecks.admin
+            })
+            .when('/admin', {
+                templateUrl: 'partials/administrator/index',
+                controller: 'AdminCtrl',
+                resolve: routeRoleChecks.admin
+            })
+            .when('/perfil', {
+                templateUrl: 'partials/perfil/index',
+                controller: 'PerfilCtrl',
+                resolve: routeRoleChecks.lawyer
             })
             .when('/registro', {
                 templateUrl: 'partials/home/registration',
@@ -79,7 +94,8 @@
             .when('/', {
                 templateUrl: 'partials/home/index',
                 controller: 'HomeCtrl'
-            });
+            })
+            .otherwise('/');
     }]);
 
     angular.module('app').run(function ($rootScope, $location) {
@@ -89,7 +105,4 @@
             }
         });
     });
-
-    app.run(['$templateCache', function ( $templateCache ) {
-        $templateCache.removeAll(); }]);
 }());

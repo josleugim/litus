@@ -8,7 +8,6 @@
                 restrict: 'A',
                 link: function (scope, elm, attrs) {
                     elm.bind('change', function () {
-                        //console.log(elm[0].files[0]);
                         $parse(attrs.fileConstitutive).assign(scope, elm[0].files[0]);
                         scope.$apply();
                     })
@@ -57,8 +56,7 @@
                 }
             }
         }])
-        .controller('RegistrationCtrl', function ($scope, $routeParams, userService, mvNotifier) {
-            console.log($routeParams.type);
+        .controller('RegistrationCtrl', function ($scope, $routeParams, userService, mvNotifier, $timeout, $location) {
             $scope.register = function () {
                 if($routeParams.type) {
                     var data = {

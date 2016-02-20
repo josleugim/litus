@@ -19,17 +19,20 @@ module.exports = function (app) {
         res.render('../../public/app/' + req.params[0]);
     });
 
-    app.get('/admin', auth.requiresRole('admin'), function (req, res) {
-        // Bootstrapped the user
-        res.render('admin', {
-            bootstrappedUser: req.user
-        });
-    });
-
     app.post('/login', auth.authenticate);
     app.post('/logout', function (req, res) {
         req.logout();
         res.end();
+    });
+
+    app.all("/admin/*", auth.requiresRole('admin'), function(req, res, next) {
+        next(); // if the middleware allowed us to get here,
+                // just move on to the next route handler
+    });
+
+    app.all("/perfil/*", auth.requiresRole('cliente'), function(req, res, next) {
+        next(); // if the middleware allowed us to get here,
+                // just move on to the next route handler
     });
 
     app.get('*', function (req, res) {

@@ -3,7 +3,8 @@
  */
 (function () {
     angular.module('app')
-        .controller('HomeCtrl', function ($scope, sectionService) {
+        .controller('HomeCtrl', function ($scope, sectionService, mvIdentity) {
+            $scope.identity = mvIdentity;
             sectionService.getAllSections()
                 .then(function (res) {
                     $scope.sections = res.data;

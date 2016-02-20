@@ -8,7 +8,14 @@
             authService.authenticate(email, password).then(function (success) {
                 if(success) {
                     mvNotifier.notify('Acceso exitoso');
-                    $location.path('/admin');
+                    if($scope.identity.currentUser.roles[0] == "abogado") {
+                        $location.path('/perfil');
+                    } else if($scope.identity.currentUser.roles[0] == "cliente") {
+                        $location.path('/perfil');
+                    } else {
+                        $location.path('/admin');
+                    }
+
                 }
                 else {
                     mvNotifier.notify('Usuario/Contraseña incorrectos');
