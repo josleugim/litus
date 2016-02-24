@@ -1,0 +1,28 @@
+//
+   Created by Mordekaiser on 23/02/16.
+
+.container-fluid
+    .row
+        .col-md-12
+            filtrado
+                form(name="filterForm")
+                    select(name="specialityArea", ng-model="specialityArea")
+                        option(value="penal") Penal
+                        option(value="civil") Civil
+                        option(value="administrativa") Administrativa
+                        option(value="laboral") Laboral
+                        option(value="fiscal") Fiscal
+                        option(value="familiar") Familiar
+    .row
+        .col-md-12(ng-repeat="lawyer in lawyers | filter:specialityArea")
+            .row
+                .col-md-6
+                    information
+                        h5 {{lawyer.name}} {{lawyer.lastName}}
+                        p {{lawyer.specialityArea}}
+                        p Calificación: 0
+                        a(href="#", ng-click="scheduleAppointment()") Agendar una cita
+                .col-md-6
+                    informacion
+                        p Descripción:
+                        p {{lawyer.description}}

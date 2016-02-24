@@ -8,7 +8,7 @@ module.exports = {
     development: {
         db: 'mongodb://localhost/litus-dev',
         rootPath: rootPath,
-        port: process.env.PORT || 5000,
+        port: process.env.PORT || 5002,
         grid_api_user: "",
         grid_api_password: ""
     },

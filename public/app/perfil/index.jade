@@ -1,4 +1,42 @@
 //
    Created by Mordekaiser on 19/02/16.
 
-h2 Perfil
+.container-fluid
+    .row
+        .col-md-6
+            h4 Información personal
+            a(href="/perfil/edit/{{user._id}}") Editar información
+            .row
+                .col-md-2
+                    p Nombre
+                .col-md-2
+                    p {{user.name}} {{user.lastName}}
+            .row
+                .col-md-2
+                    p Email
+                .col-md-2
+                    p {{user.email}}
+            .row
+                .col-md-2
+                    p Teléfono
+                .col-md-2
+                    p {{user.phone}}
+            .row
+                .col-md-2
+                    p Persona
+                .col-md-2
+                    p {{user.economicActivities}}
+            .row
+                .col-md-2
+                    p Área de especialidad
+                .col-md-2
+                    p {{user.specialityArea}}
+            .row
+                .col-md-2
+                    p Descripción
+                .col-md-4
+                    p {{user.description}}
+
+        .col-md-6
+            h4 Notificaciones de citas pendientes
+            .row

@@ -2,7 +2,7 @@
  * Created by Mordekaiser on 17/02/16.
  */
 (function () {
-    angular.module('app').controller('loginCtrl', function ($scope, mvIdentity, mvNotifier, authService, $location, $route) {
+    angular.module('app').controller('loginCtrl', function ($scope, mvIdentity, mvNotifier, authService, $location) {
         $scope.identity = mvIdentity;
         $scope.signin = function (email, password) {
             authService.authenticate(email, password).then(function (success) {
@@ -11,7 +11,7 @@
                     if($scope.identity.currentUser.roles[0] == "abogado") {
                         $location.path('/perfil');
                     } else if($scope.identity.currentUser.roles[0] == "cliente") {
-                        $location.path('/perfil');
+                        $location.path('/busqueda');
                     } else {
                         $location.path('/admin');
                     }

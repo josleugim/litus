@@ -31,7 +31,6 @@
                 restrict: 'A',
                 link: function (scope, element) {
                     element.on('change', function () {
-                        console.log(element[0].value);
                         if(element[0].value === "fisica") {
                             $('#constitutiveAct').css('display','none');
                         } else {
@@ -56,34 +55,30 @@
                 }
             }
         }])
-        .controller('RegistrationCtrl', function ($scope, $routeParams, userService, mvNotifier, $timeout, $location) {
+        .controller('RegistrationCtrl', function ($scope, userService, mvNotifier, $timeout, $location) {
             $scope.register = function () {
-                if($routeParams.type) {
-                    var data = {
-                        name: $scope.name,
-                        lastName: $scope.lastName,
-                        email: $scope.email,
-                        password: $scope.password,
-                        phone: Number($scope.phone),
-                        economicActivities: $scope.economicActivities,
-                        constitutiveAct: $scope.files,
-                        professionalLicense: $scope.professionalLicense,
-                        specialityArea: $scope.specialityArea,
-                        description: $scope.description,
-                        type: $routeParams.type
-                    };
+                var data = {
+                    name: $scope.name,
+                    lastName: $scope.lastName,
+                    email: $scope.email,
+                    password: $scope.password,
+                    phone: Number($scope.phone),
+                    economicActivities: $scope.economicActivities,
+                    constitutiveAct: $scope.files,
+                    professionalLicense: $scope.professionalLicense,
+                    specialityArea: $scope.specialityArea,
+                    description: $scope.description,
+                    type: 'abogado'
+                };
 
-                    userService.post(data).then(function (success, error) {
-                        if(success) {
-                            mvNotifier.notify('Registro exitoso');
-                            $timeout($location.path('login/'), 1500);
-                        } else {
-                            mvNotifier.error('No se pudo realizar el registro, error: ' + error);
-                        }
-                    })
-                } else {
-                    mvNotifier.error('Tipo de usuario requerido');
-                }
+                userService.post(data).then(function (success, error) {
+                    if(success) {
+                        mvNotifier.notify('Registro exitoso');
+                        $timeout($location.path('login/'), 1500);
+                    } else {
+                        mvNotifier.error('No se pudo realizar el registro, error: ' + error);
+                    }
+                })
             }
         });
 }());

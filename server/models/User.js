@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 var userSchema = mongoose.Schema({
     name: {
         type: String,
-        required: '{PATH} nombre requerido'
+        required: 'nombre requerido'
     },
     lastName: {
         type: String
@@ -18,16 +18,16 @@ var userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: '{PATH} email requerido',
+        required: 'email requerido',
         unique: true
     },
     salt: {
         type: String,
-        required: '{PATH} requerido'
+        required: 'requerido'
     },
     hashed_pwd: {
         type: String,
-        required: '{PATH} password requerido'
+        required: 'password requerido'
     },
     economicActivities: {type: String},
     constitutiveAct: {type: String},
@@ -63,7 +63,6 @@ userSchema.methods = {
         delete user.createdAt;
         delete user.updatedAt;
         delete user.isActive;
-        delete user._id;
         return user;
     }
 };
@@ -73,6 +72,7 @@ var User = mongoose.model('User', userSchema);
 function createDefaultUsers() {
     User.find({}).exec(function (err, collection) {
         if(collection.length === 0) {
+            console.log('Creating seed');
             var salt, hash;
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'demo');
@@ -93,7 +93,22 @@ function createDefaultUsers() {
                 email: 'cliente@domain.com',
                 salt: salt,
                 hashed_pwd: hash,
-                roles: ["cliente"],
+                roles: ["cliente", "user"],
+                isActive: true
+            });
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPwd(salt, 'demo');
+            User.create({
+                name: 'Jhonny',
+                lastName: 'Walker',
+                email: 'lawyer@domain.com',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ["abogado", "user"],
+                phone: 5517963663,
+                economicActivities: "fisica",
+                specialityArea: "penal",
+                description: "Soy penalista",
                 isActive: true
             });
         }

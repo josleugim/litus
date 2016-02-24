@@ -1,0 +1,32 @@
+//
+   Created by Mordekaiser on 22/02/16.
+
+.well
+    form(name="userForm")
+        .form-group
+            label Nombre
+            input(type="text", name="name", class="form-group", ng-model="name", required)
+            span(class="error", ng-show="userForm.name.$error.required") *
+        .form-group
+            label Apellidos
+            input(type="text", name="lastName", class="form-group", ng-model="lastName", required)
+            span(class="error", ng-show="userForm.lastName.$error.required") *
+        .form-group
+            label Teléfono
+            input(type="number", name="phone", class="form-group", ng-model="phone", ng-required)
+            span(class="error", ng-show="userForm.phone.$error.required") *
+        .form-group
+            label Área de especialidad
+            select(name="specialityArea", ng-model="specialityArea")
+                option(value="penal") Penal
+                option(value="civil") Civil
+                option(value="administrativa") Administrativa
+                option(value="laboral") Laboral
+                option(value="fiscal") Fiscal
+                option(value="familiar") Familiar
+            span(class="error", ng-show="userForm.specialityArea.$error.required") *
+        .form-group
+            label Descripción
+            textarea(class="form-group", name="description", ng-model="description", required)
+            span(class="error", ng-show="userForm.description.$error.required") *
+        button.btn.btn-primary(ng-click="editUser()", ng-disabled="userForm.$invalid") Guardar información

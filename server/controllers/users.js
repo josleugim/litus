@@ -49,3 +49,113 @@ exports.post = function (req, res) {
         }
     });
 };
+
+exports.get = function (req, res) {
+    console.log('GET User');
+    var query = {
+        roles: {
+            $ne: 'admin'
+        }
+    };
+
+    if(req.query._id) {
+        query._id = req.query._id;
+
+        User.findOne(query, function (err, user) {
+            if(err) {
+                console.log('Error at GET method: ' + err);
+                res.status(500);
+                res.end();
+            } else {
+                res.status(200).json(user);
+                res.end();
+            }
+        })
+    } else {
+        User.find(query)
+            .sort({name: -1})
+            .limit(10)
+            .exec(function (err, users) {
+                if(err) {
+                    console.log('Error at GET method: ' + err);
+                    res.status(500);
+                    res.end()
+                } else {
+                    res.status(200).json(users);
+                    res.end();
+                }
+            })
+    }
+};
+
+exports.put = function (req, res) {
+    console.log('PUT user');
+
+    var query = {
+        roles: {
+            $ne: 'admin'
+        }
+    };
+
+    if(req.query._id) {
+        query._id = req.query._id;
+
+        var data = {};
+
+        if(req.body.name)
+            data.name = req.body.name;
+        if(req.body.lastName)
+            data.lastName = req.body.lastName;
+        if(req.body.description)
+            data.description = req.body.description;
+        if(req.body.phone)
+            data.phone = req.body.phone;
+        if(req.body.specialityArea)
+            data.specialityArea = req.body.specialityArea;
+
+        User.update(query, {$set: data}, function (err) {
+            if (err) {
+                console.log(err);
+                res.status(401).json({success: false, error: err});
+            } else {
+                res.status(201).json({success: true});
+                res.end();
+            }
+        });
+    } else {
+        res.status(500);
+        res.end();
+    }
+};
+
+exports.getLawyers = function (req, res) {
+    console.log('GET Lawyers');
+
+    var query = {
+        roles: {
+            $nin: ['admin', 'cliente']
+        }
+    };
+    var limit, skip;
+
+    if(req.query.specialityArea)
+        query.specialityArea = req.query.specialityArea;
+
+    console.log(query);
+
+    User.find(query)
+        .sort({name: -1})
+        .limit(10)
+        .skip(0)
+        .exec(function (err, users) {
+            if(err) {
+                console.log('Error at GET method: ' + err);
+                res.status(500);
+                res.end()
+            } else {
+                res.status(200).json(users);
+                res.end();
+            }
+        })
+
+};

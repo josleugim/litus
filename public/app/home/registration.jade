@@ -47,7 +47,10 @@
             select(name="specialityArea", ng-model="specialityArea")
                 option(value="penal") Penal
                 option(value="civil") Civil
-                option(value="administracion") Administración
+                option(value="administrativa") Administrativa
+                option(value="laboral") Laboral
+                option(value="fiscal") Fiscal
+                option(value="familiar") Familiar
             span(class="error", ng-show="registerForm.specialityArea.$error.required") *
         .form-group
             label Descripción

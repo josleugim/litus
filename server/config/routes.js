@@ -13,7 +13,11 @@ module.exports = function (app) {
     app.get('/api/sections/:slug', sections.getBySlug);
     app.put('/api/sections/', sections.editSectionBySlug);
 
+    app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}]), users.post);
+    app.put('/api/users', auth.requiresRole('user'), users.put);
+
+    app.get('/api/lawyers', auth.requiresRole('user'), users.getLawyers);
 
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);

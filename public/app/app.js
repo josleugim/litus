@@ -51,9 +51,23 @@
                 controller: 'PerfilCtrl',
                 resolve: routeRoleChecks.lawyer
             })
-            .when('/registro', {
+            .when('/perfil/edit/:id', {
+                templateUrl: '../../partials/perfil/edit',
+                controller: 'EditCtrl',
+                resolve: routeRoleChecks.lawyer
+            })
+            .when('/busqueda', {
+                templateUrl: 'partials/busqueda/index',
+                controller: 'SearchCtrl',
+                resolve: routeRoleChecks.client
+            })
+            .when('/registro-abogados', {
                 templateUrl: 'partials/home/registration',
                 controller: 'RegistrationCtrl'
+            })
+            .when('/registro-usuarios', {
+                templateUrl: 'partials/home/userRegister',
+                controller: 'UserRegisterCtrl'
             })
             .when('/nosotros', {
                 templateUrl: 'partials/nosotros/index',

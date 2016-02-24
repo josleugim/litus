@@ -7,8 +7,31 @@
 
     function userService($q, $http, ApiUrl) {
         return {
-            post: postUser
+            getUserByID: getUserByID,
+            post: postUser,
+            put: putUser,
+            getLawyers: getLawyers
         };
+
+        function getUserByID(query) {
+            var dfd = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: ApiUrl + 'api/users',
+                params: query,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                dfd.resolve(response.data);
+            }, function errorCallback() {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+
+        }
 
         function postUser(data) {
             var dfd = $q.defer();
@@ -31,6 +54,47 @@
                     dfd.resolve(true);
                 }
             }, function errorCallback(response) {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+        }
+
+        function putUser(query, data) {
+            var dfd = $q.defer();
+
+            $http({
+                method: 'PUT',
+                url: ApiUrl + 'api/users',
+                params: query,
+                data: data,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                if(response.data.success) {
+                    dfd.resolve(true);
+                }
+            }, function errorCallback(response) {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+        }
+
+        function getLawyers(query) {
+            var dfd = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: ApiUrl + 'api/lawyers',
+                params: query,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                dfd.resolve(response.data);
+            }, function errorCallback() {
                 dfd.resolve(false);
             });
 

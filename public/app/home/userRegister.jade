@@ -1,0 +1,32 @@
+//
+   Created by Mordekaiser on 23/02/16.
+
+.well
+    form(name="registerForm")
+        .form-group
+            label Nombre
+            input(type="text", name="name", class="form-group", ng-model="name", required)
+            span(class="error", ng-show="registerForm.name.$error.required") *
+        .form-group
+            label Apellidos
+            input(type="text", name="lastName", class="form-group", ng-model="lastName", required)
+            span(class="error", ng-show="registerForm.lastName.$error.required") *
+        .form-group
+            label Teléfono
+            input(type="number", name="phone", class="form-group", ng-model="phone", ng-required)
+            span(class="error", ng-show="registerForm.phone.$error.required") *
+        .form-group
+            label Email
+            input(class="form-group", type="email", name="email", ng-model="email", required)
+            span(class="error", ng-show="registerForm.email.$error.required") *
+            span(class="error", ng-show="registerForm.email.$error.email") Formato incorrecto
+        .form-group
+            label Contraseña
+            input(class="form-group", type="password", id="password", name="password", ng-model="password", ng-required)
+            span(class="error", ng-show="registerForm.password.$error.required") *
+        .form-group
+            label Confirmar contraseña
+            input(class="form-group", type="password", name="validatePassword", ng-model="validatePassword", pw-check="password", ng-required)
+            span(class="error", ng-show="registerForm.validatePassword.$error.required") *
+            span(class="msg-error", ng-show="registerForm.validatePassword.$error.pwmatch") Las contraseñas no coinciden
+        button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar
