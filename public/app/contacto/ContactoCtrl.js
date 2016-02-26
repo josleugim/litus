@@ -3,24 +3,42 @@
  */
 (function () {
     angular.module('app')
-        .controller('ContactoCtrl', function ($scope, sectionService) {
-            sectionService.getSectionBySlug('contacto')
-                .then(function (res) {
-                    $scope.section = res.data;
-                })
-                .catch(errorCallback)
-                .finally(getAllSectionsComplete);
+        .controller('ContactoCtrl', ['$scope', 'sectionService', 'contactService', 'mvNotifier', ContactoCtrl]);
 
-            $scope.contact = function () {
-
+    function ContactoCtrl($scope, sectionService, contactService, mvNotifier) {
+        sectionService.getSectionBySlug('contacto').then(function (data) {
+            if(data) {
+                $scope.section = data;
             }
-        });
+        })
+            .catch(errorCallback)
+            .finally(getSectionComplete);
 
-    function errorCallback(errorMsg) {
-        console.log(errorMsg);
-    }
+        function getSectionComplete() {
+            console.log('Contact service completed');
+        }
 
-    function getAllSectionsComplete() {
-        console.log('complete');
+        function errorCallback() {
+            console.log('Error at contact service');
+        }
+
+        $scope.sendMessage = function() {
+            var data = {
+                name: $scope.name,
+                email: $scope.email,
+                message: $scope.message
+            };
+
+            contactService.post(data).then(function (success) {
+                if(success) {
+                    mvNotifier.notify('Mensaje enviado, pronto nos pondremos en contacto.');
+                    $scope.name = "";
+                    $scope.email = "";
+                    $scope.message = "";
+                } else {
+                    mvNotifier.error('No se puedo enviar el mensaje, inténtalo más tarde');
+                }
+            })
+        }
     }
 }());

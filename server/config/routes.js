@@ -5,7 +5,8 @@ var auth = require('./auth'),
     sections = require('../controllers/sections'),
     users = require('../controllers/users'),
     multer = require('multer'),
-    upload = multer({dest: 'public/uploads/'});
+    upload = multer({dest: 'public/uploads/'}),
+    contact = require('../controllers/contact');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
@@ -16,6 +17,8 @@ module.exports = function (app) {
     app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}]), users.post);
     app.put('/api/users', auth.requiresRole('user'), users.put);
+
+    app.post('/api/contact', contact.post);
 
     app.get('/api/lawyers', auth.requiresRole('user'), users.getLawyers);
 

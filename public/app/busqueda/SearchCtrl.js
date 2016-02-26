@@ -18,9 +18,9 @@
                 }
             }
         }])
-        .controller('SearchCtrl', ['mvNotifier', '$scope', 'userService', 'payuService', SearchCtrl]);
+        .controller('SearchCtrl', ['mvNotifier', '$scope', 'userService', SearchCtrl]);
 
-    function SearchCtrl(mvNotifier, $scope, userService, payuService) {
+    function SearchCtrl(mvNotifier, $scope, userService) {
         $scope.$on("updateItems", function(event, data) {
             if(Object.keys(data).length) {
                 $scope.lawyers = data;
@@ -37,26 +37,7 @@
 
         $scope.scheduleAppointment = function() {
             console.log('Appointment');
-            var data = {
-                merchantId: "500238",
-                accountId: "500547",
-                ApiKey: "6u39nqhq8ftd0hlvnjfs66eh8c",
-                description: "Test PAYU",
-                referenceCode: "TestPayU",
-                amount: "3",
-                tax: "0",
-                taxReturnBase: "0",
-                currency: "USD",
-                signature: "be2f083cb3391c84fdf5fd6176801278",
-                test: "1",
-                buyerEmail: "test@test.com"
-            };
 
-            payuService.post(data).then(function (success) {
-                if(success) {
-
-                }
-            })
         }
     }
 }());

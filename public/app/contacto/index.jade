@@ -18,4 +18,4 @@
             label Mensaje
             textarea(class="form-group", name="message", ng-model="message", required)
             span(class="error", ng-show="contactForm.message.$error.required") *
-        button.btn.btn-primary(ng-click="contact()", ng-disabled="contactForm.$invalid") Enviar
+        button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
