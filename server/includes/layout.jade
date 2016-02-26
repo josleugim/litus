@@ -8,6 +8,7 @@ html
         link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
+        script(src='https://www.google.com/recaptcha/api.js', type="text/javascript")
     body(ng-app='app')
         ul.nav.nav-tabs(ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
             li(role="presentation")
