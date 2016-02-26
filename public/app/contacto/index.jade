@@ -18,5 +18,5 @@
             label Mensaje
             textarea(class="form-group", name="message", ng-model="message", required)
             span(class="error", ng-show="contactForm.message.$error.required") *
-        div(class="g-recaptcha" data-sitekey="6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75")
+        div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
         button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar

@@ -10,6 +10,7 @@ module.exports = {
         rootPath: rootPath,
         port: process.env.PORT || 5002,
         sendgridApiKey: "",
+        captchaSecrect: ""
 
     },
     production: {

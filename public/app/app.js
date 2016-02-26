@@ -2,7 +2,7 @@
  * Created by Mordekaiser on 09/02/2016.
  */
 (function () {
-    var app = angular.module('app', ['ngResource', 'ngRoute', 'ngSanitize']);
+    var app = angular.module('app', ['ngResource', 'ngRoute', 'ngSanitize', 'vcRecaptcha']);
 
     app.value('ApiUrl', 'http://localhost:5002/');
 

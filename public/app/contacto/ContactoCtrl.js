@@ -3,9 +3,9 @@
  */
 (function () {
     angular.module('app')
-        .controller('ContactoCtrl', ['$scope', 'sectionService', 'contactService', 'mvNotifier', ContactoCtrl]);
+        .controller('ContactoCtrl', ['$scope', 'sectionService', 'contactService', 'mvNotifier', 'vcRecaptchaService', ContactoCtrl]);
 
-    function ContactoCtrl($scope, sectionService, contactService, mvNotifier) {
+    function ContactoCtrl($scope, sectionService, contactService, mvNotifier, vcRecaptchaService) {
         sectionService.getSectionBySlug('contacto').then(function (data) {
             if(data) {
                 $scope.section = data;
@@ -23,22 +23,27 @@
         }
 
         $scope.sendMessage = function() {
-            var data = {
-                name: $scope.name,
-                email: $scope.email,
-                message: $scope.message
-            };
+            if(vcRecaptchaService.getResponse() === "") {
+                mvNotifier.error('Captcha obligatorio');
+            } else {
+                var data = {
+                    name: $scope.name,
+                    email: $scope.email,
+                    message: $scope.message,
+                    'g-recaptcha-response': vcRecaptchaService.getResponse()
+                };
 
-            contactService.post(data).then(function (success) {
-                if(success) {
-                    mvNotifier.notify('Mensaje enviado, pronto nos pondremos en contacto.');
-                    $scope.name = "";
-                    $scope.email = "";
-                    $scope.message = "";
-                } else {
-                    mvNotifier.error('No se puedo enviar el mensaje, inténtalo más tarde');
-                }
-            })
+                contactService.post(data).then(function (success) {
+                    if(success) {
+                        mvNotifier.notify('Mensaje enviado, pronto nos pondremos en contacto.');
+                        $scope.name = "";
+                        $scope.email = "";
+                        $scope.message = "";
+                    } else {
+                        mvNotifier.error('No se puedo enviar el mensaje, inténtalo más tarde');
+                    }
+                })
+            }
         }
     }
 }());
