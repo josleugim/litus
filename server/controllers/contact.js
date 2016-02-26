@@ -15,12 +15,11 @@ exports.post = function (req, res) {
 
     request({
         method: 'POST',
-        uri: 'https://www.google.com/recaptcha/api/siteverify',
+        url: 'https://www.google.com/recaptcha/api/siteverify',
+        form: data,
         headers: {
-            'Content-type':'application/x-www-form-urlencoded',
-            'Content-Length': Buffer.byteLength(data)
-        }
-    },
+            'Content-type':'application/x-www-form-urlencoded'
+        }},
         function (err, response) {
             if(err) {
                 console.log('Captcha err: ');
@@ -50,7 +49,7 @@ exports.post = function (req, res) {
                     captchaResult: resParse.success,
                     captcahErrCodes: resParse['error-codes']
                 };
-
+                console.log(err);
                 res.status(500).json(error);
                 res.end();
             }
