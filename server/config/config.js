@@ -9,7 +9,7 @@ module.exports = {
         db: 'mongodb://localhost/litus-dev',
         rootPath: rootPath,
         port: process.env.PORT || 5002,
-        sendgridApiKey: "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",
+        sendgridApiKey: "",
         captchaSecret: ""
 
     },
