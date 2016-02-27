@@ -24,6 +24,8 @@ exports.post = function (req, res) {
             if(err) {
                 console.log('Captcha err: ');
                 console.log(err);
+                res.status(500).json({error: err});
+                res.end();
             }
             var resParse = JSON.parse(response.body);
             if(resParse.success) {
