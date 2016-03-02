@@ -40,3 +40,7 @@
         .col-md-6
             h4 Notificaciones de citas pendientes
             .row
+                ul
+                    li(ng-repeat="info in notifications")
+                        p {{info.client_name}} ha solicitado una cita, para aceptarla da click en el botón.
+                            button.btn.btn-primary(ng-click="acceptAppointment(info.client_id, info.notification_id)") Aceptar

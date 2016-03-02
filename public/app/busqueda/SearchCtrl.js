@@ -18,9 +18,11 @@
                 }
             }
         }])
-        .controller('SearchCtrl', ['mvNotifier', '$scope', 'userService', SearchCtrl]);
+        .controller('SearchCtrl', ['mvNotifier', '$scope', 'userService', 'notificationService', 'mvIdentity', SearchCtrl]);
 
-    function SearchCtrl(mvNotifier, $scope, userService) {
+    function SearchCtrl(mvNotifier, $scope, userService, notificationService, mvIdentity) {
+        $scope.identity = mvIdentity;
+        $scope.emails = [];
         $scope.$on("updateItems", function(event, data) {
             if(Object.keys(data).length) {
                 $scope.lawyers = data;
@@ -35,9 +37,37 @@
             }
         });
 
-        $scope.scheduleAppointment = function() {
-            console.log('Appointment');
+        $scope.lawyerSelection = function(lawyersModel, email) {
+            if(lawyersModel) {
+                $scope.emails.push(email);
+            } else {
+                var index = $scope.emails.indexOf(email);
+                $scope.emails.splice(index, 1);
+            }
+        };
 
+        $scope.payu = function() {
+            console.log('PayU');
+            if($scope.emails.length > 3) {
+                mvNotifier.error('Solo puedes seleccionar un máximo de 3 abogados');
+            } else if($scope.emails.length <= 0) {
+                mvNotifier.error('Selecciona al menos un abogado');
+            } else {
+                // crete the notifications
+                console.log(mvIdentity);
+                var data = {
+                    status: 'Pending',
+                    lawyers: $scope.emails
+                };
+
+                notificationService.post({_id: mvIdentity.currentUser._id}, data).then(function (success) {
+                    if(success) {
+                        mvNotifier.notify('Notifación exitosa, en breve el abogado se pondrá en contacto por medio del chat');
+                    } else {
+                        mvNotifier.error('Error al procesar la notificación, intenteló más tarde');
+                    }
+                })
+            }
         }
     }
 }());

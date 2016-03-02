@@ -3,7 +3,8 @@
  */
 var mongoose = require('mongoose'),
     sectionModel = require('../models/Section'),
-    userModel = require('../models/User');
+    userModel = require('../models/User'),
+    chatModel = require('../models/Chat');
 
 module.exports = function (config) {
     mongoose.connect(config.db);

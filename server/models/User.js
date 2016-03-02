@@ -36,9 +36,15 @@ var userSchema = mongoose.Schema({
     description: {type: String},
     roles: [{
         type: String,
-        required: 'Requerido',
-        default: 'cliente'
+        required: 'Requerido'
     }],
+    notifications: [{
+        status: {type: String},
+        client_id: {type: String},
+        createdAt: {type: Date, default: Date.now},
+        updatedAt: {type: Date}
+    }],
+    chats: [{type: String}],
     rating: [{
         _id: false,
         rate: {type: Number},

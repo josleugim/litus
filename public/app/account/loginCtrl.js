@@ -18,7 +18,7 @@
 
                 }
                 else {
-                    mvNotifier.notify('Usuario/Contraseña incorrectos');
+                    mvNotifier.error('Usuario/Contraseña incorrectos');
                 }
             });
         };

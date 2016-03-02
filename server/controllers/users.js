@@ -7,6 +7,7 @@ var User = require('mongoose').model('User'),
 exports.post = function (req, res) {
     console.log('POST User');
     // Create an object, with the params we expect from the scary internet
+    var roles = [];
     var data = {};
     var salt, hash;
     if(req.body.name)
@@ -34,7 +35,9 @@ exports.post = function (req, res) {
     if(req.body.description)
         data.description = req.body.description;
     if(req.body.type && (req.body.type == "cliente" || req.body.type == "abogado")) {
-        data.roles = req.body.type;
+        roles.push(req.body.type);
+        roles.push('user');
+        data.roles = roles;
     }
 
     var user = new User(data)
@@ -140,8 +143,6 @@ exports.getLawyers = function (req, res) {
 
     if(req.query.specialityArea)
         query.specialityArea = req.query.specialityArea;
-
-    console.log(query);
 
     User.find(query)
         .sort({name: -1})

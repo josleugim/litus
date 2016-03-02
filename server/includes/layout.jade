@@ -51,6 +51,8 @@ html
                         li(ng-show="identity.isAuthorized('abogado')")
                             a(href="/perfil/edit") Modificar cuenta
                         li
+                            a(href="/chat") Chat
+                        li
                             a(href="/logout", ng-click="signout()") Cerrar sesión
         include currentUser
         block main-content
