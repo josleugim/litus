@@ -22,6 +22,11 @@
                 auth: function(authService) {
                     return authService.authUserRoute('abogado');
                 }
+            },
+            user: {
+                auth: function (authService) {
+                    return authService.authUserRoute('user');
+                }
             }
         };
 
@@ -55,6 +60,11 @@
                 templateUrl: '../../partials/perfil/edit',
                 controller: 'EditCtrl',
                 resolve: routeRoleChecks.lawyer
+            })
+            .when('/chat', {
+                templateUrl: 'partials/chat/index',
+                controller: 'ChatCtrl',
+                resolve: routeRoleChecks.user
             })
             .when('/busqueda', {
                 templateUrl: 'partials/busqueda/index',

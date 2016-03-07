@@ -97,6 +97,8 @@ exports.putNotification = function (req, res) {
             // create a chat for the current lawyer and user
             var chat = new Chat();
             chat.status = 'Active';
+            chat.client_id = req.query.client_id;
+            chat.lawyer_id = req.body.lawyer_id;
             chat.save();
 
             console.log(chat);
@@ -105,7 +107,7 @@ exports.putNotification = function (req, res) {
                 // For the client and the lawyer that accept the appointment the status is set to active
                 if(user._id == req.query.client_id || user._id == req.body.lawyer_id) {
                     // adding the chat id for the user
-                    user.chats.push(chat._id);
+                    //user.chats.push(chat._id);
                     user.notifications.forEach(function (notification) {
                         if(notification._id == req.body.notification_id) {
                             notification.status = "Active";

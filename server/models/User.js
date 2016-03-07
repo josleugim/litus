@@ -44,7 +44,7 @@ var userSchema = mongoose.Schema({
         createdAt: {type: Date, default: Date.now},
         updatedAt: {type: Date}
     }],
-    chats: [{type: String}],
+    //chats: [{type: String}],
     rating: [{
         _id: false,
         rate: {type: Number},
@@ -107,7 +107,7 @@ function createDefaultUsers() {
             User.create({
                 name: 'Jhonny',
                 lastName: 'Walker',
-                email: 'lawyer@domain.com',
+                email: 'jhonny@domain.com',
                 salt: salt,
                 hashed_pwd: hash,
                 roles: ["abogado", "user"],
@@ -115,6 +115,36 @@ function createDefaultUsers() {
                 economicActivities: "fisica",
                 specialityArea: "penal",
                 description: "Soy penalista",
+                isActive: true
+            });
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPwd(salt, 'demo');
+            User.create({
+                name: 'Julian',
+                lastName: 'Alvarez',
+                email: 'julian@domain.com',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ["abogado", "user"],
+                phone: 55178833664,
+                economicActivities: "fisica",
+                specialityArea: "laboral",
+                description: "Soy laboral",
+                isActive: true
+            });
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPwd(salt, 'demo');
+            User.create({
+                name: 'Camilo',
+                lastName: 'Gomez Díaz',
+                email: 'camilo@domain.com',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ["abogado", "user"],
+                phone: 55178833664,
+                economicActivities: "fisica",
+                specialityArea: "familiar",
+                description: "Soy familiar",
                 isActive: true
             });
         }

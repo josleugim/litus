@@ -1,0 +1,23 @@
+.user-list .user-box {
+  border: 1px solid #46b8da;
+  border-radius: 4px;
+  margin: 10px auto;
+}
+.user-list .user-box p {
+  text-align: center;
+  margin: 5px auto;
+}
+.user-list .user-box button {
+  font-size: 0.75em;
+  margin: auto 5px;
+}
+#message-container {
+  display: none;
+}
+#message-container textarea {
+  height: 60px;
+  width: 100%;
+}
+#message-container button {
+  float: right;
+}

@@ -19,6 +19,7 @@
                         // Get the client info for each notification
                         userService.getUserByID({_id: notification.client_id}).then(function (client) {
                             notification.client_name = client.name;
+                            notification.client_lastName = client.lastName;
                             notification.client_id = client._id;
                             notification.notification_id = notification._id;
 

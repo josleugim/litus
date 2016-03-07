@@ -7,7 +7,8 @@ var auth = require('./auth'),
     multer = require('multer'),
     upload = multer({dest: 'public/uploads/'}),
     contact = require('../controllers/contact'),
-    notifications = require('../controllers/notifications');
+    notifications = require('../controllers/notifications'),
+    chats = require('../controllers/chats');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
@@ -22,8 +23,9 @@ module.exports = function (app) {
     app.post('/api/notifications', auth.requiresRole('user'), notifications.postNotification);
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);
 
-    app.get('/api/chat', auth.requiresRole('user'));
-    app.post('/api/chat', auth.requiresRole('user'));
+    app.get('/api/chat/users', auth.requiresRole('user'), chats.getChatUsers);
+    app.get('/api/chat', auth.requiresRole('user'), chats.get);
+    app.put('/api/chat', auth.requiresRole('user'), chats.put);
 
     app.post('/api/contact', contact.post);
 

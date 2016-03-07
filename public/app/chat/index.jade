@@ -1,0 +1,20 @@
+//
+   Created by Mordekaiser on 03/03/16.
+
+.container-fluid
+    .row(ng-repeat="user in users")
+        .col-md-3.user-list
+            .user-box
+                p {{user.completeName}}
+                    button(ng-click="getChat(user.chat_id)", type="button", class="btn btn-info") Abrir chat
+        .col-md-9
+            .row#message-container
+                .col-md-12
+                    .conversation(ng-repeat="msg in conversations")
+                        p {{msg.completeName}} dice:
+                        p {{msg.message}}
+                .col-md-12
+                    form(name="messageForm")
+                        textarea(name="msg", ng-model="msg", ng-required)
+                        span(class="text-warning", ng-show="messageForm.msg.$error.required") * requerido
+                        button(class="btn btn-primary", ng-click="sendMessage(msg)", ng-disabled="messageForm.$invalid") Enviar mensaje

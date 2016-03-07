@@ -42,5 +42,5 @@
             .row
                 ul
                     li(ng-repeat="info in notifications")
-                        p {{info.client_name}} ha solicitado una cita, para aceptarla da click en el botón.
+                        p {{info.client_name}} {{info.client_lastName}} ha solicitado una cita, para aceptarla da click en el botón.
                             button.btn.btn-primary(ng-click="acceptAppointment(info.client_id, info.notification_id)") Aceptar
