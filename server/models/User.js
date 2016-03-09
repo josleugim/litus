@@ -88,7 +88,7 @@ function createDefaultUsers() {
                 email: 'josleugim@gmail.com',
                 salt: salt,
                 hashed_pwd: hash,
-                roles: ["admin"],
+                roles: ["admin", "user"],
                 isActive: true
             });
             salt = encrypt.createSalt();

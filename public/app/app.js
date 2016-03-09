@@ -36,14 +36,14 @@
         });
 
         $routeProvider
+            .when('/admin/edit/:slug', {
+                templateUrl: '../../partials/administrator/edit',
+                controller: 'SectionEditCtrl',
+                resolve: routeRoleChecks.admin
+            })
             .when('/admin/details/:slug', {
                 templateUrl: '../../partials/administrator/details',
                 controller: 'DetailsCtrl',
-                resolve: routeRoleChecks.admin
-            })
-            .when('/admin/edit/:slug', {
-                templateUrl: '../../partials/administrator/edit',
-                controller: 'EditCtrl',
                 resolve: routeRoleChecks.admin
             })
             .when('/admin', {

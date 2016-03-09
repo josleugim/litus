@@ -14,7 +14,7 @@ module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
     app.get('/api/sections', sections.get);
     app.get('/api/sections/:slug', sections.getBySlug);
-    app.put('/api/sections/', sections.editSectionBySlug);
+    app.put('/api/sections/', auth.requiresRole('admin'), sections.editSectionBySlug);
 
     app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}]), users.post);
