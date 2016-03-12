@@ -30,7 +30,7 @@ exports.post = function (req, res) {
             var resParse = JSON.parse(response.body);
             if(resParse.success) {
                 var htmlMessage = "Nombre: " + req.body.name + "<br>Email: " + req.body.email + "<br>Mensaje: " + req.body.message;
-                if(sendgrid("josleugim@gmail.com", "josemiguel@heuristicforge.com", "Mensaje desde litus", htmlMessage)) {
+                if(sendgrid.sendMail("josleugim@gmail.com", "josemiguel@heuristicforge.com", "Mensaje desde litus", htmlMessage)) {
                     res.status(200).json({success: true});
                     res.end();
                 } else {
