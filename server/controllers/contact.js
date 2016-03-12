@@ -2,7 +2,7 @@
  * Created by Mordekaiser on 25/02/16.
  */
 var config = require('../config/config'),
-    sendgrid = require('sendgrid')(config.development.sendgridApiKey),
+    sendgrid = require('../utilities/sendgrid'),
     request = require('request'),
     ip = require('ip');
 
@@ -29,29 +29,21 @@ exports.post = function (req, res) {
             }
             var resParse = JSON.parse(response.body);
             if(resParse.success) {
-                var email = new sendgrid.Email();
-
-                email.addTo("josleugim@gmail.com");
-                email.setFrom("josemiguel@heuristicforge.com");
-                email.setSubject("Mensaje desde litus");
-                email.setHtml("Nombre: " + req.body.name + "<br>Email: " + req.body.email + "<br>Mensaje: " + req.body.message);
-
-                sendgrid.send(email, function (err, json) {
-                    if(err) {
-                        console.log(err);
-                        res.status(500);
-                        res.end();
-                    }
+                var htmlMessage = "Nombre: " + req.body.name + "<br>Email: " + req.body.email + "<br>Mensaje: " + req.body.message;
+                if(sendgrid("josleugim@gmail.com", "josemiguel@heuristicforge.com", "Mensaje desde litus", htmlMessage)) {
                     res.status(200).json({success: true});
                     res.end();
-                })
+                } else {
+                    res.status(500);
+                    res.end();
+                }
             } else {
                 var error = {
                     message: "Robots Not allowed (Captcha verification failed)",
                     captchaResult: resParse.success,
                     captcahErrCodes: resParse['error-codes']
                 };
-                console.log(err);
+                console.log('ReCaptcha error: ' + err);
                 res.status(500).json(error);
                 res.end();
             }

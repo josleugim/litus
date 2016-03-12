@@ -68,15 +68,18 @@
                     professionalLicense: $scope.professionalLicense,
                     specialityArea: $scope.specialityArea,
                     description: $scope.description,
+                    keyWords: $scope.keyWords,
                     type: 'abogado'
                 };
 
+                console.log(data);
+
                 userService.post(data).then(function (success, error) {
                     if(success) {
-                        mvNotifier.notify('Registro exitoso');
+                        mvNotifier.notify('Registro exitoso, recibiras un correo para confirmar tu email');
                         $timeout($location.path('login/'), 1500);
                     } else {
-                        mvNotifier.error('No se pudo realizar el registro, error: ' + error);
+                        mvNotifier.error('No se pudo realizar el registro');
                     }
                 })
             }

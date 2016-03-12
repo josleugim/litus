@@ -11,13 +11,17 @@ module.exports = function() {
     // Using our db to make the login trough passport
     passport.use(new LocalStrategy(
         function (username, password, done) {
-            console.log('Local');
-            User.findOne({email: username}).exec(function (err, user) {
+            // Only retrieve active users
+            var query = {
+                isActive: true,
+                email: username
+            };
+            User.findOne(query).exec(function (err, user) {
                 // when the user is return we validate the password
                 if (user && user.authenticate(password)) {
                     return done(null, user);
                 } else {
-                    console.log(err);
+                    console.log('Usuario no encontrado o no se encuentra activo');
                     return done(null, false);
                 }
             });

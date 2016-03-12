@@ -34,6 +34,7 @@ var userSchema = mongoose.Schema({
     professionalLicense: {type: String},
     specialityArea: {type: String},
     description: {type: String},
+    keyWords: [{type: String}],
     roles: [{
         type: String,
         required: 'Requerido'
@@ -53,7 +54,7 @@ var userSchema = mongoose.Schema({
     isActive: {
         type: Boolean,
         required: 'Requerido',
-        default: true
+        default: false
     }
 });
 

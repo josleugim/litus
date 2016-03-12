@@ -19,6 +19,7 @@ module.exports = function (app) {
     app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}]), users.post);
     app.put('/api/users', auth.requiresRole('user'), users.put);
+    app.post('/api/users/verify', users.verifyAccount);
 
     app.post('/api/notifications', auth.requiresRole('user'), notifications.postNotification);
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);

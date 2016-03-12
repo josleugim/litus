@@ -56,4 +56,8 @@
             label Descripción
             textarea(class="form-group", name="description", ng-model="description", required)
             span(class="error", ng-show="registerForm.description.$error.required") *
+        .form-group
+            label Palabras clave, separadas por coma
+            textarea(class="form-group", name="keyWords", ng-model="keyWords", ng-list="&#10;", placeholder="Hola, Hello, Hi", ng-required)
+            span(class="error", ng-show="registerForm.keyWords.$error.required") *
         button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar

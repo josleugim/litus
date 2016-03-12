@@ -2,7 +2,8 @@
  * Created by Mordekaiser on 17/02/16.
  */
 var User = require('mongoose').model('User'),
-    encrypt = require('../utilities/encryption');
+    encrypt = require('../utilities/encryption'),
+    sendGrid = require('../utilities/sendGrid');
 
 exports.post = function (req, res) {
     console.log('POST User');
@@ -34,19 +35,29 @@ exports.post = function (req, res) {
         data.specialityArea = req.body.specialityArea;
     if(req.body.description)
         data.description = req.body.description;
+    if(req.body.keyWords)
+        data.keyWords = req.body.keyWords;
     if(req.body.type && (req.body.type == "cliente" || req.body.type == "abogado")) {
         roles.push(req.body.type);
         roles.push('user');
         data.roles = roles;
     }
 
-    var user = new User(data)
+    var user = new User(data);
     user.save(function (err, collection) {
         if(err) {
-            console.log('Error al guardar el registro de usuario: ' + err);
-            res.status(500).json({error: 'No se pudo guardar el usuario, error: ' + err.errmsg});
+            console.log('Error al guardar el registro del usuario: ' + err);
+            res.status(500).json({success: false, error: 'No se pudo guardar el usuario, error: ' + err.errmsg});
             res.end();
         } else {
+            var htmlMessage = "<p>Para verificar la cuenta es necesario de click en el siguiente botón</p>"
+                + "<form method='post' action='http://www.litus.mx/api/users/verify'>"
+                    + "<input type='hidden' name='_id' value=collection._id>"
+                    + "<input type='submit' value='Verificar'>"
+                + "</form>"
+                + "";
+            // send the verification email
+            sendGrid.sendMail(data.email, "josemiguel@heuristicforge.com", "Validación de cuenta", htmlMessage);
             res.status(201).json({success: true});
             res.end();
         }
@@ -129,6 +140,24 @@ exports.put = function (req, res) {
         res.status(500);
         res.end();
     }
+};
+
+exports.verifyAccount = function (req, res) {
+    console.log('Verify account');
+    var query = {};
+    if(req.query._id)
+        query._id = req.query._id;
+
+    User.update(query, {$set: {isActive: true}}, function (err) {
+        if(err) {
+            console.log('No se pudo verificar la cuenta, error: ' + err);
+            res.status(500).json({success: false, error: 'No se pudo verificar la cuenta, inténtelo más tarde.'});
+            res.end();
+        }
+
+        res.status(200).json({success: true});
+        res.end();
+    })
 };
 
 exports.getLawyers = function (req, res) {
