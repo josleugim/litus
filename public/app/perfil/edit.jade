@@ -29,4 +29,8 @@
             label Descripción
             textarea(class="form-group", name="description", ng-model="description", required)
             span(class="error", ng-show="userForm.description.$error.required") *
+        .form-group
+            label Palabras clave
+            textarea(class="form-group", name="keyWords", ng-model="keyWords", ng-list="&#10;", ng-required)
+            span(class="error", ng-show="userForm.keyWords.$error.required") *
         button.btn.btn-primary(ng-click="editUser()", ng-disabled="userForm.$invalid") Guardar información

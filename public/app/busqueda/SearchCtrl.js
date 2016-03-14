@@ -23,13 +23,13 @@
     function SearchCtrl(mvNotifier, $scope, userService, notificationService, mvIdentity) {
         $scope.identity = mvIdentity;
         $scope.emails = [];
-        $scope.$on("updateItems", function(event, data) {
+        /*$scope.$on("updateItems", function(event, data) {
             if(Object.keys(data).length) {
                 $scope.lawyers = data;
             } else {
                 mvNotifier.error('No hay registros con esa área');
             }
-        });
+        });*/
 
         userService.getLawyers({}).then(function (data) {
             if(data) {
@@ -47,9 +47,8 @@
         };
 
         $scope.payu = function() {
-            console.log('PayU');
-            if($scope.emails.length > 3) {
-                mvNotifier.error('Solo puedes seleccionar un máximo de 3 abogados');
+            if($scope.emails.length > 1) {
+                mvNotifier.error('Solo puedes seleccionar un abogado');
             } else if($scope.emails.length <= 0) {
                 mvNotifier.error('Selecciona al menos un abogado');
             } else {
@@ -60,6 +59,8 @@
                     lawyers: $scope.emails
                 };
 
+                // Here we redirect to PayU Web Checkout
+                // if notification is successful save the notification to the db
                 notificationService.post({_id: mvIdentity.currentUser._id}, data).then(function (success) {
                     if(success) {
                         mvNotifier.notify('Notifación exitosa, en breve el abogado se pondrá en contacto por medio del chat');

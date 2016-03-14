@@ -12,6 +12,7 @@
                     $scope.phone = data.phone;
                     $scope.specialityArea = data.specialityArea;
                     $scope.description = data.description;
+                    $scope.keyWords = data.keyWords;
                 }
             });
 
@@ -32,6 +33,8 @@
                     data.specialityArea = $scope.specialityArea;
                 if(!$scope.userForm.description.$pristine)
                     data.description = $scope.description;
+                if(!$scope.userForm.keyWords.$pristine)
+                    data.keyWords = $scope.keyWords;
 
                 userService.put(query, data).then(function (success) {
                     if(success) {

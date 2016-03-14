@@ -50,12 +50,10 @@ exports.post = function (req, res) {
             res.status(500).json({success: false, error: 'No se pudo guardar el usuario, error: ' + err.errmsg});
             res.end();
         } else {
-            var htmlMessage = "<p>Para verificar la cuenta es necesario de click en el siguiente botón</p>"
-                + "<form method='post' action='http://www.litus.mx/api/users/verify'>"
-                    + "<input type='hidden' name='_id' value=collection._id>"
-                    + "<input type='submit' value='Verificar'>"
-                + "</form>"
-                + "";
+            var htmlMessage = "<p>Verifica tu cuenta de Correo Electrónico</p>"
+                + "<p>Hola, estas recibiendo el siguiente correo, ya que te registraste en Litus. Para activar tu cuenta por favor dale click en el botón de verificar.</p>"
+                + "<p>De no ser así, ignora este correo electrónico.</p>"
+                + "<a href='http://www.litus.mx/api/users/verify?_id=' collection._id>Verificar</a>";
             // send the verification email
             sendGrid.sendMail(data.email, "josemiguel@heuristicforge.com", "Validación de cuenta", htmlMessage);
             res.status(201).json({success: true});
@@ -126,6 +124,8 @@ exports.put = function (req, res) {
             data.phone = req.body.phone;
         if(req.body.specialityArea)
             data.specialityArea = req.body.specialityArea;
+        if(req.body.keyWords)
+            data.keyWords = req.body.keyWords;
 
         User.update(query, {$set: data}, function (err) {
             if (err) {
@@ -151,11 +151,10 @@ exports.verifyAccount = function (req, res) {
     User.update(query, {$set: {isActive: true}}, function (err) {
         if(err) {
             console.log('No se pudo verificar la cuenta, error: ' + err);
-            res.status(500).json({success: false, error: 'No se pudo verificar la cuenta, inténtelo más tarde.'});
-            res.end();
+            res.redirect('/account/verify?res=false');
         }
 
-        res.status(200).json({success: true});
+        res.redirect('/account/verify');
         res.end();
     })
 };

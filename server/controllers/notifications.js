@@ -3,7 +3,8 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    Chat = mongoose.model('Chat');
+    Chat = mongoose.model('Chat'),
+    sendGrid = require('../utilities/sendGrid');
 
 exports.get = function (req, res) {
     console.log('GET notifications');
@@ -41,7 +42,7 @@ exports.postNotification = function (req, res) {
 
     if(req.body.lawyers) {
 
-        // first create the client notification
+        // create the client notification
         User.findOneAndUpdate(query, {$addToSet: {notifications: data}}, {new: true}, function (err, doc) {
             if(err) {
                 console.log('Error creating the notification, _id: ' + query._id + ' Error: ' + err);
@@ -49,10 +50,9 @@ exports.postNotification = function (req, res) {
                 res.end();
             }
 
-            // second lets add a notification for each lawyer
+            // add a notification for each lawyer
             if(doc) {
                 var lastIndex = doc.notifications.length -1;
-                console.log(doc.notifications[lastIndex]);
                 // save the notification to the lawyers with the same _id
                 req.body.lawyers.forEach(function (email) {
                     var notification = {
@@ -64,6 +64,15 @@ exports.postNotification = function (req, res) {
                     User.update({email: email}, {$addToSet: {notifications: notification}}, function (err, result) {
                         if(err) {
                             console.log('Error creating notification, email: ' + email + ' Error: ' + err);
+                        } else {
+                            // send email notification to lawyer
+                            var htmlMessage = "<h4>Tienes una notificación pendiente de " + doc.name + " " + doc.lastName + "</h4>"
+                                + "<p>Para poder concretar una cita entra a Litus e inicia sesión</p>"
+                                + "<a href='localhost:5002/login' target='_blank'>Entrar a Litus</a>";
+                            if(sendGrid.sendMail(email, "josemiguel@heuristicforge.com", "Notificación pendiente", htmlMessage)) {
+                                console.log('Email send to ' + email);
+                            } else
+                                console.log('Fail to send email to: ' + email);
                         }
                     })
                 });

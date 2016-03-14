@@ -71,6 +71,10 @@
                 controller: 'SearchCtrl',
                 resolve: routeRoleChecks.client
             })
+            .when('/account/verify', {
+                templateUrl: '../../partials/account/verify',
+                controller: 'VerifyCtrl'
+            })
             .when('/registro-abogados', {
                 templateUrl: 'partials/home/registration',
                 controller: 'RegistrationCtrl'

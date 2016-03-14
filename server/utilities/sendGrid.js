@@ -17,8 +17,8 @@
             if(err) {
                 console.log('Error sending email: ' + err);
                 return false;
-            }
-            return true;
+            } else
+                return true;
         })
     }
 }());

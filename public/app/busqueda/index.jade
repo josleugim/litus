@@ -6,7 +6,8 @@
         .col-md-12
             filtrado
                 form(name="filterForm")
-                    select(name="specialityArea", ng-model="specialityArea")
+                    label Búsqueda por área
+                    select(name="specialityArea", ng-model="search.specialityArea")
                         option(value="") Todas las áreas
                         option(value="penal") Penal
                         option(value="civil") Civil
@@ -14,18 +15,23 @@
                         option(value="laboral") Laboral
                         option(value="fiscal") Fiscal
                         option(value="familiar") Familiar
+                    label Búsqueda por palabra clave:
+                    input(type="text", ng-model="search.keyWords")
+                    <br>
                     button.btn.btn-primary(ng-click="payu()") Pagar
     .row
-        .col-md-12(ng-repeat="lawyer in lawyers | filter:specialityArea")
+        .col-md-12(ng-repeat="lawyer in lawyers | filter:{keyWords: search.keyWords, specialityArea: search.specialityArea}")
             .row
                 .col-md-6
                     form(name="lawyersForm")
                         h5 {{lawyer.name}} {{lawyer.lastName}}
                         p {{lawyer.specialityArea}}
+                        label Con experiencia en:
+                        ul(ng-repeat="keyword in lawyer.keyWords")
+                            li {{keyword}}
                         p Calificación: 0
-                        label Selección
                         input(type="checkbox", ng-model="lawyersModel", ng-change="lawyerSelection(lawyersModel, lawyer.email)", value="{{lawyer.email}}")
                 .col-md-6
                     informacion
-                        p Descripción:
+                        label Descripción:
                         p {{lawyer.description}}
