@@ -41,7 +41,11 @@
                     p Palabras clave
                 .col-md-4
                     p {{user.keyWords}}
-
+            .row
+                .col-md-2
+                    p Ocupado
+                .col-md-4
+                    input(type="checkbox", name="isBusy",checked="{{user.isBusy}}", disabled)
         .col-md-6
             h4 Notificaciones de citas pendientes
             .row

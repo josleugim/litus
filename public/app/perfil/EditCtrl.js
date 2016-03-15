@@ -13,6 +13,7 @@
                     $scope.specialityArea = data.specialityArea;
                     $scope.description = data.description;
                     $scope.keyWords = data.keyWords;
+                    $scope.isBusy = data.isBusy;
                 }
             });
 
@@ -35,6 +36,8 @@
                     data.description = $scope.description;
                 if(!$scope.userForm.keyWords.$pristine)
                     data.keyWords = $scope.keyWords;
+                if(!$scope.userForm.isBusy.$pristine)
+                    data.isBusy = $scope.isBusy;
 
                 userService.put(query, data).then(function (success) {
                     if(success) {

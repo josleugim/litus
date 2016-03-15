@@ -126,6 +126,8 @@ exports.put = function (req, res) {
             data.specialityArea = req.body.specialityArea;
         if(req.body.keyWords)
             data.keyWords = req.body.keyWords;
+        if(req.body.isBusy)
+            data.isBusy = req.body.isBusy;
 
         User.update(query, {$set: data}, function (err) {
             if (err) {
@@ -165,7 +167,8 @@ exports.getLawyers = function (req, res) {
     var query = {
         roles: {
             $nin: ['admin', 'cliente']
-        }
+        },
+        isBusy: false
     };
     var limit, skip;
 

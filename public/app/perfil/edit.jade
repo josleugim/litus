@@ -2,6 +2,7 @@
    Created by Mordekaiser on 22/02/16.
 
 .well
+    a(href="/perfil", target="_self") Regresar
     form(name="userForm")
         .form-group
             label Nombre
@@ -33,4 +34,8 @@
             label Palabras clave
             textarea(class="form-group", name="keyWords", ng-model="keyWords", ng-list="&#10;", ng-required)
             span(class="error", ng-show="userForm.keyWords.$error.required") *
+        .form-group
+            label Ocupado
+            span.isBusy Seleccionalo cuando tengas demasiado trabajo y no quieras recibir notificaciones de citas
+            input(type="checkbox", class="form-group", name="isBusy", ng-model="isBusy")
         button.btn.btn-primary(ng-click="editUser()", ng-disabled="userForm.$invalid") Guardar información

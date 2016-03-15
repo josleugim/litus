@@ -45,12 +45,15 @@ var userSchema = mongoose.Schema({
         createdAt: {type: Date, default: Date.now},
         updatedAt: {type: Date}
     }],
-    //chats: [{type: String}],
     rating: [{
         _id: false,
         rate: {type: Number},
         user_id: {type: String}
     }],
+    isBusy: {
+        type: Boolean,
+        default: false
+    },
     isActive: {
         type: Boolean,
         required: 'Requerido',
