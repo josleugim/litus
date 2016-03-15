@@ -48,7 +48,8 @@ var userSchema = mongoose.Schema({
     rating: [{
         _id: false,
         rate: {type: Number},
-        user_id: {type: String}
+        user_id: {type: String},
+        status: {type: String}
     }],
     isBusy: {
         type: Boolean,

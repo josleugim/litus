@@ -46,7 +46,28 @@
                 } else {
                     mvNotifier.error('Error al aceptar la cita.');
                 }
-            })
+            });
+
+            // Get the notifications for the current user
+            userService.getUserByID({_id: mvIdentity.currentUser._id}).then(function (data) {
+                if(data) {
+                    $scope.user = data;
+                    // iterate the notifications, only the pending status is passed to the $scope
+                    angular.forEach(data.notifications, function (notification, key) {
+                        if(notification.status == "Pending") {
+                            // Get the client info for each notification
+                            userService.getUserByID({_id: notification.client_id}).then(function (client) {
+                                notification.client_name = client.name;
+                                notification.client_lastName = client.lastName;
+                                notification.client_id = client._id;
+                                notification.notification_id = notification._id;
+
+                                $scope.notifications.push(notification);
+                            })
+                        }
+                    });
+                }
+            });
         }
     }
 }());

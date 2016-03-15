@@ -6,6 +6,7 @@
         .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', ChatCtrl]);
 
     function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity) {
+        $scope.chat = {};
         $scope.chat_id = "";
         chatService.getChatsUsers(getQuery(mvIdentity.currentUser)).then(function (data) {
             if(data) {
@@ -24,22 +25,22 @@
             })
         };
 
-        $scope.sendMessage = function(message) {
+        $scope.sendMessage = function() {
             var query = {
                 chat_id: $scope.chat_id
             };
 
             var data = {
                 completeName: mvIdentity.currentUser.name + " " + mvIdentity.currentUser.lastName,
-                message: message
+                message: $scope.chat.msg
             };
 
             chatService.post(query, data).then(function (success) {
                 if(success) {
-                    $scope.msg = "";
-                }
-            })
-
+                    $scope.chat.msg = "";
+                } else
+                    mvNotifier.error('No se pudo enviar el mensaje');
+            });
         };
 
         function getQuery(currentUser) {

@@ -15,4 +15,16 @@ exports.post = function (req, res) {
         data.rate = Number(req.body.rate);
     if(req.body.user_id)
         data.user_id = req.body.user_id;
+    if(req.body.status)
+        data.status = req.body.status;
+
+    User.update(query, {$set: data}, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(401).json({success: false, error: err});
+        } else {
+            res.status(201).json({success: true});
+            res.end();
+        }
+    });
 };
