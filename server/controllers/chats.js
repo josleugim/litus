@@ -64,8 +64,6 @@ exports.get = function (req, res) {
     if(req.query._id)
         query._id = req.query._id;
 
-    console.log(query);
-
     Chat.findOne(query, function (err, chat) {
         if(err) {
             console.log('Error retrieving chat, error: ' + err);
@@ -91,15 +89,15 @@ exports.put = function (req, res) {
     if(req.body.completeName)
         data.completeName = req.body.completeName;
 
-    console.log(data);
-
-    Chat.update(query, {$addToSet: {"conversation": data}}, function (err, result) {
+    // http://stackoverflow.com/questions/30419575/mongoose-findbyidandupdate-not-returning-correct-model
+    Chat.findByIdAndUpdate(query._id, {$addToSet: {"conversation": data}}, {new: true}, function (err, doc) {
         if (err) {
             console.log(err);
             res.status(401).json({success: false, error: err});
         } else {
-            console.log(result);
-            res.status(201).json({success: true});
+            var index = doc.conversation.length;
+            // send the last message to emit it with socket.io
+            res.status(201).json(doc.conversation[index -1]);
             res.end();
         }
     });

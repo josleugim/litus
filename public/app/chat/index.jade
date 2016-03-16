@@ -1,7 +1,7 @@
 //
    Created by Mordekaiser on 03/03/16.
 
-.container-fluid
+.container-fluid.chat
     .row(ng-repeat="user in users")
         .col-md-3.user-list
             .user-box
@@ -10,9 +10,10 @@
         .col-md-9
             .row#message-container
                 .col-md-12
-                    .conversation(ng-repeat="msg in conversations")
-                        p {{msg.completeName}} dice:
-                        p {{msg.message}}
+                    #conversation
+                        div(ng-repeat="msg in messages")
+                            p {{msg.completeName}} dice:
+                            p {{msg.message}}
                 .col-md-12
                     form(name="messageForm")
                         textarea(name="msg", id="msg", ng-model="chat.msg", ng-required)

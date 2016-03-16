@@ -21,3 +21,7 @@
 #message-container button {
   float: right;
 }
+.chat #conversation {
+  height: 300px;
+  overflow: scroll;
+}

@@ -66,8 +66,9 @@
                     'Content-Type': 'application/json'
                 }
             }).then(function successCallback(response) {
-                if(response.data.success) {
-                    dfd.resolve(true);
+                // The post method send the last message saved, to send trough the socket.io
+                if(response.data) {
+                    dfd.resolve(response.data);
                 }
             }, function errorCallback(response) {
                 dfd.resolve(false);
