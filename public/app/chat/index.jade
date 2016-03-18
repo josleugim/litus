@@ -7,15 +7,12 @@
             .user-box
                 p {{user.completeName}}
                     button(ng-click="getChat(user.chat_id)", type="button", class="btn btn-info") Abrir chat
-        .col-md-9
+        .col-md-9.chat-content
             .row#message-container
                 .col-md-12
-                    #conversation
-                        div(ng-repeat="msg in messages")
-                            p {{msg.completeName}} dice:
-                            p {{msg.message}}
-                .col-md-12
+                    ul(id="conversation")
                     form(name="messageForm")
                         textarea(name="msg", id="msg", ng-model="chat.msg", ng-required)
                         span(class="text-warning", ng-show="messageForm.chat.msg.$error.required") * requerido
                         button(class="btn btn-primary", ng-click="sendMessage()", ng-disabled="messageForm.$invalid") Enviar mensaje
+                .col-md-12

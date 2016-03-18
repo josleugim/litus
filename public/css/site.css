@@ -11,17 +11,32 @@
   font-size: 0.75em;
   margin: auto 5px;
 }
-#message-container {
+.chat {
+  height: 100vh;
+}
+.chat .user-list,
+.chat .chat-content {
+  height: 100vh;
+}
+.chat .chat-content #message-container {
   display: none;
+  height: 100%;
 }
-#message-container textarea {
+.chat .chat-content #message-container textarea {
+  float: left;
   height: 60px;
-  width: 100%;
+  width: 50%;
 }
-#message-container button {
-  float: right;
+.chat .chat-content #message-container button {
+  float: left;
 }
-.chat #conversation {
+.chat .chat-content #message-container #conversation {
+  border: 1px solid #008000;
   height: 300px;
   overflow: scroll;
+}
+.chat .chat-content #message-container form[name="messageForm"] {
+  bottom: 50px;
+  position: fixed;
+  width: 100%;
 }

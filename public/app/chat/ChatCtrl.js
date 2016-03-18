@@ -3,25 +3,15 @@
  */
 (function () {
     angular.module('app')
-        .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', '$rootScope', ChatCtrl]);
+        .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', ChatCtrl]);
 
-    function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity, $rootScope) {
+    function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity) {
         var socket = io();
         $scope.chat = {};
         $scope.chat_id = "";
-        var conversations = [];
 
-        $scope.$on("updateChat", function(event, data) {
-            if(Object.keys(data).length) {
-                conversations.push(data);
-                $scope.messages = conversations;
-                var objDiv = document.getElementById("conversation");
-                objDiv.scrollTop = objDiv.scrollHeight;
-            }
-        });
-        // the socket receives the message
-        socket.on('chat message', function(msg){
-            $rootScope.$broadcast('updateChat', msg);
+        socket.on('updateConversation', function (username, data) {
+            $('#conversation').append('<li><b>' + username + ':</b> ' + data + '</li>');
         });
 
         // retrieves all th chats of the current user
@@ -39,9 +29,11 @@
             chatService.get({_id: chat_id}).then(function (data) {
                 if(data.conversation) {
                     angular.forEach(data.conversation, function (value, key) {
-                        conversations.push(value);
+                        $('#conversation').append('<li><b>' + value.completeName + ':</b> ' + value.message + '</li>');
                     });
-                    $scope.messages = conversations;
+
+                    // client joins a room, with the specific chat_id
+                    socket.emit('joinUser', mvIdentity.currentUser.name, chat_id);
                 }
             })
         };
@@ -58,7 +50,8 @@
 
             chatService.post(query, data).then(function (message) {
                 if(message) {
-                    socket.emit('chat message', message);
+                    // client emit a message to a specific room (chat_id)
+                    socket.emit('sendMessage', message);
                     $scope.chat.msg = "";
                 } else
                     mvNotifier.error('No se pudo enviar el mensaje');

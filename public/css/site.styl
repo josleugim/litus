@@ -9,14 +9,26 @@
     button
       font-size .75em
       margin auto 5px
-#message-container
-  display none
-  textarea
-    height 60px
-    width 100%
-  button
-    float right
+
 .chat
-  #conversation
-    height 300px
-    overflow scroll
+  height: 100vh
+  .user-list, .chat-content
+    height 100vh
+  .chat-content
+    #message-container
+      display none
+      height 100%
+      textarea
+        float left
+        height 60px
+        width 50%
+      button
+        float left
+      #conversation
+        border 1px solid green
+        height 300px
+        overflow scroll
+      form[name="messageForm"]
+        bottom 50px
+        position fixed
+        width 100%
