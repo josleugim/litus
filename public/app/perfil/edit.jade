@@ -27,6 +27,22 @@
                 option(value="familiar") Familiar
             span(class="error", ng-show="userForm.specialityArea.$error.required") *
         .form-group
+            label Dirección
+            textarea(class="form-group", name="address", ng-model="address", required)
+            span(class="error", ng-show="userForm.address.$error.required") *
+        .form-group
+            label Idiomas
+            textarea(class="form-group", name="languages", ng-model="languages", ng-list="&#10;", placeholder="Español, Ingles, Frances", ng-required)
+            span(class="error", ng-show="userForm.languages.$error.required") *
+        .form-group
+            label Años de experiencia
+            textarea(class="form-group", name="experienceYears", ng-model="experienceYears", required)
+            span(class="error", ng-show="userForm.experienceYears.$error.required") *
+        .form-group
+            label Horario
+            textarea(class="form-group", name="schedule", ng-model="schedule", required)
+            span(class="error", ng-show="userForm.schedule.$error.required") *
+        .form-group
             label Descripción
             textarea(class="form-group", name="description", ng-model="description", required)
             span(class="error", ng-show="userForm.description.$error.required") *

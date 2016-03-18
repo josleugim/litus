@@ -21,6 +21,13 @@ var userSchema = mongoose.Schema({
         required: 'email requerido',
         unique: true
     },
+    address: {
+        type: String
+    },
+    languages: [{type: String}],
+    experienceYears: {type: Number},
+    schedule: {type: String},
+    curriculum: {type: String},
     salt: {
         type: String,
         required: 'requerido'

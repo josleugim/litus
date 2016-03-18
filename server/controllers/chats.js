@@ -41,8 +41,13 @@ exports.getChatUsers = function (req, res) {
                     if(doc) {
                         var document = {
                             completeName: doc.name + " " + doc.lastName,
+                            email: doc.email,
+                            phone: doc.phone,
+                            address: doc.address,
                             chat_id: chat._id
                         };
+                        if(doc.professionalLicense)
+                            document.professionalLicense = doc.professionalLicense;
                         documents.push(document);
                     }
                     waiting--;

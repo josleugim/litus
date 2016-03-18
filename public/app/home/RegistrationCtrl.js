@@ -67,6 +67,10 @@
                     constitutiveAct: $scope.files,
                     professionalLicense: $scope.professionalLicense,
                     specialityArea: $scope.specialityArea,
+                    languages: $scope.languages,
+                    address: $scope.address,
+                    experienceYears: Number($scope.experienceYears),
+                    schedule: $scope.schedule,
                     description: $scope.description,
                     keyWords: $scope.keyWords,
                     type: 'abogado'

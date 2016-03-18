@@ -57,6 +57,22 @@
             textarea(class="form-group", name="description", ng-model="description", required)
             span(class="error", ng-show="registerForm.description.$error.required") *
         .form-group
+            label Dirección
+            textarea(class="form-group", name="address", ng-model="address", required)
+            span(class="error", ng-show="registerForm.address.$error.required") *
+        .form-group
+            label Idiomas
+            textarea(class="form-group", name="languages", ng-model="languages", ng-list="&#10;", placeholder="Español, Ingles, Frances", ng-required)
+            span(class="error", ng-show="registerForm.languages.$error.required") *
+        .form-group
+            label Años de experiencia
+            textarea(class="form-group", name="experienceYears", ng-model="experienceYears", required)
+            span(class="error", ng-show="registerForm.experienceYears.$error.required") *
+        .form-group
+            label Horario
+            textarea(class="form-group", name="schedule", ng-model="schedule", required)
+            span(class="error", ng-show="registerForm.schedule.$error.required") *
+        .form-group
             label Palabras clave, separadas por coma
             textarea(class="form-group", name="keyWords", ng-model="keyWords", ng-list="&#10;", placeholder="Hola, Hello, Hi", ng-required)
             span(class="error", ng-show="registerForm.keyWords.$error.required") *

@@ -128,6 +128,14 @@ exports.put = function (req, res) {
             data.keyWords = req.body.keyWords;
         if(req.body.isBusy)
             data.isBusy = req.body.isBusy;
+        if(req.body.address)
+            data.address = req.body.address;
+        if(req.body.languages)
+            data.languages = req.body.languages;
+        if(req.body.experienceYears)
+            data.experienceYears = Number(req.body.experienceYears);
+        if(req.body.schedule)
+            data.schedule = req.body.schedule;
 
         User.update(query, {$set: data}, function (err) {
             if (err) {

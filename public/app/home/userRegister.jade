@@ -16,6 +16,10 @@
             input(type="number", name="phone", class="form-group", ng-model="phone", ng-required)
             span(class="error", ng-show="registerForm.phone.$error.required") *
         .form-group
+            label Dirección
+            textarea(class="form-group", name="address", ng-model="address", required)
+            span(class="error", ng-show="registerForm.address.$error.required") *
+        .form-group
             label Email
             input(class="form-group", type="email", name="email", ng-model="email", required)
             span(class="error", ng-show="registerForm.email.$error.required") *

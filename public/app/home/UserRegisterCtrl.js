@@ -11,7 +11,8 @@
                     email: $scope.email,
                     password: $scope.password,
                     phone: Number($scope.phone),
-                    type: 'cliente'
+                    type: 'cliente',
+                    address: $scope.address
                 };
 
                 userService.post(data).then(function (success, error) {

@@ -6,6 +6,9 @@
         .col-md-3.user-list
             .user-box
                 p {{user.completeName}}
+                p {{user.email}}
+                p {{user.phone}}
+                p {{user.address}}
                     button(ng-click="getChat(user.chat_id)", type="button", class="btn btn-info") Abrir chat
         .col-md-9.chat-content
             .row#message-container

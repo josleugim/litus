@@ -14,6 +14,10 @@
                     $scope.description = data.description;
                     $scope.keyWords = data.keyWords;
                     $scope.isBusy = data.isBusy;
+                    $scope.address = data.address;
+                    $scope.languages = data.languages;
+                    $scope.experienceYears = data.experienceYears;
+                    $scope.schedule = data.schedule;
                 }
             });
 
@@ -38,6 +42,14 @@
                     data.keyWords = $scope.keyWords;
                 if(!$scope.userForm.isBusy.$pristine)
                     data.isBusy = $scope.isBusy;
+                if(!$scope.userForm.address.$pristine)
+                    data.address = $scope.address;
+                if(!$scope.userForm.languages.$pristine)
+                    data.languages = $scope.languages;
+                if(!$scope.userForm.experienceYears.$pristine)
+                    data.experienceYears = $scope.experienceYears;
+                if(!$scope.userForm.schedule.$pristine)
+                    data.schedule = $scope.schedule;
 
                 userService.put(query, data).then(function (success) {
                     if(success) {

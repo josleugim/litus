@@ -17,6 +17,7 @@
         // retrieves all th chats of the current user
         chatService.getChatsUsers(getQuery(mvIdentity.currentUser)).then(function (data) {
             if(data) {
+                console.log(data);
                 $scope.users = data;
             }
         });
