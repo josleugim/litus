@@ -22,18 +22,21 @@ html
                         span(class="icon-bar")
                         span(class="icon-bar")
                         span(class="icon-bar")
-                    a(class="navbar-brand", href="#") Administrador
+                    a(class="navbar-brand", href="#")
+                        img(src="assets/img/litus-top.png")
                 .collapse.navbar-collapse(id="collapse-1")
                     ul(class="nav navbar-nav")
+                        li(ng-show="identity.isAuthorized('admin')")
+                            a(href="/admin/sections") Secciones
                         li(ng-show="identity.isAuthorized('abogado')")
                             a(href="/perfil/edit") Modificar cuenta
                         li
-                            a(href="/chat") Chat
+                            a(href="/chat", ng-hide="identity.isAuthorized('admin')") Chat
                         li
                             a(href="/logout", ng-click="signout()") Cerrar sesión
-        header
+        header(ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
             .inner
-                a(href="", class="litus")
+                a(href="/", class="litus")
                     img(src="assets/img/litus-top.png")
                 nav
                     a(href="/")

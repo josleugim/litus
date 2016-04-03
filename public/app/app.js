@@ -46,6 +46,11 @@
                 controller: 'DetailsCtrl',
                 resolve: routeRoleChecks.admin
             })
+            .when('/admin/sections', {
+                templateUrl: '../../partials/administrator/sections',
+                controller: 'SectionsCtrl',
+                resolve: routeRoleChecks.admin
+            })
             .when('/admin', {
                 templateUrl: 'partials/administrator/index',
                 controller: 'AdminCtrl',

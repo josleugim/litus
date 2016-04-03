@@ -25,7 +25,7 @@
             sectionService.editSectionBySlug($routeParams.slug, data).then(function (success) {
                 if(success) {
                     mvNotifier.notify('Sección actualizada');
-                    $timeout($location.path('admin/'), 1500);
+                    $timeout($location.path('admin/sections'), 1500);
                 } else {
                     mvNotifier.notify('Ocurrio un error al actualizar la sección');
                 }

@@ -1,16 +1,16 @@
 //
    Created by Mordekaiser on 11/02/16.
 
-.well
+.well(class="edit-form")
     form(name="sectionForm")
         .form-group
-            label Título
+            label Título de la sección:
             input(type="text", name="title", class="form-group", ng-model="title", disabled)
         .form-group
-            label Contenido
+            label Contenido:
             textarea(class="form-group", name="content", id="content")
         button.btn.btn-primary(ng-click="editSection()", ng-disabled="sectionForm.$invalid") Modificar
-        a(href="/admin") Regresar
+        a(href="/admin/sections", class="return") Regresar
 
 script.
     CKEDITOR.replace('content')

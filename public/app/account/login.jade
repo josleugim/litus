@@ -1,10 +1,14 @@
 //
    Created by Mordekaiser on 17/02/16.
 
-.well
-    form.navbar-form
-        .form-group
-            input.form-control(placeholder="Email", ng-model="email", type="text")
-        .form-group
-            input.form-control(type="password", placeholder="Contraseña", ng-model="password")
-        button.btn.btn-primary(ng-click="signin(email, password)") Iniciar sesión
+section(class="login")
+    .container
+        .row
+            .col-md-4
+            .col-md-4
+                h4 Para acceder a la plataforma
+                form.navbar-form
+                    input.form-control(placeholder="Email", ng-model="email", type="text")
+                    input.form-control(type="password", placeholder="Contraseña", ng-model="password")
+                    button.btn.btn-primary(ng-click="signin(email, password)") Iniciar sesión
+            .col-md-4

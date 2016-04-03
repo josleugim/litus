@@ -1,3 +1,6 @@
+.navbar .container-fluid .navbar-header a img {
+  height: 100%;
+}
 .user-list .user-box {
   border: 1px solid #46b8da;
   border-radius: 4px;
@@ -10,6 +13,48 @@
 .user-list .user-box button {
   font-size: 0.75em;
   margin: auto 5px;
+}
+.registration {
+  background-color: rgba(153,204,255,0.15);
+}
+.registration label,
+.registration input[type="text"],
+.registration input[type="password"] {
+  margin: auto 5px;
+}
+.registration label {
+  font-size: 1.5em;
+}
+.registration input[type="text"],
+.registration input[type="password"] {
+  height: 20px;
+}
+.login {
+  background-color: rgba(153,204,255,0.15);
+}
+.login h4 {
+  color: #33669e;
+  text-align: center;
+}
+.login input[type="text"],
+.login button,
+.login input[type="password"] {
+  margin: 10px 5px;
+  width: 100%;
+}
+.edit-form label {
+  color: #369;
+  font-size: 1.5em;
+  margin: auto 5px;
+}
+.edit-form input[type="text"] {
+  font-size: 1.2em;
+  margin: auto 5px;
+}
+.edit-form .return {
+  color: #369;
+  margin-left: 10px;
+  font-size: 1.3em;
 }
 .chat {
   height: 100vh;

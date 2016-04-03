@@ -1,79 +1,84 @@
 //
    Created by Mordekaiser on 16/02/16.
 
-.well
-    form(name="registerForm")
-        .form-group
-            label Nombre
-            input(type="text", name="name", class="form-group", ng-model="name", required)
-            span(class="error", ng-show="registerForm.name.$error.required") *
-        .form-group
-            label Apellidos
-            input(type="text", name="lastName", class="form-group", ng-model="lastName", required)
-            span(class="error", ng-show="registerForm.lastName.$error.required") *
-        .form-group
-            label Email
-            input(class="form-group", type="email", name="email", ng-model="email", required)
-            span(class="error", ng-show="registerForm.email.$error.required") *
-            span(class="error", ng-show="registerForm.email.$error.email") Formato incorrecto
-        .form-group
-            label Contraseña
-            input(class="form-group", type="password", id="password", name="password", ng-model="password", ng-required)
-            span(class="error", ng-show="registerForm.password.$error.required") *
-        .form-group
-            label Confirmar contraseña
-            input(class="form-group", type="password", name="validatePassword", ng-model="validatePassword", pw-check="password", ng-required)
-            span(class="error", ng-show="registerForm.validatePassword.$error.required") *
-            span(class="msg-error", ng-show="registerForm.validatePassword.$error.pwmatch") Las contraseñas no coinciden
-        .form-group
-            label Teléfono
-            input(type="number", name="phone", class="form-group", ng-model="phone", ng-required)
-            span(class="error", ng-show="registerForm.phone.$error.required") *
-        .form-group
-            label Tipo de persona
-            select(name="economicActivities", ng-model="economicActivities", required, economic-activities)
-                option(value="fisica") Física
-                option(value="moral") Moral
-        .form-group(id="constitutiveAct")
-            label Acta constitutiva
-            input(type="file", name="constitutiveAct", class="form-group", file-constitutive="files")
-            span(class="error", ng-show="registerForm.constitutiveAct.$error.required") *
-        .form-group
-            label Cédula profesional
-            input(type="file", name="professionalLicense", class="form-group", file-license="professionalLicense")
-            span(class="error", ng-show="registerForm.professionalLicense.$error.required") *
-        .form-group
-            label Área de especialidad
-            select(name="specialityArea", ng-model="specialityArea")
-                option(value="penal") Penal
-                option(value="civil") Civil
-                option(value="administrativa") Administrativa
-                option(value="laboral") Laboral
-                option(value="fiscal") Fiscal
-                option(value="familiar") Familiar
-            span(class="error", ng-show="registerForm.specialityArea.$error.required") *
-        .form-group
-            label Descripción
-            textarea(class="form-group", name="description", ng-model="description", required)
-            span(class="error", ng-show="registerForm.description.$error.required") *
-        .form-group
-            label Dirección
-            textarea(class="form-group", name="address", ng-model="address", required)
-            span(class="error", ng-show="registerForm.address.$error.required") *
-        .form-group
-            label Idiomas
-            textarea(class="form-group", name="languages", ng-model="languages", ng-list="&#10;", placeholder="Español, Ingles, Frances", ng-required)
-            span(class="error", ng-show="registerForm.languages.$error.required") *
-        .form-group
-            label Años de experiencia
-            textarea(class="form-group", name="experienceYears", ng-model="experienceYears", required)
-            span(class="error", ng-show="registerForm.experienceYears.$error.required") *
-        .form-group
-            label Horario
-            textarea(class="form-group", name="schedule", ng-model="schedule", required)
-            span(class="error", ng-show="registerForm.schedule.$error.required") *
-        .form-group
-            label Palabras clave, separadas por coma
-            textarea(class="form-group", name="keyWords", ng-model="keyWords", ng-list="&#10;", placeholder="Hola, Hello, Hi", ng-required)
-            span(class="error", ng-show="registerForm.keyWords.$error.required") *
-        button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar
+section(class="registration")
+    .container
+        .row
+            .col-md-4
+            .col-md-4
+                form(name="registerForm")
+                    .form-group
+                        label Nombre
+                        input(type="text", name="name", class="form-group", ng-model="name", required)
+                        span(class="error", ng-show="registerForm.name.$error.required") *
+                    .form-group
+                        label Apellidos
+                        input(type="text", name="lastName", class="form-group", ng-model="lastName", required)
+                        span(class="error", ng-show="registerForm.lastName.$error.required") *
+                    .form-group
+                        label Email
+                        input(class="form-group", type="email", name="email", ng-model="email", required)
+                        span(class="error", ng-show="registerForm.email.$error.required") *
+                        span(class="error", ng-show="registerForm.email.$error.email") Formato incorrecto
+                    .form-group
+                        label Contraseña
+                        input(class="form-group", type="password", id="password", name="password", ng-model="password", ng-required)
+                        span(class="error", ng-show="registerForm.password.$error.required") *
+                    .form-group
+                        label Confirmar contraseña
+                        input(class="form-group", type="password", name="validatePassword", ng-model="validatePassword", pw-check="password", ng-required)
+                        span(class="error", ng-show="registerForm.validatePassword.$error.required") *
+                        span(class="msg-error", ng-show="registerForm.validatePassword.$error.pwmatch") Las contraseñas no coinciden
+                    .form-group
+                        label Teléfono
+                        input(type="number", name="phone", class="form-group", ng-model="phone", ng-required)
+                        span(class="error", ng-show="registerForm.phone.$error.required") *
+                    .form-group
+                        label Tipo de persona
+                        select(name="economicActivities", ng-model="economicActivities", required, economic-activities)
+                            option(value="fisica") Física
+                            option(value="moral") Moral
+                    .form-group(id="constitutiveAct")
+                        label Acta constitutiva
+                        input(type="file", name="constitutiveAct", class="form-group", file-constitutive="files")
+                        span(class="error", ng-show="registerForm.constitutiveAct.$error.required") *
+                    .form-group
+                        label Cédula profesional
+                        input(type="file", name="professionalLicense", class="form-group", file-license="professionalLicense")
+                        span(class="error", ng-show="registerForm.professionalLicense.$error.required") *
+                    .form-group
+                        label Área de especialidad
+                        select(name="specialityArea", ng-model="specialityArea")
+                            option(value="penal") Penal
+                            option(value="civil") Civil
+                            option(value="administrativa") Administrativa
+                            option(value="laboral") Laboral
+                            option(value="fiscal") Fiscal
+                            option(value="familiar") Familiar
+                        span(class="error", ng-show="registerForm.specialityArea.$error.required") *
+                    .form-group
+                        label Descripción
+                        textarea(class="form-group", name="description", ng-model="description", required)
+                        span(class="error", ng-show="registerForm.description.$error.required") *
+                    .form-group
+                        label Dirección
+                        textarea(class="form-group", name="address", ng-model="address", required)
+                        span(class="error", ng-show="registerForm.address.$error.required") *
+                    .form-group
+                        label Idiomas
+                        textarea(class="form-group", name="languages", ng-model="languages", ng-list="&#10;", placeholder="Español, Ingles, Frances", ng-required)
+                        span(class="error", ng-show="registerForm.languages.$error.required") *
+                    .form-group
+                        label Años de experiencia
+                        textarea(class="form-group", name="experienceYears", ng-model="experienceYears", required)
+                        span(class="error", ng-show="registerForm.experienceYears.$error.required") *
+                    .form-group
+                        label Horario
+                        textarea(class="form-group", name="schedule", ng-model="schedule", required)
+                        span(class="error", ng-show="registerForm.schedule.$error.required") *
+                    .form-group
+                        label Palabras clave, separadas por coma
+                        textarea(class="form-group", name="keyWords", ng-model="keyWords", ng-list="&#10;", placeholder="Hola, Hello, Hi", ng-required)
+                        span(class="error", ng-show="registerForm.keyWords.$error.required") *
+                    button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar
+            .col-md-4
