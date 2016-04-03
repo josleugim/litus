@@ -31,3 +31,4 @@ node_modules
 .idea/*
 public/vendor/*
 public/uploads
+public/assets/*

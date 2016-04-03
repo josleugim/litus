@@ -1,22 +1,19 @@
 //
    Created by Mordekaiser on 16/02/16.
 
-.well
-    div(ng-bind-html="section.content")
-
-    form(name="contactForm")
-        .form-group
-            label Nombre
+div(ng-bind-html="section.content")
+form(name="contactForm")
+    ul
+        li
             input(type="text", name="name", class="form-group", ng-model="name", required)
             span(class="error", ng-show="contactForm.name.$error.required") *
-        .form-group
-            label Email
+        li
             input(class="form-group", type="email", name="email", ng-model="email", required)
             span(class="error", ng-show="contactForm.email.$error.required") *
             span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
-        .form-group
-            label Mensaje
+        li
             textarea(class="form-group", name="message", ng-model="message", required)
             span(class="error", ng-show="contactForm.message.$error.required") *
-        div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
-        button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
+        li
+            div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
+            button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar

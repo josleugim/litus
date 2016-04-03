@@ -1,0 +1,281 @@
+@import "../elements.less";
+@fontFamily:'Lato', sans-serif; //Change here your theme Font family
+@azull: #99CCFF;
+@verdel: #5CCAAB;
+@azulm: #336699;
+@verdem: #008585;
+@azulb: #003366;
+@verdeb: #003939;
+html,body,section,article,figure,input,select,textarea,button,fieldset,ul,ol,li{
+	font-family: @fontFamily;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+p,ul,ol{
+	margin: 20px 0;
+}
+body{
+	font-size: 100%;
+	line-height: 1.6em;
+}
+h1{
+	font-size: 30px;
+	font-weight: 900;
+}
+h2{
+	font-size: 24px;
+}
+h3{
+	font-size: 18px;
+}
+h2,h3{
+	font-weight: 700;
+}
+h1,h2,h3{
+	line-height: 120%;
+	margin: 20px 0;
+}
+.inner{
+	margin: auto;
+	position: relative;
+	width: 1000px;
+}
+header{
+	background-color: #f1f1f0;
+	overflow: hidden;
+	padding: 20px 0;
+	position: relative;
+	.inner{
+		.litus{
+			display: block;
+			float: left;
+			height: 50px;
+			img{
+				display: block;
+				height: 100%;
+			}
+		}
+		nav{
+			float: right;
+			padding-top: 14px;
+			a{
+				color: #666;
+				display: block;
+				float: left;
+				line-height: 30px;
+				margin-left: 20px;
+				position: relative;
+				text-decoration: none;
+				&:before,
+				&:after{
+					background-color: @azulb;
+					content: '';
+					display: block;
+					height: 1px;
+					position: absolute;
+					.transition();
+					width:0;
+				}
+				&:before{
+					left: 0;
+					top: 100%;
+				}
+				&:after{
+					right: 0;
+					bottom: 100%;
+				}
+				&:hover{
+					color: @azulb;
+					&:before,
+					&:after{
+						width: 100%;	
+					}
+				}
+			}
+		}
+
+	}
+}
+section{
+	h1{
+		text-align: center;
+	}
+	.inner{
+		padding: 50px 0;
+	}
+
+}
+.home{
+	text-align: center;
+	.banner{
+		background-image: url('assets/img/home.jpg');
+		background-position: right;
+		background-size: cover;
+		height: 420px;
+		width: 100%;
+		.inner{
+			height: 100%;
+			padding: 0;
+			position: relative;
+			div{
+				left: 0;
+				position: absolute;
+				top: 50%;
+				.transform(translateY(-50%));
+				img{
+					display: block;
+					margin-left: -71px;
+					width: auto;
+				}
+			}
+		}
+	}
+	.inner{
+		padding: 50px 0 30px;
+		img{
+			width: 60px;
+		}
+		h2{
+			padding: 0 10%;
+			text-transform: uppercase;
+		}
+	}
+}
+.derecho{
+	background-color: rgba(153,204,255,0.15);
+	h1{
+		color: @azulb;
+	}
+	h2{
+		color: @azulm;
+	}
+	.inner{
+		.cycle-slideshow{
+			position: relative;
+			width: 100%;
+			div{
+				overflow: hidden;
+				margin: auto;
+				width: 50%;
+				h2{
+					padding-left: 100px;
+				}
+				img{
+					display: block;
+					float: left;
+					width: 80px;
+				}
+				p,ul{
+					list-style: none;
+					margin-left: 100px;
+				}
+			}
+		}
+	}
+}
+.ayuda{
+	background-color: rgba(92,202,171,0.15);
+	.inner{
+		h1{
+			color: @verdeb;
+		}
+		h2{
+			color: @verdem;
+		}
+		.grid{
+			div{
+				img{
+					float: left;
+					width: 60px;
+				}
+				h2{
+					padding-left: 80px;
+				}
+				p{
+					margin-left: 80px;
+				}
+			}
+		}
+	}
+}
+.bottom{
+	background-color: #003846;
+	color: #FFF;
+	.inner{
+		h1{
+			text-align: left;
+			margin: 0;
+		}
+		.grid{
+			div{
+				img{
+					display: block;
+					width: 220px;
+				}
+				ul.contacto{
+					li{
+						list-style: none;
+						margin-bottom: 12px;
+						i{
+							display: inline-block;
+							font-size: 24px;
+							margin-right: 10px;
+							vertical-align: middle;
+						}
+						span{
+							unicode-bidi: bidi-override;
+							direction: rtl;
+						}
+					}
+				}
+				form{
+					ul{
+						li{
+							.box-sizing();
+							display: block;
+							margin-bottom: 20px;
+							overflow: hidden;
+							padding: 0 10px;
+							width: 100%;
+							input,textarea{
+								background-color: #FAFAFA;
+								border-radius: .4em;
+								.box-sizing();
+								display: block;
+								font-size: 100%;
+								padding: 0 15px;
+								height: 40px;
+								width: 100%;
+							}
+							textarea{
+								padding: 15px;
+								height: 120px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.grid{
+	margin: 0 -20px;
+	overflow: hidden;
+	div{
+		.box-sizing();
+		float: left;
+		min-height: 220px;
+		padding: 0 20px;
+		position: relative;
+		text-align: justify;
+		width: 50%;
+		&.untercio{
+			width: 33.33%;
+		}
+		&.dostercios{
+			width: 66.66%;
+		}
+	}
+
+}

@@ -1,5 +1,7 @@
 //
    Created by Mordekaiser on 19/02/16.
 
-.well
-    div(ng-bind-html="section.content")
+section(class="ayuda", ng-controller="ayudaCtrl")
+    .inner
+        h1 AYUDA
+        .grid(ng-bind-html="section.content")

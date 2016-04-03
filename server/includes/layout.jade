@@ -4,39 +4,60 @@
 doctype
 html
     head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
         title Litus
+        link(rel="shortcut icon", type="image/x-icon", href="favicon.ico")
         link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
+        link(rel="stylesheet", type="text/css", href="/css/litus.css")
         script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
     body(ng-app='app')
-        ul.nav.nav-tabs(ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
-            li(role="presentation")
-                a(href="/") Home
-            li(role="presentation")
-                a(href="/nosotros") Nosotros
-            li(role="presentation")
-                a(href="/garantia") Garantía
-            li(role="presentation")
-                a(href="/abogados") Abogados
-            li(role="presentation")
-                a(href="/referidos") Referidos
-            li(role="presentation")
-                a(href="/ayuda") Ayuda
-            li(role="presentation")
-                a(href="/unete-a-litus") Únete a Litus
-            li(role="presentation")
-                a(href="/terminos-y-condiciones") Términos y condiciones
-            li(role="presentation")
-                a(href="/contacto") Contacto
-            li(role="presentation")
-                a(href="/registro-abogados") Registro de abogados
-            li(role="presentation")
-                a(href="/registro-usuarios") Registro de usuarios
-            li(role="presentation")
-                a(href="/login") Iniciar sesión
-            li(role="presentation")
-                a(href="/admin") Admin
+        header
+            .inner
+                a(href="", class="litus")
+                    img(src="assets/img/litus-top.png")
+                nav
+                    a(href="/")
+                        span HOME
+                    a(href="/abogados")
+                        span ABOGADOS
+                    a(href="/referidos")
+                        span REFERIDOS
+                    a(href="/unete-a-litus")
+                        span ÚNETE A LITUS
+                    a(href="/ayuda")
+                        span AYUDA
+        include currentUser
+        block main-content
+        //ul.nav.nav-tabs(ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
+        //    li(role="presentation")
+        //        a(href="/") Home
+        //    li(role="presentation")
+        //        a(href="/nosotros") Nosotros
+        //    li(role="presentation")
+        //        a(href="/garantia") Garantía
+        //    li(role="presentation")
+        //        a(href="/abogados") Abogados
+        //    li(role="presentation")
+        //        a(href="/referidos") Referidos
+        //    li(role="presentation")
+        //        a(href="/ayuda") Ayuda
+        //    li(role="presentation")
+        //        a(href="/unete-a-litus") Únete a Litus
+        //    li(role="presentation")
+        //        a(href="/terminos-y-condiciones") Términos y condiciones
+        //    li(role="presentation")
+        //        a(href="/contacto") Contacto
+        //    li(role="presentation")
+        //        a(href="/registro-abogados") Registro de abogados
+        //    li(role="presentation")
+        //        a(href="/registro-usuarios") Registro de usuarios
+        //    li(role="presentation")
+        //        a(href="/login") Iniciar sesión
+        //    li(role="presentation")
+        //        a(href="/admin") Admin
         .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
             .container-fluid
                 .navbar-header
@@ -54,6 +75,4 @@ html
                             a(href="/chat") Chat
                         li
                             a(href="/logout", ng-click="signout()") Cerrar sesión
-        include currentUser
-        block main-content
         include scripts
