@@ -14,6 +14,23 @@ html
         link(rel="stylesheet", type="text/css", href="/css/litus.css")
         script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
     body(ng-app='app')
+        .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
+            .container-fluid
+                .navbar-header
+                    button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
+                        span(class="sr-only") Toggle navigation
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                    a(class="navbar-brand", href="#") Administrador
+                .collapse.navbar-collapse(id="collapse-1")
+                    ul(class="nav navbar-nav")
+                        li(ng-show="identity.isAuthorized('abogado')")
+                            a(href="/perfil/edit") Modificar cuenta
+                        li
+                            a(href="/chat") Chat
+                        li
+                            a(href="/logout", ng-click="signout()") Cerrar sesión
         header
             .inner
                 a(href="", class="litus")
@@ -21,13 +38,13 @@ html
                 nav
                     a(href="/")
                         span HOME
-                    a(href="/abogados")
+                    a(href="#")
                         span ABOGADOS
-                    a(href="/referidos")
+                    a(href="#")
                         span REFERIDOS
-                    a(href="/unete-a-litus")
+                    a(href="#")
                         span ÚNETE A LITUS
-                    a(href="/ayuda")
+                    a(href="#")
                         span AYUDA
         include currentUser
         block main-content
@@ -58,21 +75,4 @@ html
         //        a(href="/login") Iniciar sesión
         //    li(role="presentation")
         //        a(href="/admin") Admin
-        .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
-            .container-fluid
-                .navbar-header
-                    button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
-                        span(class="sr-only") Toggle navigation
-                        span(class="icon-bar")
-                        span(class="icon-bar")
-                        span(class="icon-bar")
-                    a(class="navbar-brand", href="#") Administrador
-                .collapse.navbar-collapse(id="collapse-1")
-                    ul(class="nav navbar-nav")
-                        li(ng-show="identity.isAuthorized('abogado')")
-                            a(href="/perfil/edit") Modificar cuenta
-                        li
-                            a(href="/chat") Chat
-                        li
-                            a(href="/logout", ng-click="signout()") Cerrar sesión
         include scripts
