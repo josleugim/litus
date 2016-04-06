@@ -1,7 +1,30 @@
-//
-   Created by Mordekaiser on 19/02/16.
-
-section(class="ayuda", ng-controller="ayudaCtrl")
+// Created by Mordekaiser on 19/02/16.
+section(class="ayuda", id="ayuda", ng-controller="ayudaCtrl")
     .inner
-        h1 AYUDA
-        .grid(ng-bind-html="section.content")
+        h1 ÁREAS DE ESPECIALIDAD
+        .grid
+            div
+                h2 ¿QUÉ ES LITUS?
+                img(src="assets/icons/que-es.svg")
+                p.
+                    Es una plataforma basada en la única red honrada y transparente de usuarios y Abogados, dependiendo del tipo de asunto el Usuario podrá elegir al abogado especialista en la materia para que lo asesore y en su caso pueda encargarse del asunto.
+            div
+                h2 ¿CÓMO FUNCIONA LITUS?
+                img(src="assets/icons/como-funciona.svg")
+                p.
+                    Una vez que como Usuario eliges a un Abogado, la plataforma da aviso al Abogado para que éste acepte y se genere una cita y se pueda plantear el asunto.
+
+            div
+                h2 ¿DE QUÉ DE TRATA LITUS?
+                img(src="assets/icons/de-que-se-trata.svg")
+                p.
+                    Se trata de que, como Usuario puedas elegir al Abogado que consideres pueda asesorTTTarte mejor en tu asunto, tomando en cuenta su experiencia y calificación de otros usuarios.
+                p.
+                    Al mismo tiempo si eres Abogado, podrás calificar al Usuario o bien consultar si éste ha tenido calificaciones por parte de otros Abogados y decidir si lo asesoras o no.
+            div
+                h2 ¿TIENE ALGÚN COSTO?
+                img(src="assets/icons/tiene-agun-costo.svg")
+                p.
+                    El registro como Usuario o Abogado no tiene ningún costo, solo si se agenda una cita esta tendrá un costo de $100.00 (Cien Pesos 00/100 M.N) tanto para el Usuario como para el Abogado.
+                p.
+                    Una vez que se lleve a cabo la cita y si el Usuario decide encomendar el asunto al Abogado, LITUS recibirá una comisión del 15% de los honorarios acordados.

@@ -1,15 +1,17 @@
-//
-   Created by Mordekaiser on 09/02/2016.
 section(class="home")
     .banner
         .inner
             div
                 img(src="assets/img/home-head.png")
-    include ../nosotros/index
+    .inner
+        img(src="assets/icons/balanza.svg")
+        h2 Litus es una plataforma electrónica enfocada en crear una cultura de honradez y transparencia, entre usuarios y los prestadores de servicios (abogados)
+        p.
+            Siendo la única red de usuarios y abogados altamente capacitados en sus respectivas especialidades, honesta y transparente en donde ambas partes podrán calificar el desempeño de la otra, elevando así el nivel de confianza, transparencia y calidad del servicio legal.
 section(class="derecho", id="abogados")
     .inner
         h1 ÁREAS DE ESPECIALIDAD
-        .cycle-slideshow
+        .cycle-slideshow(data-cycle-fx="scrollHorz" data-cycle-timeout="2000" data-cycle-slides="> div")
             div
                 h2 CIVIL
                 img(src="assets/icons/derecho-civil.svg")
@@ -57,19 +59,3 @@ section(class="derecho", id="abogados")
             i(class="mdi mdi-chevron-right")
 include ../referidos/index
 include ../ayuda/index
-section(class="bottom", id="ayuda")
-    .inner
-        .grid
-            div
-                img(src="assets/img/litus-bottom.png")
-                p.
-                    Ut sed posuere erat, quis sollicitudin erat. Nulla iaculis magna ut nunc posuere,
-                    sed sollicitudin enim tincidunt. In ac sollicitudin tellus. Cras aliquet purus diam,
-                    et maximus nulla porttitor eu.
-                ul(class="contacto")
-                    li
-                        i(class="mdi mdi-phone") 55556677
-                    li
-                        i(class="mdi mdi-email-outline")
-                            span xm.sutil@ofni.com
-            include ../contacto/index
