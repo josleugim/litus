@@ -48,10 +48,11 @@ h3 {
 p,
 ul,
 ol {
-  margin: 20px 0;
+  margin: 20px 0 0;
 }
 .inner {
   margin: auto;
+  overflow: hidden;
   position: relative;
   width: 1000px;
 }
@@ -226,6 +227,9 @@ section .inner {
 .derecho .inner .cycle-slideshow div ul {
   list-style: none;
   margin-left: 100px;
+}
+.referidos .inner h1 + p {
+  text-align: center;
 }
 .ayuda {
   background-color: rgba(92, 202, 171, 0.15);
@@ -408,7 +412,7 @@ section .inner {
 .grid div.dostercios {
   width: 66.66%;
 }
-.column {
+.row .column {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -416,12 +420,12 @@ section .inner {
   padding: 0 20px;
   float: left;
 }
-.column.onehalf {
+.row .column.onehalf {
   width: 50%;
 }
-.column.onethird {
+.row .column.onethird {
   width: 33.33%;
 }
-.column.twothirds {
+.row .column.twothirds {
   width: 66.66%;
 }

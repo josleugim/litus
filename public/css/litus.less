@@ -191,10 +191,11 @@ h1,h2,h3{
 	margin: 20px 0;
 }
 p,ul,ol{
-	margin: 20px 0;
+	margin: 20px 0 0;
 }
 .inner{
 	margin: auto;
+	overflow: hidden;
 	position: relative;
 	width: 1000px;
 }
@@ -358,6 +359,13 @@ section{
 					margin-left: 100px;
 				}
 			}
+		}
+	}
+}
+.referidos{
+	.inner{
+		h1 + p{
+			text-align: center;
 		}
 	}
 }
@@ -554,17 +562,19 @@ section{
 		}
 	}
 }
-.column{
-	.box-sizing();
-	padding: 0 20px;
-	float: left;
-	&.onehalf{
-		width: 50%;
-	}
-	&.onethird{
-		width: 33.33%;
-	}
-	&.twothirds{
-		width: 66.66%;
+.row{
+	.column{
+		.box-sizing();
+		padding: 0 20px;
+		float: left;
+		&.onehalf{
+			width: 50%;
+		}
+		&.onethird{
+			width: 33.33%;
+		}
+		&.twothirds{
+			width: 66.66%;
+		}
 	}
 }
