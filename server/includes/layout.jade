@@ -5,10 +5,11 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
         title Litus
         link(rel="shortcut icon", type="image/x-icon", href="favicon.ico")
-        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+        //link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
-        link(rel="stylesheet", href="/css/site.css")
+        //link(rel="stylesheet", href="/css/site.css")
         link(rel="stylesheet", type="text/css", href="/css/litus.css")
+        link(rel="stylesheet", type="text/css", href="/css/mdi.css")
         script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
     body(ng-app='app')
         .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
@@ -60,30 +61,31 @@ html
         block main-content
         section(class="bottom")
             .inner
-                .grid
-                    div
-                        p.
-                            Ut sed posuere erat, quis sollicitudin erat. Nulla iaculis magna ut nunc posuere, sed sollicitudin enim tincidunt. In ac sollicitudin tellus. Cras aliquet purus diam, et maximus nulla porttitor eu.
-                        ul(class="contacto")
+                .column.onehalf
+                    img(src="assets/img/litus-bottom.png")
+                    p.
+                        Ut sed posuere erat, quis sollicitudin erat. Nulla iaculis magna ut nunc posuere, sed sollicitudin enim tincidunt. In ac sollicitudin tellus. Cras aliquet purus diam, et maximus nulla porttitor eu.
+                    ul(class="contacto")
+                        li
+                            i(class="mdi mdi-phone") 5555 6677
+                        li
+                            i(class="mdi mdi-email")
+                                span xm.sutil@ofni
+                                |xm.sutil@ofni
+                .column.onehalf(ng-controller="ContactoCtrl")
+                    form(name="contactForm")
+                        ul
                             li
-                                i(class="mdi mdi-phone") 5555 6677
+                                input(type="text", name="name", class="form-group", placeholder="Nombre", ng-model="name", required)
+                                span(class="error", ng-show="contactForm.name.$error.required") *
                             li
-                                i(class="mdi mdi-email")
-                                    span xm.sutil@ofni
-                    div(ng-controller="ContactoCtrl")
-                        form(name="contactForm")
-                            ul
-                                li
-                                    input(type="text", name="name", class="form-group", ng-model="name", required)
-                                    span(class="error", ng-show="contactForm.name.$error.required") *
-                                li
-                                    input(class="form-group", type="email", name="email", ng-model="email", required)
-                                    span(class="error", ng-show="contactForm.email.$error.required") *
-                                    span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
-                                li
-                                    textarea(class="form-group", name="message", ng-model="message", required)
-                                    span(class="error", ng-show="contactForm.message.$error.required") *
-                                li
-                                    div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
-                                    button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
+                                input(class="form-group", type="email", name="email", placeholder="Email", ng-model="email", required)
+                                span(class="error", ng-show="contactForm.email.$error.required") *
+                                span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
+                            li
+                                textarea(class="form-group", name="message", ng-model="message", required)
+                                span(class="error", ng-show="contactForm.message.$error.required") *
+                            li
+                                div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
+                                button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
         include scripts
