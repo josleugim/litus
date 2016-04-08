@@ -2,4 +2,67 @@
    Created by Mordekaiser on 05/02/16.
 extends ../includes/layout
 block main-content
+    section(class="home", ng-controller="NosotrosCtrl", ng-hide="identity.isAuthenticated()")
+        .banner
+            .inner
+                div
+                    img(src="assets/img/home-head.png")
+        .inner
+            img(src="assets/icons/balanza.svg")
+            h2.
+                Litus es una plataforma electrónica enfocada en crear una cultura de honradez y transparencia,
+                entre usuarios y los prestadores de servicios (abogados)
+            p.
+                Siendo la única red de usuarios y abogados altamente capacitados en sus respectivas especialidades,
+                honesta y transparente en donde ambas partes podrán calificar el desempeño de la otra,
+                elevando así el nivel de confianza, transparencia y calidad del servicio legal.
+    section(class="derecho", id="abogados", ng-controller="NosotrosCtrl", ng-hide="identity.isAuthenticated()")
+        .inner
+            h1 ÁREAS DE ESPECIALIDAD
+            .cycle-slideshow(data-cycle-fx="scrollHorz" data-cycle-timeout="2000" data-cycle-slides="> div")
+                div
+                    h2 CIVIL
+                    img(src="assets/icons/derecho-civil.svg")
+                    p.
+                        Se encargan de las acciones privadas de los individuos entre sí. Tiasuntos entre otros:
+                        Contratos, Do naciones, Embargos y lanzamientos, Negociación en caso de conflicto con
+                        Instituciones de Crédito.
+                div
+                    h2 FAMILIAR
+                    img(src="assets/icons/derecho-familiar.svg")
+                    ul
+                        li Divorcio
+                        li Pensión alimenticia
+                        li Violencia intrafamiliar
+                        li Tramites de Registro Civil
+                div
+                    h2 LABORAL
+                    img(src="assets/icons/derecho-laboral.svg")
+                    ul
+                        li Contratos Colectivos e Individuales de Trabajo.
+                        li Pensiones y Jubilación.
+                        li Despidos, convenios y huelgas.
+                div
+                    h2 PENAL
+                    img(src="assets/icons/derecho-penal.svg")
+                    ul
+                        li Denuncia por Delitos.
+                        li Defensa por denuncia.
+                div
+                    h2 FISCAL
+                    img(src="assets/icons/derecho-fiscal.svg")
+                    ul
+                        li Multas
+                        li Contratos con la Administración Pública
+                        li Procedimientos ante Profeco.
+                        li Responsabilidades de Servidores Públicos.
+                div
+                    h2 ADMINISTRATIVO
+                    img(src="assets/icons/derecho-administrativo.svg")
+                    ul
+                        li Créditos Fiscales (SAT, IMSS, INFONAVIT)
+                        li Planeaciones y Estrategias Fiscales.
+                        li Convenios de Colaboración.
+            i(class="mdi mdi-chevron-left")
+            i(class="mdi mdi-chevron-right")
     div(ng-view)

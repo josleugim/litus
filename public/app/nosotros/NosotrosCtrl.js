@@ -3,7 +3,8 @@
  */
 (function () {
     angular.module('app')
-        .controller('NosotrosCtrl', function ($scope, sectionService) {
+        .controller('NosotrosCtrl', function ($scope, sectionService, mvIdentity) {
+            $scope.identity = mvIdentity;
             sectionService.getSectionBySlug('nosotros')
                 .then(function (res) {
                     $scope.section = res.data;
