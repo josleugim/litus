@@ -59,7 +59,7 @@ html
                         span TÉRMINOS Y CONDICIONES
         include currentUser
         block main-content
-        section(class="bottom")
+        section(class="bottom", ng-controller="NosotrosCtrl", ng-hide="identity.isAuthenticated()")
             .inner
                 .column.onehalf
                     img(src="assets/img/litus-bottom.png")

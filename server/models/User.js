@@ -27,6 +27,7 @@ var userSchema = mongoose.Schema({
     languages: [{type: String}],
     experienceYears: {type: Number},
     schedule: {type: String},
+    appointmentDate: {type: Date},
     curriculum: {type: String},
     salt: {
         type: String,
@@ -56,7 +57,8 @@ var userSchema = mongoose.Schema({
         _id: false,
         rate: {type: Number},
         user_id: {type: String},
-        status: {type: String}
+        status: {type: String},
+        comment: {type: String}
     }],
     isBusy: {
         type: Boolean,

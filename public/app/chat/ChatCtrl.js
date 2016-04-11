@@ -3,6 +3,24 @@
  */
 (function () {
     angular.module('app')
+        .directive('rateStar', function () {
+            return {
+                link: function (scope, element, attr) {
+                    element.on('change', function () {
+                        for(var i=1; i <= 5; i ++) {
+                            if(i <= element[0].value) {
+                                $('#' + i).prop('checked', true);
+                                //$('#' + i + ' :checked + label:before').css('background-color','yellow');
+                            }
+                            else {
+                                $('#' + i).prop('checked', false);
+                                //$('#' + i + ' :checked + label:before').css('background-color','transparent');
+                            }
+                        }
+                    })
+                }
+            }
+        })
         .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', ChatCtrl]);
 
     function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity) {
@@ -17,7 +35,6 @@
         // retrieves all th chats of the current user
         chatService.getChatsUsers(getQuery(mvIdentity.currentUser)).then(function (data) {
             if(data) {
-                console.log(data);
                 $scope.users = data;
             }
         });
@@ -70,6 +87,15 @@
             }
 
             return query;
+        }
+
+        // Rates the user
+        $scope.rate = function () {
+            $('.chat .rate-box').css('display','block');
+        };
+        
+        $scope.sendRate = function (email) {
+            
         }
     }
 }());

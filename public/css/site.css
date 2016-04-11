@@ -67,3 +67,37 @@
   position: fixed;
   width: 100%;
 }
+.chat .rate-box {
+  display: none;
+}
+.chat .rate-box label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 25px;
+  margin-right: 15px;
+  font-size: 13px;
+}
+.chat .rate-box input[type="checkbox"] {
+  display: none;
+}
+.chat .rate-box label:before {
+  content: "";
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  margin-right: 10px;
+  position: absolute;
+  left: 0px;
+  bottom: 1px;
+  background-image: url("../assets/icons/white_star_small.png");
+  background-color: transparent;
+  border-radius: 8px;
+}
+.chat .rate-box input[type="checkbox"]:checked + label:before {
+  content: "";
+  background-color: #ff0;
+  font-size: 30px;
+  text-align: center;
+  line-height: 18px;
+}

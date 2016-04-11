@@ -126,8 +126,7 @@ exports.put = function (req, res) {
             data.specialityArea = req.body.specialityArea;
         if(req.body.keyWords)
             data.keyWords = req.body.keyWords;
-        if(req.body.isBusy)
-            data.isBusy = req.body.isBusy;
+        data.isBusy = req.body.isBusy;
         if(req.body.address)
             data.address = req.body.address;
         if(req.body.languages)

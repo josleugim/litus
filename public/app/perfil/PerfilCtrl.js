@@ -13,6 +13,7 @@
         userService.getUserByID({_id: mvIdentity.currentUser._id}).then(function (data) {
             if(data) {
                 $scope.user = data;
+                console.log(data);
                 // iterate the notifications, only the pending status is passed to the $scope
                 angular.forEach(data.notifications, function (notification, key) {
                     if(notification.status == "Pending") {
