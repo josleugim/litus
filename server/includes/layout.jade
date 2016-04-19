@@ -51,7 +51,7 @@ html
                         span INICIAR SESIÓN
         include currentUser
         block main-content
-        section(class="bottom", ng-controller="NosotrosCtrl", ng-hide="identity.isAuthenticated()")
+        section(class="bottom", ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
             .inner
                 .row
                     .column.onehalf
