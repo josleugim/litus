@@ -8,9 +8,9 @@ html
         link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
-        link(rel="stylesheet", type="text/css", href="/css/litus.css")
-        link(rel="stylesheet", type="text/css", href="/css/mdi.css")
-        script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
+        link(rel="stylesheet", href="/css/litus.css")
+        link(rel="stylesheet", href="/css/mdi.min.css")
+        //script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
     body(ng-app='app')
         .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
             .container-fluid
@@ -37,55 +37,49 @@ html
                 a(href="/", class="litus")
                     img(src="assets/img/litus-top.png")
                 nav
-                    a(href="#nosotros")
-                        span NOSOTROS
+                    a(href="/garantia")
+                        span GARANTÍA
                     a(href="#abogados")
                         span ABOGADOS
                     a(href="#referidos")
                         span REFERIDOS
                     a(href="#ayuda")
                         span AYUDA
-                    a(href="/garantia")
-                        span GARANTÍA
                     a(href="/unete-a-litus")
                         span ÚNETE A LITUS
-                    a(href="/registro-abogados")
-                        span REGISTRO DE ABOGADOS
-                    a(href="/registro-usuarios")
-                        span REGISTRO DE USUARIOS
                     a(href="/login")
                         span INICIAR SESIÓN
-                    a(href="/terminos-y-condiciones")
-                        span TÉRMINOS Y CONDICIONES
         include currentUser
         block main-content
         section(class="bottom", ng-controller="NosotrosCtrl", ng-hide="identity.isAuthenticated()")
             .inner
-                .column.onehalf
-                    img(src="assets/img/litus-bottom.png")
-                    p.
-                        Ut sed posuere erat, quis sollicitudin erat. Nulla iaculis magna ut nunc posuere, sed sollicitudin enim tincidunt. In ac sollicitudin tellus. Cras aliquet purus diam, et maximus nulla porttitor eu.
-                    ul(class="contacto")
-                        li
-                            i(class="mdi mdi-phone") 5555 6677
-                        li
-                            i(class="mdi mdi-email")
+                .row
+                    .column.onehalf
+                        img(src="assets/img/litus-bottom.png")
+                        p.
+                            Ut sed posuere erat, quis sollicitudin erat. Nulla iaculis magna ut nunc posuere, sed sollicitudin enim tincidunt. In ac sollicitudin tellus. Cras aliquet purus diam, et maximus nulla porttitor eu.
+                        ul(class="contacto")
+                            li
+                                <i class="mdi mdi-phone"></i> 5555 6677
+                            li
+                                <i class="mdi mdi-email"></i>
                                 span xm.sutil@ofni
-                                |xm.sutil@ofni
-                .column.onehalf(ng-controller="ContactoCtrl")
-                    form(name="contactForm")
-                        ul
-                            li
-                                input(type="text", name="name", class="form-group", placeholder="Nombre", ng-model="name", required)
-                                span(class="error", ng-show="contactForm.name.$error.required") *
-                            li
-                                input(class="form-group", type="email", name="email", placeholder="Email", ng-model="email", required)
-                                span(class="error", ng-show="contactForm.email.$error.required") *
-                                span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
-                            li
-                                textarea(class="form-group", name="message", ng-model="message", required)
-                                span(class="error", ng-show="contactForm.message.$error.required") *
-                            li
-                                div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
-                                button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
+                        a(href="/terminos-y-condiciones")
+                            span TÉRMINOS Y CONDICIONES
+                    .column.onehalf(ng-controller="ContactoCtrl")
+                        form(name="contactForm")
+                            ul
+                                li
+                                    input(type="text", name="name", class="form-group", placeholder="Nombre", ng-model="name", required)
+                                    span(class="error", ng-show="contactForm.name.$error.required") *
+                                li
+                                    input(class="form-group", type="email", name="email", placeholder="Email", ng-model="email", required)
+                                    span(class="error", ng-show="contactForm.email.$error.required") *
+                                    span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
+                                li
+                                    textarea(class="form-group", name="message", ng-model="message", required)
+                                    span(class="error", ng-show="contactForm.message.$error.required") *
+                                li
+                                    div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
+                                    button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
         include scripts

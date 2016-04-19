@@ -305,10 +305,12 @@ section{
 		width: 100%;
 		.inner{
 			height: 100%;
+			overflow: visible;
 			padding: 0;
 			position: relative;
 			div{
 				left: 0;
+				overflow: auto;
 				position: absolute;
 				top: 50%;
 				.transform(translateY(-50%));
@@ -317,11 +319,31 @@ section{
 					margin-left: -71px;
 					width: auto;
 				}
+				a{
+					background-color: rgba(255, 255, 255, 0.25);
+					border-radius: .3em;
+					display: block;
+					color: #FFF;
+					float: left;
+					line-height: 40px;
+					margin: 20px 20px 0 0;
+					padding: 0 24px;
+					&.abogado{
+						&:hover{
+							background-color: @azull;
+						}
+					}
+					&.usuario{
+						&:hover{
+							background-color: @verdel;
+						}
+					}
+				}
 			}
 		}
 	}
 	.inner{
-		padding: 50px 0 30px;
+		padding: 50px 0;
 		img{
 			width: 60px;
 		}
@@ -331,7 +353,7 @@ section{
 		}
 	}
 }
-.derecho{
+.abogados{
 	background-color: rgba(153,204,255,0.15);
 	h1{
 		color: @azulb;
@@ -382,7 +404,9 @@ section{
 		.grid{
 			div{
 				img{
+					display: block;
 					float: left;
+					height: auto;
 					width: 60px;
 				}
 				h2{
