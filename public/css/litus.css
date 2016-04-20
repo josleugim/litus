@@ -11,7 +11,7 @@ fieldset,
 ul,
 ol,
 li {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
@@ -170,11 +170,13 @@ section .inner {
 }
 .home .banner .inner {
   height: 100%;
+  overflow: visible;
   padding: 0;
   position: relative;
 }
 .home .banner .inner div {
   left: 0;
+  overflow: auto;
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -188,8 +190,24 @@ section .inner {
   margin-left: -71px;
   width: auto;
 }
+.home .banner .inner div a {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: .3em;
+  display: block;
+  color: #FFF;
+  float: left;
+  line-height: 40px;
+  margin: 20px 20px 0 0;
+  padding: 0 24px;
+}
+.home .banner .inner div a.abogado:hover {
+  background-color: #99ccff;
+}
+.home .banner .inner div a.usuario:hover {
+  background-color: #5ccaab;
+}
 .home .inner {
-  padding: 50px 0 30px;
+  padding: 50px 0;
 }
 .home .inner img {
   width: 60px;
@@ -198,34 +216,34 @@ section .inner {
   padding: 0 10%;
   text-transform: uppercase;
 }
-.derecho {
+.abogados {
   background-color: rgba(153, 204, 255, 0.15);
 }
-.derecho h1 {
+.abogados h1 {
   color: #003366;
 }
-.derecho h2 {
+.abogados h2 {
   color: #336699;
 }
-.derecho .inner .cycle-slideshow {
+.abogados .inner .cycle-slideshow {
   position: relative;
   width: 100%;
 }
-.derecho .inner .cycle-slideshow div {
+.abogados .inner .cycle-slideshow div {
   overflow: hidden;
   margin: auto;
   width: 50%;
 }
-.derecho .inner .cycle-slideshow div h2 {
+.abogados .inner .cycle-slideshow div h2 {
   padding-left: 100px;
 }
-.derecho .inner .cycle-slideshow div img {
+.abogados .inner .cycle-slideshow div img {
   display: block;
   float: left;
   width: 80px;
 }
-.derecho .inner .cycle-slideshow div p,
-.derecho .inner .cycle-slideshow div ul {
+.abogados .inner .cycle-slideshow div p,
+.abogados .inner .cycle-slideshow div ul {
   list-style: none;
   margin-left: 100px;
 }
@@ -242,7 +260,9 @@ section .inner {
   color: #008585;
 }
 .ayuda .inner .grid div img {
+  display: block;
   float: left;
+  height: auto;
   width: 60px;
 }
 .ayuda .inner .grid div h2 {

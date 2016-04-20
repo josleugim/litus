@@ -7,6 +7,10 @@ block main-content
             .inner
                 div
                     img(src="assets/img/home-head.png")
+                    a(href="/registro-abogados")
+                        |SOY ABOGADO
+                    a(href="/registro-usuarios")
+                        |SOY USUARIO
         .inner
             img(src="assets/icons/balanza.svg")
             h2.
@@ -17,6 +21,7 @@ block main-content
                 honesta y transparente en donde ambas partes podrán calificar el desempeño de la otra,
                 elevando así el nivel de confianza, transparencia y calidad del servicio legal.
     section(class="derecho", id="abogados", ng-controller="HomeCtrl", ng-hide="hideContent")
+    //section(class="abogados", id="abogados", ng-controller="NosotrosCtrl", ng-hide="identity.isAuthenticated()")
         .inner
             h1 ÁREAS DE ESPECIALIDAD
             .cycle-slideshow(data-cycle-fx="scrollHorz" data-cycle-timeout="2000" data-cycle-slides="> div")
@@ -24,9 +29,7 @@ block main-content
                     h2 CIVIL
                     img(src="assets/icons/derecho-civil.svg")
                     p.
-                        Se encargan de las acciones privadas de los individuos entre sí. Tiasuntos entre otros:
-                        Contratos, Do naciones, Embargos y lanzamientos, Negociación en caso de conflicto con
-                        Instituciones de Crédito.
+                        Se encargan de las acciones privadas de los individuos entre sí. Trasuntos entre otros: Contratos, Donaciones, Embargos y Lanzamientos, Negociación en caso de conflicto con Instituciones de Crédito.
                 div
                     h2 FAMILIAR
                     img(src="assets/icons/derecho-familiar.svg")
