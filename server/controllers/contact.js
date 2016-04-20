@@ -2,7 +2,7 @@
  * Created by Mordekaiser on 25/02/16.
  */
 var config = require('../config/config'),
-    sendgrid = require('../utilities/sendgrid'),
+    sendgrid = require('../utilities/sendGrid'),
     request = require('request'),
     ip = require('ip');
 
