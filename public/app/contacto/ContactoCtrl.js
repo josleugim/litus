@@ -3,9 +3,10 @@
  */
 (function () {
     angular.module('app')
-        .controller('ContactoCtrl', ['$scope', 'sectionService', 'contactService', 'mvNotifier', 'vcRecaptchaService', ContactoCtrl]);
+        .controller('ContactoCtrl', ['$scope', 'sectionService', 'contactService', 'mvNotifier', 'vcRecaptchaService', 'mvIdentity', ContactoCtrl]);
 
-    function ContactoCtrl($scope, sectionService, contactService, mvNotifier, vcRecaptchaService) {
+    function ContactoCtrl($scope, sectionService, contactService, mvNotifier, vcRecaptchaService, mvIdentity) {
+        $scope.identity = mvIdentity;
         sectionService.getSectionBySlug('contacto').then(function (data) {
             if(data) {
                 $scope.section = data;
