@@ -9,8 +9,10 @@
 
             $scope.$on('$locationChangeStart', function(event) {
                 event.preventDefault;
-                if($location.path() !== '/')
+                if($location.path() !== '/') {
                     $scope.hideContent = true;
+                } else
+                    $scope.hideContent = false;
             });
             sectionService.getAllSections()
                 .then(function (res) {
@@ -25,6 +27,6 @@
     }
 
     function getAllSectionsComplete() {
-        console.log('complete');
+        //console.log('complete');
     }
 }());
