@@ -21,11 +21,12 @@
                 }
             }
         })
-        .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', ChatCtrl]);
+        .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', 'userService', ChatCtrl]);
 
-    function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity) {
+    function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity, userService) {
         var socket = io();
         $scope.chat = {};
+        $scope.rate = {};
         $scope.chat_id = "";
 
         socket.on('updateConversation', function (username, data) {
@@ -95,7 +96,33 @@
         };
         
         $scope.sendRate = function (email) {
-            
+            var query = {
+                email: email
+            };
+
+            var data = {
+                comment: $scope.rate.comment,
+                user_id: mvIdentity.currentUser._id
+            };
+
+            if($("#5").is(':checked')) {
+                data.rate = 5;
+            } else if($("#4").is(':checked') && $("#5").is(':checked') == false) {
+                data.rate = 4;
+            } else if($("#3").is(':checked') && $("#4").is(':checked') == false) {
+                data.rate = 3;
+            } else if($("#2").is(':checked') && $("#3").is(':checked') == false) {
+                data.rate = 2;
+            } else if($("#1").is(':checked') && $("#2").is(':checked') == false) {
+                data.rate = 1;
+            }
+
+            userService.postRate(query, data).then(function (success) {
+                if(success) {
+                    mvNotifier.notify('Usuario calificado');
+                    $('.chat .rate-box').css('display','none');
+                }
+            })
         }
     }
 }());

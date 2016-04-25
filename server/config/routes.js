@@ -8,7 +8,8 @@ var auth = require('./auth'),
     upload = multer({dest: 'public/uploads/'}),
     contact = require('../controllers/contact'),
     notifications = require('../controllers/notifications'),
-    chats = require('../controllers/chats');
+    chats = require('../controllers/chats'),
+    rates = require('../controllers/user-rates');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
@@ -20,7 +21,7 @@ module.exports = function (app) {
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}]), users.post);
     app.put('/api/users', auth.requiresRole('user'), users.put);
     app.get('/api/users/verify', users.verifyAccount);
-    app.post('/api/users/rate', auth.requiresRole('user'));
+    app.post('/api/users/rate', auth.requiresRole('user'), rates.post);
 
     app.post('/api/notifications', auth.requiresRole('user'), notifications.postNotification);
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);

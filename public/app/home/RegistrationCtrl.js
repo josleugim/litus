@@ -78,12 +78,12 @@
 
                 console.log(data);
 
-                userService.post(data).then(function (success, error) {
+                userService.post(data).then(function (success) {
                     if(success) {
                         mvNotifier.notify('Registro exitoso, recibiras un correo para confirmar tu email');
                         $timeout($location.path('login/'), 1500);
                     } else {
-                        mvNotifier.error('No se pudo realizar el registro');
+                        mvNotifier.error('No se pudo realizar el registro.');
                     }
                 })
             }

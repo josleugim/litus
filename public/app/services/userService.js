@@ -10,7 +10,8 @@
             getUserByID: getUserByID,
             post: postUser,
             put: putUser,
-            getLawyers: getLawyers
+            getLawyers: getLawyers,
+            postRate: postRate
         };
 
         function getUserByID(query) {
@@ -95,6 +96,27 @@
             }).then(function successCallback(response) {
                 dfd.resolve(response.data);
             }, function errorCallback() {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+        }
+        
+        function postRate(query, data) {
+            var dfd = $q.defer();
+            $http({
+                method: 'POST',
+                url: ApiUrl + 'api/users/rate',
+                data: data,
+                params: query,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                if(response.data.success) {
+                    dfd.resolve(true);
+                }
+            }, function errorCallback(response) {
                 dfd.resolve(false);
             });
 
