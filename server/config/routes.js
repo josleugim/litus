@@ -49,14 +49,13 @@ module.exports = function (app) {
                 // just move on to the next route handler
     });
 
-    app.all("/perfil/*", auth.requiresRole('abogado'), function(req, res, next) {
+    app.all("/perfil/*", auth.requiresRole('cliente'), function(req, res, next) {
         next(); // if the middleware allowed us to get here,
                 // just move on to the next route handler
     });
 
     app.get('*', function (req, res) {
         // Bootstrapped the user
-        console.log('app get function ---->');
         res.render('index', {
             bootstrappedUser: req.user
         });

@@ -3,9 +3,9 @@
  */
 (function () {
     angular.module('app')
-        .factory('userService', ['$q', '$http', 'ApiUrl', userService]);
+        .factory('userService', ['$q', '$http', '$location', userService]);
 
-    function userService($q, $http, ApiUrl) {
+    function userService($q, $http, $location) {
         return {
             getUserByID: getUserByID,
             post: postUser,
@@ -19,7 +19,7 @@
 
             $http({
                 method: 'GET',
-                url: ApiUrl + 'api/users',
+                url: 'http://' + $location.host() + '/api/users',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
@@ -44,7 +44,7 @@
 
             $http({
                 method: 'POST',
-                url: ApiUrl + 'api/users',
+                url: 'http://' + $location.host() + '/api/users',
                 data: fd,
                 transformRequest: angular.indentity,
                 headers: {
@@ -66,7 +66,7 @@
 
             $http({
                 method: 'PUT',
-                url: ApiUrl + 'api/users',
+                url: 'http://' + $location.host() + '/api/users',
                 params: query,
                 data: data,
                 headers: {
@@ -88,7 +88,7 @@
 
             $http({
                 method: 'GET',
-                url: ApiUrl + 'api/lawyers',
+                url: 'http://' + $location.host() + 'api/lawyers',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
@@ -106,7 +106,7 @@
             var dfd = $q.defer();
             $http({
                 method: 'POST',
-                url: ApiUrl + 'api/users/rate',
+                url: 'http://' + $location.host() + 'api/users/rate',
                 data: data,
                 params: query,
                 headers: {

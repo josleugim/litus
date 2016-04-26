@@ -20,8 +20,7 @@ exports.authenticate = function (req, res, next) {
                 console.log('Error: ' + err);
                 return next(err);
             }
-
-            console.log(user);
+            
             res.send({success: true, user: user});
         });
     });
@@ -39,8 +38,6 @@ exports.requireApiLogin = function (req, res, next) {
 
 exports.requiresRole = function (role) {
     return function (req, res, next) {
-        console.log('requires role function ------->');
-        console.log(req.user);
         if(!req.isAuthenticated() || req.user.roles.indexOf(role) === -1) {
             res.status(403);
             res.end();

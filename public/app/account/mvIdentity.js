@@ -6,7 +6,6 @@
         var currentUser;
         // Get the user bootstrapped in the window
         if(!!$window.bootstrappedUserObject) {
-            console.log('Generating new bootstrap user object');
             currentUser = new mvUser();
             angular.extend(currentUser, $window.bootstrappedUserObject);
         }
