@@ -8,6 +8,7 @@
             authService.authenticate(email, password).then(function (success) {
                 if(success) {
                     mvNotifier.notify('Acceso exitoso');
+                    console.log($scope.identity);
                     if($scope.identity.currentUser.roles[0] == "abogado") {
                         $location.path('/perfil');
                     } else if($scope.identity.currentUser.roles[0] == "cliente") {
