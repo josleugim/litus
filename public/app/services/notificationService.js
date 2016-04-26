@@ -3,9 +3,10 @@
  */
 (function () {
     angular.module('app')
-        .factory('notificationService', ['$q', '$http', 'ApiUrl', notificationService]);
+        .factory('notificationService', ['$q', '$http', '$location', notificationService]);
 
-    function notificationService($q, $http, ApiUrl) {
+    function notificationService($q, $http, $location) {
+        var host = 'http://' + $location.host() + ':5002/';
         return {
             post: postNotification,
             put: putNotification
@@ -16,7 +17,7 @@
 
             $http({
                 method: 'POST',
-                url: ApiUrl + 'api/notifications/',
+                url: host + 'api/notifications/',
                 params: query,
                 data: data,
                 headers: {
@@ -38,7 +39,7 @@
 
             $http({
                 method: 'PUT',
-                url: ApiUrl + 'api/notifications/',
+                url: host + 'api/notifications/',
                 params: query,
                 data: data,
                 headers: {

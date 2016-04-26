@@ -3,9 +3,10 @@
  */
 (function () {
     angular.module('app')
-        .factory('contactService', ['$q', '$http', 'ApiUrl', contactService]);
+        .factory('contactService', ['$q', '$http', '$location', contactService]);
 
-    function contactService($q, $http, ApiUrl) {
+    function contactService($q, $http, $location) {
+        var host = 'http://' + $location.host() + ':5002/';
         return {
             post: postContact
         };
@@ -15,7 +16,7 @@
 
             $http({
                 method: 'POST',
-                url: ApiUrl + 'api/contact/',
+                url: host + 'api/contact/',
                 data: data,
                 headers: {
                     'Content-Type': 'application/json'

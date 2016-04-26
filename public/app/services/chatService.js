@@ -3,9 +3,10 @@
  */
 (function () {
     angular.module('app')
-        .factory('chatService', ['$q', '$http', 'ApiUrl', chatService]);
+        .factory('chatService', ['$q', '$http', '$location', chatService]);
 
-    function chatService($q, $http, ApiUrl) {
+    function chatService($q, $http, $location) {
+        var host = 'http://' + $location.host() + ':5002/';
         return {
             getChatsUsers: getChatsUsers,
             get: getChat,
@@ -17,7 +18,7 @@
 
             $http({
                 method: 'GET',
-                url: ApiUrl + 'api/chat/users',
+                url: host + 'api/chat/users',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
@@ -38,7 +39,7 @@
 
             $http({
                 method: 'GET',
-                url: ApiUrl + 'api/chat',
+                url: host + 'api/chat',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,7 +60,7 @@
 
             $http({
                 method: 'PUT',
-                url: ApiUrl + 'api/chat',
+                url: host + 'api/chat',
                 params: query,
                 data: data,
                 headers: {

@@ -6,6 +6,7 @@
         .factory('userService', ['$q', '$http', '$location', userService]);
 
     function userService($q, $http, $location) {
+        var host = 'http://' + $location.host() + ':5002/';
         return {
             getUserByID: getUserByID,
             post: postUser,
@@ -19,7 +20,7 @@
 
             $http({
                 method: 'GET',
-                url: 'http://' + $location.host() + '/api/users',
+                url: host + 'api/users',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
@@ -44,7 +45,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://' + $location.host() + '/api/users',
+                url: host + 'api/users',
                 data: fd,
                 transformRequest: angular.indentity,
                 headers: {
@@ -66,7 +67,7 @@
 
             $http({
                 method: 'PUT',
-                url: 'http://' + $location.host() + '/api/users',
+                url: host + 'api/users',
                 params: query,
                 data: data,
                 headers: {
@@ -88,7 +89,7 @@
 
             $http({
                 method: 'GET',
-                url: 'http://' + $location.host() + 'api/lawyers',
+                url: host + 'api/lawyers',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
@@ -106,7 +107,7 @@
             var dfd = $q.defer();
             $http({
                 method: 'POST',
-                url: 'http://' + $location.host() + 'api/users/rate',
+                url: host + 'api/users/rate',
                 data: data,
                 params: query,
                 headers: {

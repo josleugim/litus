@@ -3,9 +3,10 @@
  */
 (function(){
    angular.module('app')
-       .factory('sectionService', ['$q', '$http', 'ApiUrl', sectionService]);
+       .factory('sectionService', ['$q', '$http', '$location', sectionService]);
 
-   function sectionService($q, $http, ApiUrl) {
+   function sectionService($q, $http, $location) {
+       var host = 'http://' + $location.host() + ':5002/';
        return {
            getAllSections: getAllSections,
           getSectionBySlug: getSectionBySlug,
@@ -15,7 +16,7 @@
        function getAllSections() {
            return $http({
                method: 'GET',
-               url: ApiUrl + 'api/sections',
+               url: host + 'api/sections',
                headers: {
                    'Content-type':'application/json'
                }
@@ -31,7 +32,7 @@
        function getSectionBySlug(slug) {
            return $http({
                method: 'GET',
-               url: ApiUrl + 'api/sections/' + slug
+               url: host + 'api/sections/' + slug
            })
                .success(function (response) {
                    return response.data;
@@ -46,7 +47,7 @@
 
            $http({
                method: 'PUT',
-               url: ApiUrl + 'api/sections/',
+               url: host + 'api/sections/',
                params: {slug: query},
                data: data,
                headers: {
