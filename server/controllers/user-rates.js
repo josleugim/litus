@@ -28,7 +28,6 @@ exports.post = function (req, res) {
     console.log(query);
 
     User.update(query, {$addToSet: {rating: data}}, function (err, numAffected) {
-        console.log(numAffected);
         if (err) {
             console.log(err);
             res.status(401).json({success: false, error: err});

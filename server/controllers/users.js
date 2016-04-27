@@ -53,7 +53,7 @@ exports.post = function (req, res) {
             var htmlMessage = "<p>Verifica tu cuenta de Correo Electrónico</p>"
                 + "<p>Hola, estas recibiendo el siguiente correo, ya que te registraste en Litus. Para activar tu cuenta por favor dale click en el botón de verificar.</p>"
                 + "<p>De no ser así, ignora este correo electrónico.</p>"
-                + "<a href='http://www.litus.mx/api/users/verify?_id=' collection._id>Verificar</a>";
+                + "<a href='http://www.litus.mx/api/users/verify?_id=" + collection._id + "'>Verificar</a>";
             // send the verification email
             sendGrid.sendMail(data.email, "josemiguel@heuristicforge.com", "Validación de cuenta", htmlMessage);
             res.status(201).json({success: true});
@@ -163,8 +163,15 @@ exports.verifyAccount = function (req, res) {
             res.redirect('/account/verify?res=false');
         }
 
-        res.redirect('/account/verify');
-        res.end();
+        if(numAffected.nModified > 0) {
+            res.redirect('/account/verify');
+            res.end();
+        } else {
+            console.log('No se pudo verificar la cuenta, error: ' + err);
+            res.redirect('/account/verify?res=false');
+            res.end();
+        }
+
     })
 };
 
