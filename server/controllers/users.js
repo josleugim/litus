@@ -157,7 +157,7 @@ exports.verifyAccount = function (req, res) {
     if(req.query._id)
         query._id = req.query._id;
 
-    User.update(query, {$set: {isActive: true}}, function (err) {
+    User.update(query, {$set: {isActive: true}}, function (err, numAffected) {
         if(err) {
             console.log('No se pudo verificar la cuenta, error: ' + err);
             res.redirect('/account/verify?res=false');
