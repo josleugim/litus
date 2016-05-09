@@ -12,7 +12,8 @@
             post: postUser,
             put: putUser,
             getLawyers: getLawyers,
-            postRate: postRate
+            postRate: postRate,
+            recoverPassNotification: recoverPassNotification
         };
 
         function getUserByID(query) {
@@ -109,6 +110,26 @@
                 method: 'POST',
                 url: host + 'api/users/rate',
                 data: data,
+                params: query,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                if(response.data.success) {
+                    dfd.resolve(true);
+                }
+            }, function errorCallback(response) {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+        }
+
+        function recoverPassNotification(query) {
+            var dfd = $q.defer();
+            $http({
+                method: 'GET',
+                url: host + 'api/users/recover-notification',
                 params: query,
                 headers: {
                     'Content-Type': 'application/json'
