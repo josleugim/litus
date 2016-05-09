@@ -232,7 +232,7 @@ exports.passRecoverNotification = function (req, res) {
         + "<a href='http://www.litus.mx/api/users/recover?email=" + query.email + "'>Cambiar contraseña</a>";
     // send the verification email
     sendGrid.sendMail(query.email, "josemiguel@heuristicforge.com", "Recuperación de contraseña", htmlMessage)
-    res.status(200);
+    res.status(200).json({success: true});
     res.end();
 };
 
