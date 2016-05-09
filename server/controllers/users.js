@@ -25,18 +25,30 @@ exports.post = function (req, res) {
         data.salt = salt;
         data.hashed_pwd = hash;
     }
+    if(req.body.address)
+        data.address = req.body.address;
     if(req.body.economicActivities)
         data.economicActivities = req.body.economicActivities;
     if(req.files['constitutiveAct'])
-        data.constitutiveAct = req.files['constitutiveAct'].filename;
+        data.constitutiveAct = req.files['constitutiveAct'][0].filename;
     if(req.files['professionalLicense'])
-        data.professionalLicense = req.files['professionalLicense'].filename;
+        data.professionalLicense = req.files['professionalLicense'][0].filename;
+    if(req.files['curriculum'])
+        data.curriculum = req.files['curriculum'][0].filename;
+    if(req.files['profilePicture'])
+        data.profilePicture = req.files['profilePicture'][0].filename;
     if(req.body.specialityArea)
         data.specialityArea = req.body.specialityArea;
     if(req.body.description)
         data.description = req.body.description;
     if(req.body.keyWords)
         data.keyWords = req.body.keyWords;
+    if(req.body.languages)
+        data.languages = req.body.languages;
+    if(req.body.references)
+        data.references = req.body.references
+    if(req.body.casePerMonth)
+        data.casePerMonth = Number(req.body.casePerMonth);
     if(req.body.type && (req.body.type == "cliente" || req.body.type == "abogado")) {
         roles.push(req.body.type);
         roles.push('user');
@@ -53,7 +65,7 @@ exports.post = function (req, res) {
             var htmlMessage = "<p>Verifica tu cuenta de Correo Electrónico</p>"
                 + "<p>Hola, estas recibiendo el siguiente correo, ya que te registraste en Litus. Para activar tu cuenta por favor dale click en el botón de verificar.</p>"
                 + "<p>De no ser así, ignora este correo electrónico.</p>"
-                + "<a href='http://www.litus.mx/api/users/verify?_id=' collection._id>Verificar</a>";
+                + "<a href='http://www.litus.mx/api/users/verify?_id=" + collection._id + "'>Verificar</a>";
             // send the verification email
             sendGrid.sendMail(data.email, "josemiguel@heuristicforge.com", "Validación de cuenta", htmlMessage);
             res.status(201).json({success: true});
@@ -157,14 +169,21 @@ exports.verifyAccount = function (req, res) {
     if(req.query._id)
         query._id = req.query._id;
 
-    User.update(query, {$set: {isActive: true}}, function (err) {
+    User.update(query, {$set: {isActive: true}}, function (err, numAffected) {
         if(err) {
             console.log('No se pudo verificar la cuenta, error: ' + err);
             res.redirect('/account/verify?res=false');
         }
 
-        res.redirect('/account/verify');
-        res.end();
+        if(numAffected.nModified > 0) {
+            res.redirect('/account/verify');
+            res.end();
+        } else {
+            console.log('No se pudo verificar la cuenta, error: ' + err);
+            res.redirect('/account/verify?res=false');
+            res.end();
+        }
+
     })
 };
 

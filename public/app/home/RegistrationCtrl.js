@@ -25,6 +25,28 @@
                 }
             }
         }])
+        .directive('fileCv', ['$parse', function($parse) {
+            return {
+                restrict: 'A',
+                link: function (scope, elm, attrs) {
+                    elm.bind('change', function () {
+                        $parse(attrs.fileCv).assign(scope, elm[0].files[0]);
+                        scope.$apply();
+                    })
+                }
+            }
+        }])
+        .directive('fileProfile', ['$parse', function($parse) {
+            return {
+                restrict: 'A',
+                link: function (scope, elm, attrs) {
+                    elm.bind('change', function () {
+                        $parse(attrs.fileProfile).assign(scope, elm[0].files[0]);
+                        scope.$apply();
+                    })
+                }
+            }
+        }])
         // This directive hides or shows the constitutive Act field
         .directive('economicActivities', function () {
             return {
@@ -66,6 +88,8 @@
                     economicActivities: $scope.economicActivities,
                     constitutiveAct: $scope.files,
                     professionalLicense: $scope.professionalLicense,
+                    curriculum: $scope.curriculum,
+                    profilePicture: $scope.profilePicture,
                     specialityArea: $scope.specialityArea,
                     languages: $scope.languages,
                     address: $scope.address,
@@ -73,15 +97,15 @@
                     schedule: $scope.schedule,
                     description: $scope.description,
                     keyWords: $scope.keyWords,
+                    casePerMonth: $scope.casePerMonth,
+                    references: $scope.references,
                     type: 'abogado'
                 };
-
-                console.log(data);
 
                 userService.post(data).then(function (success) {
                     if(success) {
                         mvNotifier.notify('Registro exitoso, recibiras un correo para confirmar tu email');
-                        $timeout($location.path('login/'), 1500);
+                        $timeout($location.path('reminder/'), 1500);
                     } else {
                         mvNotifier.error('No se pudo realizar el registro.');
                     }
