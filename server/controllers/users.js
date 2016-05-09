@@ -261,15 +261,15 @@ exports.passRecover = function (req, res) {
         if(numAffected.nModified > 0) {
             var htmlMessage = "<p>Nueva contraseña para litus.mx</p>"
                 + "<p>Hola, estas recibiendo el siguiente correo, ya que solicitaste un cambio de contraseña</p>"
-                + "<p>Tu nueva contraseña es la siguiente:" + newPass + "</p>"
+                + "<p>Tu nueva contraseña es la siguiente: <b>" + newPass + "</b></p>"
                 + "<p>Te recomendamos cambiarla una vez que inicies sesión.</p>";
             // send the verification email
             sendGrid.sendMail(query.email, "josemiguel@heuristicforge.com", "Recuperación de contraseña", htmlMessage);
-            res.redirect('/account/recover-notification');
+            res.redirect('/password-recover?res=true');
             res.end();
         } else {
             console.log('No se pudo cambiar la contraseña, error: ' + err);
-            res.redirect('/account/recover-notification?res=false');
+            res.redirect('/password-recover?res=false');
             res.end();
         }
 
