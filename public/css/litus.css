@@ -11,7 +11,7 @@ fieldset,
 ul,
 ol,
 li {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif !important;
   margin: 0;
   padding: 0;
   border: 0;
@@ -201,10 +201,10 @@ section .inner {
   padding: 0 24px;
 }
 .home .banner .inner div a.abogado:hover {
-  background-color: #99ccff;
+  background-color: #99CCFF;
 }
 .home .banner .inner div a.usuario:hover {
-  background-color: #5ccaab;
+  background-color: #5CCAAB;
 }
 .home .inner {
   padding: 50px 0;
