@@ -1,7 +1,6 @@
 /**
  * Created by Mordekaiser on 09/05/16.
  */
-"use strict";
 (function () {
     angular.module('app')
         .controller('PassRecoverCtrl', ['$scope', 'userService', 'mvNotifier', PassRecoverCtrl]);
