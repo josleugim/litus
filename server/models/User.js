@@ -29,6 +29,7 @@ var userSchema = mongoose.Schema({
     schedule: {type: String},
     appointmentDate: {type: Date},
     curriculum: {type: String},
+    profilePicture: {type: String},
     salt: {
         type: String,
         required: 'requerido'
@@ -42,6 +43,8 @@ var userSchema = mongoose.Schema({
     professionalLicense: {type: String},
     specialityArea: {type: String},
     description: {type: String},
+    references: {type: String},
+    casePerMonth: {type: Number},
     keyWords: [{type: String}],
     roles: [{
         type: String,

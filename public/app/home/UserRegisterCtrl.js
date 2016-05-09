@@ -11,14 +11,13 @@
                     email: $scope.email,
                     password: $scope.password,
                     phone: Number($scope.phone),
-                    type: 'cliente',
-                    address: $scope.address
+                    type: 'cliente'
                 };
 
                 userService.post(data).then(function (success, error) {
                     if(success) {
                         mvNotifier.notify('Registro exitoso');
-                        $timeout($location.path('login/'), 1500);
+                        $timeout($location.path('reminder/'), 1500);
                     } else {
                         mvNotifier.error('No se pudo realizar el registro, error: ' + error);
                     }

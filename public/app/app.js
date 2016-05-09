@@ -88,6 +88,9 @@
                 templateUrl: 'partials/home/userRegister',
                 controller: 'UserRegisterCtrl'
             })
+            .when('/reminder', {
+                templateUrl: 'partials/home/reminder'
+            })
             .when('/nosotros', {
                 templateUrl: 'partials/nosotros/index',
                 controller: 'NosotrosCtrl'

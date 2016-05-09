@@ -25,18 +25,30 @@ exports.post = function (req, res) {
         data.salt = salt;
         data.hashed_pwd = hash;
     }
+    if(req.body.address)
+        data.address = req.body.address;
     if(req.body.economicActivities)
         data.economicActivities = req.body.economicActivities;
     if(req.files['constitutiveAct'])
-        data.constitutiveAct = req.files['constitutiveAct'].filename;
+        data.constitutiveAct = req.files['constitutiveAct'][0].filename;
     if(req.files['professionalLicense'])
-        data.professionalLicense = req.files['professionalLicense'].filename;
+        data.professionalLicense = req.files['professionalLicense'][0].filename;
+    if(req.files['curriculum'])
+        data.curriculum = req.files['curriculum'][0].filename;
+    if(req.files['profilePicture'])
+        data.profilePicture = req.files['profilePicture'][0].filename;
     if(req.body.specialityArea)
         data.specialityArea = req.body.specialityArea;
     if(req.body.description)
         data.description = req.body.description;
     if(req.body.keyWords)
         data.keyWords = req.body.keyWords;
+    if(req.body.languages)
+        data.languages = req.body.languages;
+    if(req.body.references)
+        data.references = req.body.references
+    if(req.body.casePerMonth)
+        data.casePerMonth = Number(req.body.casePerMonth);
     if(req.body.type && (req.body.type == "cliente" || req.body.type == "abogado")) {
         roles.push(req.body.type);
         roles.push('user');

@@ -30,9 +30,5 @@ section(class="registration")
                         //label Teléfono
                         input(placeholder="Teléfono" type="text", name="phone", class="form-group", ng-model="phone", ng-required)
                         span(class="error", ng-show="registerForm.phone.$error.required") *
-                    li
-                        //label Dirección
-                        textarea(placeholder="Dirección" class="form-group", name="address", ng-model="address", required)
-                        span(class="error", ng-show="registerForm.address.$error.required") *
                     
                     button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar

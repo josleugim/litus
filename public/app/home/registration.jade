@@ -31,9 +31,17 @@ section(class="registration")
                         input(placeholder="Teléfono", type="text", name="phone", ng-model="phone", ng-required)
                         span(class="error", ng-show="registerForm.phone.$error.required") *
                     li
+                        //label cases per month
+                        input(placeholder="No. de asuntos que puede atender por mes", type="number", name="casePerMonth", ng-model="casePerMonth", required)
+                        span(class="error", ng-show="registerForm.casePerMonth.$error.required") *
+                    li
                         //label Dirección
                         textarea(placeholder="Dirección", name="address", ng-model="address", required)
                         span(class="error", ng-show="registerForm.address.$error.required") *
+                    li
+                        //label references
+                        textarea(placeholder="Referencias", name="references", ng-model="references", required)
+                        span(class="error", ng-show="registerForm.references.$error.required") *
             .column.twothirds
                 ul.top
                     li.select
@@ -50,6 +58,7 @@ section(class="registration")
                             option(value="laboral") Laboral
                             option(value="fiscal") Fiscal
                             option(value="familiar") Familiar
+                            option(value="otros") Otros
                         span(class="error", ng-show="registerForm.specialityArea.$error.required") *
                     li.file(id="constitutiveAct")
                         input(type="file", name="constitutiveAct", file-constitutive="files")
@@ -59,6 +68,15 @@ section(class="registration")
                         input(type="file", name="professionalLicense", file-license="professionalLicense")
                         label Cédula profesional <i class="mdi mdi-upload"></i>
                         span(class="error", ng-show="registerForm.professionalLicense.$error.required") *
+                    li.file
+                        input(type="file", name="curriculum", file-cv="curriculum")
+                        label Curriculum
+                            i(class="mdi mdi-upload")
+                        span(class="error", ng-show="registerForm.curriculum.$error.required") *
+                    li.file
+                        input(type="file", name="profilePicture", file-profile="profilePicture")
+                        label Foto de perfil <i class="mdi mdi-upload"></i>
+                        span(class="error", ng-show="registerForm.profilePicture.$error.required") *
                 ul
                     li
                         //label Descripción
@@ -74,7 +92,7 @@ section(class="registration")
                         span(class="error", ng-show="registerForm.experienceYears.$error.required") *
                     li
                         //label Horario
-                        textarea(placeholder="Horario", name="schedule", ng-model="schedule", required)
+                        textarea(placeholder="Horario disponible de atención al cliente", name="schedule", ng-model="schedule", required)
                         span(class="error", ng-show="registerForm.schedule.$error.required") *
                     li
                         //label Palabras clave, separadas por coma

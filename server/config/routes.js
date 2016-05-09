@@ -18,7 +18,7 @@ module.exports = function (app) {
     app.put('/api/sections/', auth.requiresRole('admin'), sections.editSectionBySlug);
 
     app.get('/api/users', auth.requiresRole('user'), users.get);
-    app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}]), users.post);
+    app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}, {name: 'curriculum'}, {name: 'profilePicture'}]), users.post);
     app.put('/api/users', auth.requiresRole('user'), users.put);
     app.get('/api/users/verify', users.verifyAccount);
     app.post('/api/users/rate', auth.requiresRole('user'), rates.post);
