@@ -22,6 +22,8 @@ module.exports = function (app) {
     app.put('/api/users', auth.requiresRole('user'), users.put);
     app.get('/api/users/verify', users.verifyAccount);
     app.post('/api/users/rate', auth.requiresRole('user'), rates.post);
+    app.get('/api/users/recover-notification', auth.requiresRole('user'), users.passRecoverNotification);
+    app.get('/api/users/recover', auth.requiresRole('user'), users.passRecover);
 
     app.post('/api/notifications', auth.requiresRole('user'), notifications.postNotification);
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);

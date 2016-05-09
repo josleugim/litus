@@ -80,6 +80,10 @@
                 templateUrl: '../../partials/account/verify',
                 controller: 'VerifyCtrl'
             })
+            .when('/password-recover', {
+                templateUrl: 'partials/account/passwordRecover',
+                controller: 'PassRecoverCtrl'
+            })
             .when('/registro-abogados', {
                 templateUrl: 'partials/home/registration',
                 controller: 'RegistrationCtrl'

@@ -3,7 +3,8 @@
  */
 var User = require('mongoose').model('User'),
     encrypt = require('../utilities/encryption'),
-    sendGrid = require('../utilities/sendGrid');
+    sendGrid = require('../utilities/sendGrid'),
+    randomPass = require('random-password');
 
 exports.post = function (req, res) {
     console.log('POST User');
@@ -216,4 +217,62 @@ exports.getLawyers = function (req, res) {
             }
         })
 
+};
+
+exports.passRecoverNotification = function (req, res) {
+    console.log('GET Pass Recover notification');
+    var query = {
+        email: req.query.email
+    };
+
+    console.log(query);
+    var htmlMessage = "<p>Has solicitado un cambio de contraseña para litus.mx</p>"
+        + "<p>Hola, estas recibiendo el siguiente correo, ya que solicitaste un cambio de contraseña</p>"
+        + "<p>De no ser así, ignora este correo electrónico.</p>"
+        + "<a href='http://www.litus.mx/api/users/recover?email=" + query.email + "'>Cambiar contraseña</a>";
+    // send the verification email
+    sendGrid.sendMail(query.email, "josemiguel@heuristicforge.com", "Recuperación de contraseña", htmlMessage);
+};
+
+exports.passRecover = function (req, res) {
+    console.log('GET Pass Recover');
+    var salt, hash, newPass;
+    var query = {
+        email: req.query.email
+    };
+
+    var data = {};
+    newPass = randomPass(6);
+
+    salt = encrypt.createSalt();
+    hash = encrypt.hashPwd(salt, newPass);
+    data.salt = salt;
+    data.hashed_pwd = hash;
+
+    console.log(query);
+    console.log(data);
+
+    User.update(query, {$set: data}, function (err, numAffected) {
+        if(err) {
+            console.log('No se pudo cambiar la contraseña, error: ' + err);
+            res.status(500);
+            res.end();
+        }
+
+        if(numAffected.nModified > 0) {
+            var htmlMessage = "<p>Nueva contraseña para litus.mx</p>"
+                + "<p>Hola, estas recibiendo el siguiente correo, ya que solicitaste un cambio de contraseña</p>"
+                + "<p>Tu nueva contraseña es la siguiente:" + newPass + "</p>"
+                + "<p>Te recomendamos cambiarla una vez que inicies sesión.</p>";
+            // send the verification email
+            sendGrid.sendMail(query.email, "josemiguel@heuristicforge.com", "Recuperación de contraseña", htmlMessage);
+            res.status(200);
+            res.end();
+        } else {
+            console.log('No se pudo cambiar la contraseña, error: ' + err);
+            res.status(500);
+            res.end();
+        }
+
+    })
 };
