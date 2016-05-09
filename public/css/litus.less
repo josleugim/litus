@@ -172,7 +172,7 @@ html{
 body{
 	background-color: #fafafa;
 	line-height: 1.6em;
-	margin: 0 0 480px;
+	margin: 0 0 420px;
 }
 h1{
 	font-size: 30px;
@@ -363,12 +363,14 @@ section{
 	}
 	.inner{
 		.cycle-slideshow{
+			height: 200px;
 			position: relative;
-			width: 100%;
+			margin: auto;
+			width: 50%;
 			div{
+				.box-sizing();
 				overflow: hidden;
-				margin: auto;
-				width: 50%;
+				width: 100%;
 				h2{
 					padding-left: 100px;
 				}
@@ -381,6 +383,17 @@ section{
 					list-style: none;
 					margin-left: 100px;
 				}
+			}
+		}
+		.mdi{
+			font-size: 48px;
+			position: absolute;
+			top: 50%;
+			&.mdi-chevron-left{
+				left: 15%;
+			}
+			&.mdi-chevron-right{
+				right: 15%;
 			}
 		}
 	}
@@ -520,7 +533,7 @@ section{
 	bottom: 0;
 	color: #FFF;
 	left: 0;
-	height: 480px;
+	height: 420px;
 	position: absolute;
 	width: 100%;
 	.inner{

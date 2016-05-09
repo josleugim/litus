@@ -24,7 +24,7 @@ html {
 body {
   background-color: #fafafa;
   line-height: 1.6em;
-  margin: 0 0 480px;
+  margin: 0 0 420px;
 }
 h1 {
   font-size: 30px;
@@ -226,13 +226,18 @@ section .inner {
   color: #336699;
 }
 .abogados .inner .cycle-slideshow {
+  height: 200px;
   position: relative;
-  width: 100%;
-}
-.abogados .inner .cycle-slideshow div {
-  overflow: hidden;
   margin: auto;
   width: 50%;
+}
+.abogados .inner .cycle-slideshow div {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
 }
 .abogados .inner .cycle-slideshow div h2 {
   padding-left: 100px;
@@ -246,6 +251,17 @@ section .inner {
 .abogados .inner .cycle-slideshow div ul {
   list-style: none;
   margin-left: 100px;
+}
+.abogados .inner .mdi {
+  font-size: 48px;
+  position: absolute;
+  top: 50%;
+}
+.abogados .inner .mdi.mdi-chevron-left {
+  left: 15%;
+}
+.abogados .inner .mdi.mdi-chevron-right {
+  right: 15%;
 }
 .referidos .inner h1 + p {
   text-align: center;
@@ -366,7 +382,7 @@ section .inner {
   bottom: 0;
   color: #FFF;
   left: 0;
-  height: 480px;
+  height: 420px;
   position: absolute;
   width: 100%;
 }
