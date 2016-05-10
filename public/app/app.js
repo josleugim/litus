@@ -59,7 +59,7 @@
             .when('/perfil', {
                 templateUrl: 'partials/perfil/index',
                 controller: 'PerfilCtrl',
-                resolve: routeRoleChecks.lawyer
+                resolve: routeRoleChecks.user
             })
             .when('/perfil/edit/:id', {
                 templateUrl: '../../partials/perfil/edit',

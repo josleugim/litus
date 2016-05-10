@@ -27,7 +27,7 @@ html
                     ul(class="nav navbar-nav")
                         li(ng-show="identity.isAuthorized('admin')")
                             a(href="/admin/sections") Secciones
-                        li(ng-show="identity.isAuthorized('abogado')")
+                        li(ng-show="identity.isAuthorized('user')")
                             a(href="/perfil") Perfil
                         li
                             a(href="/chat", ng-hide="identity.isAuthorized('admin')") Chat

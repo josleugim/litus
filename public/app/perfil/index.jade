@@ -5,7 +5,7 @@
     .row
         .col-md-6
             h4 Información personal
-            a(href="/perfil/edit/{{user._id}}") Editar información
+            a(href="/perfil/edit/{{user._id}}", ng-show="identity.isAuthorized('abogado')") Editar información
             br
             a(href="/perfil/change-password/{{user._id}}") Cambiar contraseña
             .row
@@ -18,32 +18,32 @@
                     p Email
                 .col-md-2
                     p {{user.email}}
-            .row
+            .row(ng-show="identity.isAuthorized('abogado')")
                 .col-md-2
                     p Teléfono
                 .col-md-2
                     p {{user.phone}}
-            .row
+            .row(ng-show="identity.isAuthorized('abogado')")
                 .col-md-2
                     p Persona
                 .col-md-2
                     p {{user.economicActivities}}
-            .row
+            .row(ng-show="identity.isAuthorized('abogado')")
                 .col-md-2
                     p Área de especialidad
                 .col-md-2
                     p {{user.specialityArea}}
-            .row
+            .row(ng-show="identity.isAuthorized('abogado')")
                 .col-md-2
                     p Descripción
                 .col-md-4
                     p {{user.description}}
-            .row
+            .row(ng-show="identity.isAuthorized('abogado')")
                 .col-md-2
                     p Palabras clave
                 .col-md-4
                     p {{user.keyWords}}
-            .row
+            .row(ng-show="identity.isAuthorized('abogado')")
                 .col-md-2
                     p Ocupado
                 .col-md-4
@@ -51,7 +51,7 @@
                         input(type="checkbox", name="isBusy", disabled, checked)
                     - else
                         input(type="checkbox", name="isBusy", disabled)
-        .col-md-6
+        .col-md-6(ng-show="identity.isAuthorized('abogado')")
             h4 Notificaciones de citas pendientes
             .row
                 ul
