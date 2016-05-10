@@ -1,0 +1,22 @@
+//
+   Created by Mordekaiser on 09/05/16.
+
+section(class="login")
+    .container
+        .row
+            .col-md-4
+            .col-md-4
+                h4 Cambiar contraseña
+                form.navbar-form(name="changePassForm")
+                    input.form-control(type="password", name="password", placeholder="Contraseña actual", ng-model="password", required)
+                    span(class="error", ng-show="changePassForm.password.$error.required") *
+
+                    input.form-control(type="password", name="newPass", id="newPass", placeholder="Nueva contraseña", ng-model="newPass", required)
+                    span(class="error", ng-show="changePassForm.newPass.$error.required") *
+
+                    input.form-control(type="password", name="confirmPass", placeholder="Confirmar nueva contraseña", ng-model="confirmPass", pw-check="newPass", required)
+                    span(class="error", ng-show="changePassForm.confirmPass.$error.required") *
+                    span(class="msg-error", ng-show="changePassForm.confirmPass.$error.pwmatch") Las contraseñas no coinciden
+
+                    button.btn.btn-primary(ng-click="sendPass(newPass)", ng-disabled="changePassForm.$invalid") Enviar
+            .col-md-4

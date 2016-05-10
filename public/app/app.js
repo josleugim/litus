@@ -66,6 +66,11 @@
                 controller: 'EditCtrl',
                 resolve: routeRoleChecks.lawyer
             })
+            .when('/perfil/change-password/:id', {
+                templateUrl: '../../partials/perfil/changePass',
+                controller: 'ChangePassCtrl',
+                resolve: routeRoleChecks.user
+            })
             .when('/chat', {
                 templateUrl: 'partials/chat/index',
                 controller: 'ChatCtrl',

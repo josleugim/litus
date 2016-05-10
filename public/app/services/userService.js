@@ -13,7 +13,8 @@
             put: putUser,
             getLawyers: getLawyers,
             postRate: postRate,
-            recoverPassNotification: recoverPassNotification
+            recoverPassNotification: recoverPassNotification,
+            changePassword: changePassword
         };
 
         function getUserByID(query) {
@@ -131,6 +132,28 @@
                 method: 'GET',
                 url: host + 'api/users/recover-notification',
                 params: query,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                if(response.data.success) {
+                    dfd.resolve(true);
+                }
+            }, function errorCallback(response) {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+        }
+        
+        function changePassword(query, data) {
+            var dfd = $q.defer();
+
+            $http({
+                method: 'PUT',
+                url: host + 'api/users/change-password',
+                params: query,
+                data: data,
                 headers: {
                     'Content-Type': 'application/json'
                 }

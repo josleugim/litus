@@ -28,7 +28,7 @@ html
                         li(ng-show="identity.isAuthorized('admin')")
                             a(href="/admin/sections") Secciones
                         li(ng-show="identity.isAuthorized('abogado')")
-                            a(href="/perfil") Modificar cuenta
+                            a(href="/perfil") Perfil
                         li
                             a(href="/chat", ng-hide="identity.isAuthorized('admin')") Chat
                         li

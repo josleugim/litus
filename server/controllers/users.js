@@ -4,7 +4,9 @@
 var User = require('mongoose').model('User'),
     encrypt = require('../utilities/encryption'),
     sendGrid = require('../utilities/sendGrid'),
-    randomPass = require('random-password');
+    randomPass = require('random-password'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User');
 
 exports.post = function (req, res) {
     console.log('POST User');
@@ -274,4 +276,29 @@ exports.passRecover = function (req, res) {
         }
 
     })
+};
+
+exports.changePassword = function (req, res) {
+    console.log('PUT Change password');
+    var salt, hash;
+    var query = {
+        _id: req.query._id
+    };
+
+    User.findOne(query).exec(function (err, user) {
+        // when the user is return we validate the password
+        if (user && user.authenticate(req.body.password)) {
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPwd(salt, req.body.newPass);
+            user.salt = salt;
+            user.hashed_pwd = hash;
+            user.save();
+            
+            res.status(200).json({success: true});
+            res.end();
+        } else {
+            res.status(500).json({success: false});
+            res.end();
+        }
+    });
 };
