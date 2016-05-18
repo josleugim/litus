@@ -24,9 +24,6 @@ exports.post = function (req, res) {
     if(req.body.comment)
         data.comment = req.body.comment;
 
-    console.log(data);
-    console.log(query);
-
     User.update(query, {$addToSet: {rating: data}}, function (err, numAffected) {
         if (err) {
             console.log(err);

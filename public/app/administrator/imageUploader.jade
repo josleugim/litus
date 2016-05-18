@@ -1,0 +1,10 @@
+//
+   Created by Mordekaiser on 17/05/16.
+
+.well
+    form(name="uploaderForm", enctype="multipart/form-data")
+        .form-group
+            label Imagen
+            input(type="file", name="image", multiple, ng-required)
+            span(class="error", ng-show="uploaderForm.image.$error.required") *
+        button.btn.btn-primary(ng-disabled="sectionForm.$invalid", ng-click="upload()") Subir imágenes

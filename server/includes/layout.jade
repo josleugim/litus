@@ -27,6 +27,8 @@ html
                     ul(class="nav navbar-nav")
                         li(ng-show="identity.isAuthorized('admin')")
                             a(href="/admin/sections") Secciones
+                        li(ng-show="identity.isAuthorized('admin')")
+                            a(href="/admin/image-uploader") Subir imágenes
                         li(ng-show="identity.isAuthorized('user')")
                             a(href="/perfil") Perfil
                         li

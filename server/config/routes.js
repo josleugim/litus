@@ -6,16 +6,21 @@ var auth = require('./auth'),
     users = require('../controllers/users'),
     multer = require('multer'),
     upload = multer({dest: 'public/uploads/'}),
+    litusUploads = multer({dest: 'public/litus-uploads'}),
     contact = require('../controllers/contact'),
     notifications = require('../controllers/notifications'),
     chats = require('../controllers/chats'),
-    rates = require('../controllers/user-rates');
+    rates = require('../controllers/user-rates'),
+    imagesUp = require('../controllers/image-uploader');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
     app.get('/api/sections', sections.get);
     app.get('/api/sections/:slug', sections.getBySlug);
     app.put('/api/sections/', auth.requiresRole('admin'), sections.editSectionBySlug);
+
+    app.post('api/images', imagesUp.post, litusUploads.array('files', 8));
+    app.get('api/images', imagesUp.get);
 
     app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}, {name: 'curriculum'}, {name: 'profilePicture'}]), users.post);
