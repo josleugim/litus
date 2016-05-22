@@ -13,46 +13,34 @@ html
         link(rel="stylesheet", href="/css/mdi.min.css")
         //script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
     body(ng-app='app')
-        .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
-            .container-fluid
-                .navbar-header
-                    button(type="button", class="navbar-toggle collapse", data-toogle="collapse", data-target="#collapse-1", aria-expanded="false")
-                        span(class="sr-only") Toggle navigation
-                        span(class="icon-bar")
-                        span(class="icon-bar")
-                        span(class="icon-bar")
-                    a(class="navbar-brand", href="#")
-                        img(src="assets/img/litus-top.png")
-                .collapse.navbar-collapse(id="collapse-1")
-                    ul(class="nav navbar-nav")
-                        li(ng-show="identity.isAuthorized('admin')")
-                            a(href="/admin/sections") Secciones
-                        li(ng-show="identity.isAuthorized('user')")
-                            a(href="/perfil") Perfil
-                        li
-                            a(href="/chat", ng-hide="identity.isAuthorized('admin')") Chat
-                        li
-                            a(href="/logout", ng-click="signout()") Cerrar sesión
-        header(ng-controller="loginCtrl", ng-hide="identity.isAuthenticated()")
+        header(ng-controller="loginCtrl")
             .inner
                 a(href="/", class="litus")
                     img(src="assets/img/litus-top.png")
                 nav
-                    a(href="#home")
+                    a(href="#home", ng-hide="identity.isAuthorized('user')")
                         span NOSOTROS
-                    a(href="#abogados")
+                    a(href="#abogados", ng-hide="identity.isAuthorized('user')")
                         span ÁREAS DE ESPECIALIDAD
                     //a(href="#referidos")
-                        //span REFERIDOS
-                    a(href="#ayuda")
+                        span REFERIDOS
+                    a(href="#ayuda", ng-hide="identity.isAuthorized('user')")
                         span AYUDA
-                    a(href="/unete-a-litus")
+                    a(href="/unete-a-litus", ng-hide="identity.isAuthorized('user')")
                         span ÚNETE A LITUS
-                    a(href="/login")
+                    a(href="/login", ng-hide="identity.isAuthorized('user')")
                         span INICIAR SESIÓN
+                    a(href="/admin/sections", ng-show="identity.isAuthorized('admin')")
+                        span SECCIONES
+                    a(href="/perfil", ng-show="identity.isAuthorized('user')")
+                        span PERFIL
+                    a(href="/chat", ng-show="identity.isAuthorized('user')")
+                        span CHAT
+                    a(href="/logout", ng-show="identity.isAuthenticated()", ng-click="signout()")
+                        span CERRAR SESIÓN
         include currentUser
         block main-content
-        section(class="bottom", ng-controller="ContactoCtrl", ng-hide="identity.isAuthenticated()")
+        section(class="bottom", ng-controller="ContactoCtrl")
             .inner
                 .row
                     .column.onehalf
