@@ -12,6 +12,7 @@ html
         link(rel="stylesheet", href="/css/litus.css")
         link(rel="stylesheet", href="/css/mdi.min.css")
         //script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
+        script(src="/vendor/jquery/dist/jquery.js")
     body(ng-app='app')
         .navbar.navbar-default(ng-controller="loginCtrl", ng-show="identity.isAuthenticated()")
             .container-fluid
@@ -24,11 +25,18 @@ html
                     a(class="navbar-brand", href="#")
                         img(src="assets/img/litus-top.png")
                 .collapse.navbar-collapse(id="collapse-1")
-                    ul(class="nav navbar-nav")
+                    ul.nav.navbar-nav
                         li(ng-show="identity.isAuthorized('admin')")
                             a(href="/admin/sections") Secciones
-                        li(ng-show="identity.isAuthorized('admin')")
-                            a(href="/admin/image-uploader") Subir imágenes
+                        li.dropdown(ng-show="identity.isAuthorized('admin')")
+                            a.dropdown-toggle(data-toogle="dropdown", href="#", role="button", aria-haspopup="true", aria-expanded="false")
+                                |Dropdown
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href="/admin/image-uploader") Subir imágenes
+                                li
+                                    a(href="/admin/images") Imágenes
                         li(ng-show="identity.isAuthorized('user')")
                             a(href="/perfil") Perfil
                         li

@@ -19,8 +19,9 @@ module.exports = function (app) {
     app.get('/api/sections/:slug', sections.getBySlug);
     app.put('/api/sections/', auth.requiresRole('admin'), sections.editSectionBySlug);
 
-    app.post('api/images', imagesUp.post, litusUploads.array('files', 8));
-    app.get('api/images', imagesUp.get);
+    app.post('/api/images', auth.requiresRole('admin'), litusUploads.fields([{name: 'newImage'}]), imagesUp.post);
+    app.get('/api/images', auth.requiresRole('admin'), imagesUp.get);
+    app.delete('/api/images', auth.requiresRole('admin'), imagesUp.deleteImage);
 
     app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}, {name: 'curriculum'}, {name: 'profilePicture'}]), users.post);

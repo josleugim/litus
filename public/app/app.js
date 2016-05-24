@@ -56,6 +56,11 @@
                 controller: 'AdminCtrl',
                 resolve: routeRoleChecks.admin
             })
+            .when('/admin/images', {
+                templateUrl: 'partials/administrator/images',
+                controller: 'ImageUploaderCtrl',
+                resolve: routeRoleChecks.admin
+            })
             .when('/admin/image-uploader', {
                 templateUrl: 'partials/administrator/imageUploader',
                 controller: 'ImageUploaderCtrl',
