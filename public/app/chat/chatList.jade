@@ -1,0 +1,12 @@
+//
+   Created by Mordekaiser on 24/05/16.
+
+.container-fluid.chat
+    .row
+        .col-md-3.user-list
+            .user-box(ng-repeat="user in users")
+                p Nombre: {{user.completeName}}
+                p Email: {{user.email}}
+                p Teléfono: {{user.phone}}
+                p Dirección: {{user.address}}
+                a.btn.btn-primary(href="/chat/{{user.chat_id}}") Abrir chat

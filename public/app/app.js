@@ -81,9 +81,14 @@
                 controller: 'ChangePassCtrl',
                 resolve: routeRoleChecks.user
             })
-            .when('/chat', {
+            .when('/chat/:id', {
                 templateUrl: 'partials/chat/index',
                 controller: 'ChatCtrl',
+                resolve: routeRoleChecks.user
+            })
+            .when('/chat-list', {
+                templateUrl: 'partials/chat/chatList',
+                controller: 'ChatListCtrl',
                 resolve: routeRoleChecks.user
             })
             .when('/busqueda', {

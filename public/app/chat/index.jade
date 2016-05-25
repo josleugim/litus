@@ -2,31 +2,24 @@
    Created by Mordekaiser on 03/03/16.
 
 .container-fluid.chat
-    .row(ng-repeat="user in users")
+    .row
         .col-md-3.user-list
             .user-box
-                p {{user.completeName}}
-                p {{user.email}}
-                p {{user.phone}}
-                p {{user.address}}
-                button(ng-click="getChat(user.chat_id)", type="button", class="btn btn-info") Abrir chat
-                //button(ng-click="scheduleAppointment()", type="button", class="btn btn-info") Agendar cita
-                button(ng-click="rate()", type="button", class="btn btn-info") Calificar servicio
-            form(class="rate-box", name="rateForm")
-                p Califica a {{user.completeName}}
-                input(type="checkbox", id="1", name="one", value="1", rate-star)
-                label(for="1")
-                input(type="checkbox", id="2", name="two", value="2", rate-star)
-                label(for="2")
-                input(type="checkbox", id="3", name="three", value="3", rate-star)
-                label(for="3")
-                input(type="checkbox", id="4", name="four", value="4", rate-star)
-                label(for="4")
-                input(type="checkbox", id="5", name="five", value="5", rate-star)
-                label(for="5")
-                p Comentario
-                textarea(name="comment", ng-model="rate.comment", id="comment")
-                button(class="btn btn-success", type="button", ng-click="sendRate(user.email)") Enviar
+                form(class="rate-box", name="rateForm")
+                    p Califica a {{user.name}} {{user.lastName}}
+                    input(type="checkbox", id="1", name="one", value="1", rate-star)
+                    label(for="1")
+                    input(type="checkbox", id="2", name="two", value="2", rate-star)
+                    label(for="2")
+                    input(type="checkbox", id="3", name="three", value="3", rate-star)
+                    label(for="3")
+                    input(type="checkbox", id="4", name="four", value="4", rate-star)
+                    label(for="4")
+                    input(type="checkbox", id="5", name="five", value="5", rate-star)
+                    label(for="5")
+                    p Comentario
+                    textarea(name="comment", ng-model="rate.comment", id="comment")
+                    button(class="btn btn-success", type="button", ng-click="sendRate(user.email)") Enviar
         .col-md-9.chat-content
             .row#message-container
                 .col-md-12
@@ -35,4 +28,3 @@
                         textarea(name="msg", id="msg", ng-model="chat.msg", ng-required)
                         span(class="text-warning", ng-show="messageForm.chat.msg.$error.required") * requerido
                         button(class="btn btn-primary", ng-click="sendMessage()", ng-disabled="messageForm.$invalid") Enviar mensaje
-                .col-md-12

@@ -39,7 +39,7 @@ html
                         span LISTADO DE IMÁGENES
                     a(href="/perfil", ng-show="identity.isAuthorized('user')")
                         span PERFIL
-                    a(href="/chat", ng-show="identity.isAuthorized('user')")
+                    a(href="/chat-list", ng-show="identity.isAuthorized('user')")
                         span CHAT
                     a(href="/logout", ng-show="identity.isAuthenticated()", ng-click="signout()")
                         span CERRAR SESIÓN
