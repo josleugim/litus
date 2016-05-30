@@ -11,7 +11,8 @@ var auth = require('./auth'),
     notifications = require('../controllers/notifications'),
     chats = require('../controllers/chats'),
     rates = require('../controllers/user-rates'),
-    imagesUp = require('../controllers/image-uploader');
+    imagesUp = require('../controllers/image-uploader'),
+    payU = require('../controllers/payu');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
@@ -34,6 +35,9 @@ module.exports = function (app) {
 
     app.post('/api/notifications', auth.requiresRole('user'), notifications.postNotification);
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);
+
+    app.post('/api/payu-confirmation', payU.confirmation);
+    app.get('/api/reference-code', auth.requiresRole('user'), payU.getRefCode);
 
     app.get('/api/chat/users', auth.requiresRole('user'), chats.getChatUsers);
     app.get('/api/chat', auth.requiresRole('user'), chats.get);

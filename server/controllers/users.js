@@ -196,7 +196,8 @@ exports.getLawyers = function (req, res) {
         roles: {
             $nin: ['admin', 'cliente']
         },
-        isBusy: false
+        isBusy: false,
+        isActive: true
     };
     var limit, skip;
 

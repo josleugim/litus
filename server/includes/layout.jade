@@ -37,6 +37,8 @@ html
                         span SUBIR IMÁGENES
                     a(href="/admin/images", ng-show="identity.isAuthorized('admin')")
                         span LISTADO DE IMÁGENES
+                    a(href="/busqueda", ng-show="identity.isAuthorized('cliente')")
+                        span ABOGADOS
                     a(href="/perfil", ng-show="identity.isAuthorized('user')")
                         span PERFIL
                     a(href="/chat-list", ng-show="identity.isAuthorized('user')")

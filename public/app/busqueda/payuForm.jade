@@ -18,3 +18,20 @@
         input(name="confirmationUrl", type="hidden", value="http://www.test.com/confirmation")
 
         input(type="submit", name="submit", value="Enviar")
+
+        <form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" accept-charset="UTF-8">
+        <input type="image" border="0" alt="" src="http://www.payulatam.com/img-secure-2015/boton_pagar_pequeno.png" onClick="this.form.urlOrigen.value = window.location.href;"/>
+        <input name="buttonId" type="hidden" value="X2FC6ZReYcRFy3BAXCsJBZPD4mCEHSDZF124IXi5TEq+erdjyS2URA=="/>
+        <input name="merchantId" type="hidden" value="564742"/>
+        <input name="accountId" type="hidden" value="567311"/>
+        <input name="description" type="hidden" value="Cobro por información de contacto"/>
+        <input name="referenceCode" type="hidden" value="00001"/>
+        <input name="amount" type="hidden" value="100.00"/>
+        <input name="tax" type="hidden" value="0.00"/>
+        <input name="taxReturnBase" type="hidden" value="0"/>
+        <input name="currency" type="hidden" value="MXN"/>
+        <input name="lng" type="hidden" value="es"/>
+        <input name="sourceUrl" id="urlOrigen" value="" type="hidden"/>
+        <input name="buttonType" value="SIMPLE" type="hidden"/>
+        <input name="signature" value="44a76ed26697eae504e8c44918dada8a917ee0b26ade976cf149bbe6cb084101" type="hidden"/>
+        </form>

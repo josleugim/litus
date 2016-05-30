@@ -39,8 +39,11 @@ exports.postNotification = function (req, res) {
     if(req.body.status) {
         data.status = req.body.status;
     }
+    if(req.body.referenceCode) {
+        data.referenceCode = req.body.referenceCode;
+    }
 
-    if(req.body.lawyers) {
+    if(req.body.lawyerEmail) {
 
         // create the client notification
         User.findOneAndUpdate(query, {$addToSet: {notifications: data}}, {new: true}, function (err, doc) {
@@ -53,28 +56,28 @@ exports.postNotification = function (req, res) {
             // add a notification for each lawyer
             if(doc) {
                 var lastIndex = doc.notifications.length -1;
+                console.log('Email: ' + req.body.lawyerEmail);
                 // save the notification to the lawyers with the same _id
-                req.body.lawyers.forEach(function (email) {
-                    var notification = {
-                        _id: doc.notifications[lastIndex]._id,
-                        client_id: doc._id,
-                        status: 'Pending'
-                    };
+                var notification = {
+                    _id: doc.notifications[lastIndex]._id,
+                    client_id: doc._id,
+                    status: 'Pending',
+                    referenceCode: doc.referenceCode
+                };
 
-                    User.update({email: email}, {$addToSet: {notifications: notification}}, function (err, result) {
-                        if(err) {
-                            console.log('Error creating notification, email: ' + email + ' Error: ' + err);
-                        } else {
-                            // send email notification to lawyer
-                            var htmlMessage = "<h4>Tienes una notificación pendiente de " + doc.name + " " + doc.lastName + "</h4>"
-                                + "<p>Para poder concretar una cita entra a Litus e inicia sesión</p>"
-                                + "<a href='localhost:5002/login' target='_blank'>Entrar a Litus</a>";
-                            if(sendGrid.sendMail(email, "josemiguel@heuristicforge.com", "Notificación pendiente", htmlMessage)) {
-                                console.log('Email send to ' + email);
-                            } else
-                                console.log('Fail to send email to: ' + email);
-                        }
-                    })
+                User.update({email: req.body.lawyerEmail}, {$addToSet: {notifications: notification}}, function (err, result) {
+                    if(err) {
+                        console.log('Error creating notification, email: ' + req.body.lawyerEmail + ' Error: ' + err);
+                    } else {
+                        // send email notification to lawyer
+                        var htmlMessage = "<h4>Tienes una notificación pendiente de " + doc.name + " " + doc.lastName + "</h4>"
+                            + "<p>Para poder concretar una cita entra a Litus e inicia sesión</p>"
+                            + "<a href='localhost:5002/login' target='_blank'>Entrar a Litus</a>";
+                        if(sendGrid.sendMail(req.body.lawyerEmail, "josemiguel@heuristicforge.com", "Notificación pendiente", htmlMessage)) {
+                            console.log('Email send to ' + req.body.lawyerEmail);
+                        } else
+                            console.log('Fail to send email to: ' + req.body.lawyerEmail);
+                    }
                 });
 
                 res.status(200).json({success: true});
