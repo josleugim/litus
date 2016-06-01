@@ -46,10 +46,8 @@
         };
 
         $scope.payu = function () {
-            console.log('Email: ' + $scope.lawyersModel);
             // crete the notifications
             var data = {
-                status: 'Pending',
                 lawyerEmail: $scope.lawyersModel,
                 referenceCode: $scope.payuData.referenceCode
             };
