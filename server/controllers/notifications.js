@@ -3,8 +3,7 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    Chat = mongoose.model('Chat'),
-    sendGrid = require('../utilities/sendGrid');
+    Chat = mongoose.model('Chat');
 
 exports.get = function (req, res) {
     console.log('GET notifications');
@@ -33,6 +32,7 @@ exports.postNotification = function (req, res) {
     var query = {};
     var data = {};
 
+    // Get the id of the user, to create the notification
     if(req.query._id) {
         query._id = req.query._id;
     }
@@ -42,17 +42,15 @@ exports.postNotification = function (req, res) {
     }
 
     if(req.body.lawyerEmail) {
-        data.lawyerEmail = req.body.lawyerEmail;
+        data.receiver = req.body.lawyerEmail;
 
-        // create the client notification
+        // create a user notification
         User.findOneAndUpdate(query, {$addToSet: {notifications: data}}, {new: true}, function (err, doc) {
             if(err) {
                 console.log('Error creating the notification, _id: ' + query._id + ' Error: ' + err);
                 res.status(500).json({success: false});
                 res.end();
             }
-
-            // add a notification for each lawyer
             if(doc) {
                 res.status(200).json({success: true});
                 res.end();

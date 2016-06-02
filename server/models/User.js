@@ -52,7 +52,7 @@ var userSchema = mongoose.Schema({
     }],
     notifications: [{
         status: {type: String},
-        client_id: {type: String},
+        receiver: {type: String},
         referenceCode: {type: String},
         createdAt: {type: Date, default: Date.now},
         updatedAt: {type: Date}
