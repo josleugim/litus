@@ -17,7 +17,7 @@ exports.getRefCode = function (req, res) {
 
 exports.confirmation = function (req, res) {
     console.log('POST client PayU confirmation');
-    console.log('new_value: ' + value);
+    console.log('new_value: ' + req.body.value);
     var signature = require('crypto').createHash("md5").update("4Vj8eK4rloUd272L48hsrarnUA~"
         + req.body.merchant_id + "~" + req.body.reference_sale + "~" + req.body.value + "~" + req.body.currency
         + "~" + req.body.state_pol);
@@ -81,7 +81,7 @@ exports.confirmation = function (req, res) {
 exports.lawyerConfirmation = function (req, res) {
     console.log('POST lawyer confirmation');
 
-    console.log('new_value: ' + value);
+    console.log('new_value: ' + req.body.value);
     var signature = require('crypto').createHash("md5").update("4Vj8eK4rloUd272L48hsrarnUA~"
         + req.body.merchant_id + "~" + req.body.reference_sale + "~" + req.body.value + "~" + req.body.currency
         + "~" + req.body.state_pol);
