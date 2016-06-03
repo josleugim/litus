@@ -17,6 +17,11 @@ exports.getRefCode = function (req, res) {
 
 exports.confirmation = function (req, res) {
     console.log('POST client PayU confirmation');
+    console.log('new_value: ' + new_value);
+    var signature = require('crypto').createHash("md5").update("4Vj8eK4rloUd272L48hsrarnUA~"
+        + req.body.merchant_id + "~" + req.body.reference_sale + "~" + req.body.new_value + "~" + req.body.currency
+        + "~" + req.body.state_pol);
+    console.log('My signature: ' + signature);
     console.log('Sign: ' + req.body.sign);
     // Only if the payment has success we send a notification to the corresponding reference code
     // it could be a client or a lawyer
@@ -75,6 +80,13 @@ exports.confirmation = function (req, res) {
 
 exports.lawyerConfirmation = function (req, res) {
     console.log('POST lawyer confirmation');
+
+    console.log('new_value: ' + new_value);
+    var signature = require('crypto').createHash("md5").update("4Vj8eK4rloUd272L48hsrarnUA~"
+        + req.body.merchant_id + "~" + req.body.reference_sale + "~" + req.body.new_value + "~" + req.body.currency
+        + "~" + req.body.state_pol);
+    console.log('My signature: ' + signature);
+    console.log('Sign: ' + req.body.sign);
 
     if(req.body.response_message_pol == "APPROVED") {
         // get the reference code that's going to be updated
