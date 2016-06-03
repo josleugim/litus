@@ -2,8 +2,7 @@
  * Created by Mordekaiser on 28/02/16.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    Chat = mongoose.model('Chat');
+    User = mongoose.model('User');
 
 exports.get = function (req, res) {
     console.log('GET notifications');
@@ -67,51 +66,22 @@ exports.putNotification = function (req, res) {
     console.log('PUT notification');
     // find the client, then find all the lawyers with the email and update their status
     var query = {
-        "notifications._id": req.body.notification_id
+        email: req.query.email,
+        "notifications._id": req.query.notification_id
     };
 
-    // finds all the documents that have the same _id notification
-    User.find(query, function (err, docs) {
-        if(err) {
-            res.status(500).json({success: false});
-            res.end();
-        }
+    var data = {
+        "notifications.$.referenceCode": req.body.referenceCode
+    };
 
-        if(docs) {
-            // create a chat for the current lawyer and user
-            var chat = new Chat();
-            chat.status = 'Active';
-            chat.client_id = req.query.client_id;
-            chat.lawyer_id = req.body.lawyer_id;
-            chat.save();
-
-            console.log(chat);
-
-            docs.forEach(function (user) {
-                // For the client and the lawyer that accept the appointment the status is set to active
-                if(user._id == req.query.client_id || user._id == req.body.lawyer_id) {
-                    // adding the chat id for the user
-                    //user.chats.push(chat._id);
-                    user.notifications.forEach(function (notification) {
-                        if(notification._id == req.body.notification_id) {
-                            notification.status = "Active";
-                            notification.updateAt = Date.now();
-                        }
-                    })
-                } else {
-                    // Change the status for the rest of the lawyers
-                    user.notifications.forEach(function (notification) {
-                        if(notification._id == req.body.notification_id) {
-                            notification.status = "Expired";
-                            notification.updateAt = Date.now();
-                        }
-                    })
-                }
-
-                user.save();
-            });
-
+    User.findOneAndUpdate(query, {$set: data}, {upsert:true}, function (err, doc) {
+        if(err)
+            console.log('Error at updating user document with _id: ' + req.body.notification_id);
+        if(doc) {
             res.status(200).json({success: true});
+            res.end();
+        } else {
+            res.status(500);
             res.end();
         }
     });

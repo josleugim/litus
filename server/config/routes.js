@@ -37,6 +37,7 @@ module.exports = function (app) {
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);
 
     app.post('/api/payu-confirmation', payU.confirmation);
+    app.post('/api/payu-lawyer-confirmation', payU.lawyerConfirmation);
     app.get('/api/reference-code', auth.requiresRole('user'), payU.getRefCode);
 
     app.get('/api/chat/users', auth.requiresRole('user'), chats.getChatUsers);

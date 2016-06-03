@@ -3,11 +3,20 @@
  */
 (function () {
     angular.module('app')
-        .controller('PerfilCtrl', ['mvNotifier', '$scope', 'userService', 'mvIdentity', 'notificationService', PerfilCtrl]);
+        .controller('PerfilCtrl', ['mvNotifier', '$scope', 'userService', 'mvIdentity', 'notificationService', 'payUService', PerfilCtrl]);
 
-    function PerfilCtrl(mvNotifier, $scope, userService, mvIdentity, notificationService) {
+    function PerfilCtrl(mvNotifier, $scope, userService, mvIdentity, notificationService, payUService) {
         $scope.identity = mvIdentity;
         $scope.notifications = [];
+        $scope.payuData = {
+            apiKey: '4Vj8eK4rloUd272L48hsrarnUA',
+            merchantId: '508029',
+            accountId: '512324'
+        };
+        payUService.get().then(function (data) {
+            $scope.payuData.referenceCode = data.refCode;
+            $scope.payuData.signature = data.signature;
+        });
 
         // Get the notifications for the current user
         userService.getUserByID({_id: mvIdentity.currentUser._id}).then(function (data) {
@@ -16,58 +25,22 @@
                 // iterate the notifications, only the pending status is passed to the $scope
                 angular.forEach(data.notifications, function (notification, key) {
                     if(notification.status == "Pending") {
-                        // Get the client info for each notification
-                        userService.getUserByID({_id: notification.client_id}).then(function (client) {
-                            notification.client_name = client.name;
-                            notification.client_lastName = client.lastName;
-                            notification.client_id = client._id;
-                            notification.notification_id = notification._id;
-
-                            $scope.notifications.push(notification);
-                        })
+                        $scope.notifications.push(notification);
                     }
                 });
             }
         });
 
-        $scope.acceptAppointment = function (client_id, notification_id) {
+        $scope.acceptAppointment = function (_id, referenceCode) {
             var query = {
-                client_id: client_id
+                email: mvIdentity.currentUser.email,
+                notification_id: _id
             };
 
             var data = {
-                lawyer_id: mvIdentity.currentUser._id,
-                notification_id: notification_id
+                referenceCode: referenceCode
             };
-
-            notificationService.put(query, data).then(function (success) {
-                if(success) {
-                    mvNotifier.notify('Cita aceptada. En el chat podras conversar con tu cliente');
-                } else {
-                    mvNotifier.error('Error al aceptar la cita.');
-                }
-            });
-
-            // Get the notifications for the current user
-            userService.getUserByID({_id: mvIdentity.currentUser._id}).then(function (data) {
-                if(data) {
-                    $scope.user = data;
-                    // iterate the notifications, only the pending status is passed to the $scope
-                    angular.forEach(data.notifications, function (notification, key) {
-                        if(notification.status == "Pending") {
-                            // Get the client info for each notification
-                            userService.getUserByID({_id: notification.client_id}).then(function (client) {
-                                notification.client_name = client.name;
-                                notification.client_lastName = client.lastName;
-                                notification.client_id = client._id;
-                                notification.notification_id = notification._id;
-
-                                $scope.notifications.push(notification);
-                            })
-                        }
-                    });
-                }
-            });
+            notificationService.put(query, data);
         }
     }
 }());

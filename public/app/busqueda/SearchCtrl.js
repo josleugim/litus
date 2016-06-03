@@ -30,7 +30,6 @@
         $scope.lawyersModel = "";
 
         payUService.get().then(function (data) {
-            console.log(data);
             $scope.payuData.referenceCode = data.refCode;
             $scope.payuData.signature = data.signature;
         });
