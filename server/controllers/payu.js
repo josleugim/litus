@@ -21,7 +21,8 @@ exports.confirmation = function (req, res) {
     var signature = require('crypto').createHash("md5").update("4Vj8eK4rloUd272L48hsrarnUA~"
         + req.body.merchant_id + "~" + req.body.reference_sale + "~" + req.body.value + "~" + req.body.currency
         + "~" + req.body.state_pol);
-    console.log('My signature: ' + signature);
+    console.log('My signature: ');
+    console.log(signature);
     console.log('Sign: ' + req.body.sign);
     // Only if the payment has success we send a notification to the corresponding reference code
     // it could be a client or a lawyer
@@ -85,7 +86,8 @@ exports.lawyerConfirmation = function (req, res) {
     var signature = require('crypto').createHash("md5").update("4Vj8eK4rloUd272L48hsrarnUA~"
         + req.body.merchant_id + "~" + req.body.reference_sale + "~" + req.body.value + "~" + req.body.currency
         + "~" + req.body.state_pol);
-    console.log('My signature: ' + signature);
+    console.log('My signature: ');
+    console.log(signature);
     console.log('Sign: ' + req.body.sign);
 
     if(req.body.response_message_pol == "APPROVED") {
