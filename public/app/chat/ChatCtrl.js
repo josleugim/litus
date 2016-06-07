@@ -67,7 +67,6 @@
         };
 
         $scope.$on("$destroy", function(){
-            console.log('Leaving CTRL');
             socket.disconnect(true);
         });
         
