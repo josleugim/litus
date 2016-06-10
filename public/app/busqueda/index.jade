@@ -39,10 +39,10 @@
                 .col-md-6
                     h5 {{lawyer.name}} {{lawyer.lastName}}
                     p {{lawyer.specialityArea}}
+                    p Calificación: {{lawyer.rate}}
                     label Con experiencia en:
                     ul(ng-repeat="keyword in lawyer.keyWords")
                         li {{keyword}}
-                    p Calificación: 0
                     input(type="radio", ng-model="lawyersModel", ng-change="continue(lawyersModel)", name="lawyers", value="{{lawyer.email}}")
                 .col-md-6
                     informacion

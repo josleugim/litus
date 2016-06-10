@@ -14,7 +14,8 @@
             getLawyers: getLawyers,
             postRate: postRate,
             recoverPassNotification: recoverPassNotification,
-            changePassword: changePassword
+            changePassword: changePassword,
+            getUserRate: getRate
         };
 
         function getUserByID(query) {
@@ -160,6 +161,26 @@
             }).then(function successCallback(response) {
                 if(response.data.success) {
                     dfd.resolve(true);
+                }
+            }, function errorCallback(response) {
+                dfd.resolve(false);
+            });
+
+            return dfd.promise;
+        }
+
+        function getRate(query) {
+            var dfd = $q.defer();
+            $http({
+                method: 'GET',
+                url: host + 'api/users/rate',
+                params: query,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                if(response.data.success) {
+                    dfd.resolve(response.data.rate);
                 }
             }, function errorCallback(response) {
                 dfd.resolve(false);

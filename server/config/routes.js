@@ -29,6 +29,7 @@ module.exports = function (app) {
     app.put('/api/users', auth.requiresRole('user'), users.put);
     app.get('/api/users/verify', users.verifyAccount);
     app.post('/api/users/rate', auth.requiresRole('user'), rates.post);
+    app.get('/api/users/rate', auth.requiresRole('user'), rates.get);
     app.get('/api/users/recover-notification', users.passRecoverNotification);
     app.get('/api/users/recover', users.passRecover);
     app.put('/api/users/change-password', auth.requiresRole('user'), users.changePassword);

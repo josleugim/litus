@@ -31,8 +31,14 @@
         $scope.rate = {};
 
         chatService.get({_id: $routeParams.id}).then(function (data) {
-            userService.getUserByID({_id: data.client_id}).then(function (user) {
-                $scope.user = user;
+            var id;
+            if(mvIdentity.currentUser.roles.indexOf("abogado") != -1) {
+                id = data.client_id;
+            } else if(mvIdentity.currentUser.roles.indexOf("cliente") != -1) {
+                id = data.lawyer_id;
+            }
+            userService.getUserByID({_id: id}).then(function (user) {
+                $scope.lawyer= user;
             });
 
             if(data.conversation) {

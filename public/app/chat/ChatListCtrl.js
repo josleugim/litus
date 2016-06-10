@@ -4,13 +4,24 @@
 (function () {
     angular.module('app')
         .controller('ChatListCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', 'userService', ChatListCtrl]);
-    function ChatListCtrl(mvNotifier, $scope, chatService, mvIdentity) {
+    function ChatListCtrl(mvNotifier, $scope, chatService, mvIdentity, userService) {
         // retrieves all th chats of the current user
         chatService.getChatsUsers(getQuery(mvIdentity.currentUser)).then(function (data) {
             if(data) {
                 $scope.users = data;
+                angular.forEach($scope.users, function (value, key) {
+                    // retrieves the rate of the user
+                    userService.getUserRate({email: value.email}).then(function (data) {
+                        if(data) {
+                            $scope.users.rate = data[0].rate;
+                        }
+                    });
+                })
             }
         });
+
+
+
 
         // constructs the query depending of the user role
         function getQuery(currentUser) {
