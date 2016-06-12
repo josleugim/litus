@@ -1,0 +1,15 @@
+//
+   Created by Mordekaiser on 22/05/16.
+
+.container-fluid
+    .row
+        .col-md-12
+            h4 Listado de imágenes
+    .row(ng-repeat="image in images", id="imageList")
+        .col-md-2
+            img(src="{{image.name}}")
+        .col-md-2
+            p Link de la imagen: {{image.name}}
+        .col-md-2
+            button.btn.btn-default(ng-click="delete(image._id)") Borrar
+        .col-md-6

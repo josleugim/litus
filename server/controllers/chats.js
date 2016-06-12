@@ -44,7 +44,16 @@ exports.getChatUsers = function (req, res) {
                             email: doc.email,
                             phone: doc.phone,
                             address: doc.address,
-                            chat_id: chat._id
+                            chat_id: chat._id,
+                            languages: doc.languages,
+                            experienceYears: doc.experienceYears,
+                            schedule: doc.schedule,
+                            profilePicture: doc.profilePicture,
+                            specialityArea: doc.specialityArea,
+                            description: doc.description,
+                            references: doc.references,
+                            casePerMonth: doc.casePerMonth,
+                            rating: 4
                         };
                         if(doc.professionalLicense)
                             document.professionalLicense = doc.professionalLicense;

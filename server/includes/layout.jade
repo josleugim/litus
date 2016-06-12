@@ -12,8 +12,9 @@ html
         link(rel="stylesheet", href="/css/litus.css")
         link(rel="stylesheet", href="/css/mdi.min.css")
         //script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
+        script(src="/vendor/jquery/dist/jquery.js")
     body(ng-app='app')
-        header(ng-controller="loginCtrl")
+        header(ng-controller="loginCtrl", ng-cloak)
             .inner
                 a(href="/", class="litus")
                     img(src="assets/img/litus-top.png")
@@ -32,9 +33,15 @@ html
                         span INICIAR SESIÓN
                     a(href="/admin/sections", ng-show="identity.isAuthorized('admin')")
                         span SECCIONES
-                    a(href="/perfil", ng-show="identity.isAuthorized('user')")
+                    a(href="/admin/image-uploader", ng-show="identity.isAuthorized('admin')")
+                        span SUBIR IMÁGENES
+                    a(href="/admin/images", ng-show="identity.isAuthorized('admin')")
+                        span LISTADO DE IMÁGENES
+                    a(href="/busqueda", ng-show="identity.isAuthorized('cliente')")
+                        span ABOGADOS
+                    a(href="/perfil", ng-show="identity.isAuthorized('abogado')")
                         span PERFIL
-                    a(href="/chat", ng-show="identity.isAuthorized('user')")
+                    a(href="/chat-list", ng-show="identity.isAuthorized('user')")
                         span CHAT
                     a(href="/logout", ng-show="identity.isAuthenticated()", ng-click="signout()")
                         span CERRAR SESIÓN

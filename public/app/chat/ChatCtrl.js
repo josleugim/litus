@@ -21,45 +21,40 @@
                 }
             }
         })
-        .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', 'userService', ChatCtrl]);
+        .controller('ChatCtrl', ['mvNotifier', '$scope', 'chatService', 'mvIdentity', 'userService', '$routeParams', ChatCtrl]);
 
-    function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity, userService) {
+    function ChatCtrl(mvNotifier, $scope, chatService, mvIdentity, userService, $routeParams) {
         var socket = io();
+        // client joins a room, with the specific chat_id
+        socket.emit('joinUser', mvIdentity.currentUser.name, $routeParams.id);
         $scope.chat = {};
         $scope.rate = {};
-        $scope.chat_id = "";
+
+        chatService.get({_id: $routeParams.id}).then(function (data) {
+            var id;
+            if(mvIdentity.currentUser.roles.indexOf("abogado") != -1) {
+                id = data.client_id;
+            } else if(mvIdentity.currentUser.roles.indexOf("cliente") != -1) {
+                id = data.lawyer_id;
+            }
+            userService.getUserByID({_id: id}).then(function (user) {
+                $scope.lawyer= user;
+            });
+
+            if(data.conversation) {
+                angular.forEach(data.conversation, function (value, key) {
+                    $('#conversation').append('<li><b>' + value.completeName + ':</b> ' + value.message + '</li>');
+                });
+            }
+        });
 
         socket.on('updateConversation', function (username, data) {
             $('#conversation').append('<li><b>' + username + ':</b> ' + data + '</li>');
         });
 
-        // retrieves all th chats of the current user
-        chatService.getChatsUsers(getQuery(mvIdentity.currentUser)).then(function (data) {
-            if(data) {
-                $scope.users = data;
-            }
-        });
-
-        // retrieve all the conversation, when user opens a chat
-        $scope.getChat = function (chat_id) {
-            $scope.chat_id = chat_id;
-            $('#message-container').css('display','block');
-
-            chatService.get({_id: chat_id}).then(function (data) {
-                if(data.conversation) {
-                    angular.forEach(data.conversation, function (value, key) {
-                        $('#conversation').append('<li><b>' + value.completeName + ':</b> ' + value.message + '</li>');
-                    });
-
-                    // client joins a room, with the specific chat_id
-                    socket.emit('joinUser', mvIdentity.currentUser.name, chat_id);
-                }
-            })
-        };
-
         $scope.sendMessage = function() {
             var query = {
-                chat_id: $scope.chat_id
+                chat_id: $routeParams.id
             };
 
             var data = {
@@ -77,23 +72,9 @@
             });
         };
 
-        // constructs the query depending of the user role
-        function getQuery(currentUser) {
-            var query = {};
-
-            if(currentUser.roles.indexOf("abogado") != -1) {
-                query.lawyer_id = currentUser._id;
-            } else if(currentUser.roles.indexOf("cliente") != -1) {
-                query.client_id = currentUser._id;
-            }
-
-            return query;
-        }
-
-        // Rates the user
-        $scope.rate = function () {
-            $('.chat .rate-box').css('display','block');
-        };
+        $scope.$on("$destroy", function(){
+            socket.disconnect(true);
+        });
         
         $scope.sendRate = function (email) {
             var query = {

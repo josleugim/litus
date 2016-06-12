@@ -18,57 +18,50 @@
                 }
             }
         }])
-        .controller('SearchCtrl', ['mvNotifier', '$scope', 'userService', 'notificationService', 'mvIdentity', SearchCtrl]);
-
-    function SearchCtrl(mvNotifier, $scope, userService, notificationService, mvIdentity) {
+        .controller('SearchCtrl', ['$scope', 'userService', 'mvIdentity', 'payUService', 'notificationService', SearchCtrl]);
+    
+    function SearchCtrl($scope, userService, mvIdentity, payUService, notificationService) {
         $scope.identity = mvIdentity;
-        $scope.emails = [];
-        /*$scope.$on("updateItems", function(event, data) {
-            if(Object.keys(data).length) {
-                $scope.lawyers = data;
-            } else {
-                mvNotifier.error('No hay registros con esa área');
-            }
-        });*/
+        $scope.payuData = {
+            apiKey: '4Vj8eK4rloUd272L48hsrarnUA',
+            merchantId: '508029',
+            accountId: '512324'
+        };
+        $scope.lawyersModel = "";
+
+        payUService.get().then(function (data) {
+            $scope.payuData.referenceCode = data.refCode;
+            $scope.payuData.signature = data.signature;
+        });
 
         userService.getLawyers({}).then(function (data) {
             if(data) {
                 $scope.lawyers = data;
+                angular.forEach($scope.lawyers, function (value, key) {
+                    // retrieves the rate of the user
+                    userService.getUserRate({email: value.email}).then(function (rating) {
+                        if(rating) {
+                            value.rate = rating[0].rate;
+                        }
+                    });
+                })
             }
         });
 
-        $scope.lawyerSelection = function(lawyersModel, email) {
-            if(lawyersModel) {
-                $scope.emails.push(email);
-            } else {
-                var index = $scope.emails.indexOf(email);
-                $scope.emails.splice(index, 1);
-            }
+        $scope.continue = function(email) {
+            $('#payuBtn').prop("disabled", false);
+            $scope.lawyersModel = email;
         };
 
-        $scope.payu = function() {
-            if($scope.emails.length > 1) {
-                mvNotifier.error('Solo puedes seleccionar un abogado');
-            } else if($scope.emails.length <= 0) {
-                mvNotifier.error('Selecciona al menos un abogado');
-            } else {
-                // crete the notifications
-                console.log(mvIdentity);
-                var data = {
-                    status: 'Pending',
-                    lawyers: $scope.emails
-                };
-
-                // Here we redirect to PayU Web Checkout
-                // if notification is successful save the notification to the db
-                notificationService.post({_id: mvIdentity.currentUser._id}, data).then(function (success) {
-                    if(success) {
-                        mvNotifier.notify('Notifación exitosa, en breve el abogado se pondrá en contacto por medio del chat');
-                    } else {
-                        mvNotifier.error('Error al procesar la notificación, intenteló más tarde');
-                    }
-                })
-            }
+        $scope.payu = function () {
+            // crete the notifications
+            var data = {
+                lawyerEmail: $scope.lawyersModel,
+                referenceCode: $scope.payuData.referenceCode
+            };
+            // Here we redirect to PayU Web Checkout
+            // if notification is successful save the notification to the db
+            notificationService.post({_id: mvIdentity.currentUser._id}, data);
         }
     }
 }());

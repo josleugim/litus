@@ -6,10 +6,13 @@ var auth = require('./auth'),
     users = require('../controllers/users'),
     multer = require('multer'),
     upload = multer({dest: 'public/uploads/'}),
+    litusUploads = multer({dest: 'public/litus-uploads'}),
     contact = require('../controllers/contact'),
     notifications = require('../controllers/notifications'),
     chats = require('../controllers/chats'),
-    rates = require('../controllers/user-rates');
+    rates = require('../controllers/user-rates'),
+    imagesUp = require('../controllers/image-uploader'),
+    payU = require('../controllers/payu');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
@@ -17,17 +20,26 @@ module.exports = function (app) {
     app.get('/api/sections/:slug', sections.getBySlug);
     app.put('/api/sections/', auth.requiresRole('admin'), sections.editSectionBySlug);
 
+    app.post('/api/images', auth.requiresRole('admin'), litusUploads.fields([{name: 'newImage'}]), imagesUp.post);
+    app.get('/api/images', auth.requiresRole('admin'), imagesUp.get);
+    app.delete('/api/images', auth.requiresRole('admin'), imagesUp.deleteImage);
+
     app.get('/api/users', auth.requiresRole('user'), users.get);
     app.post('/api/users', upload.fields([{name: 'constitutiveAct'}, {name: 'professionalLicense'}, {name: 'curriculum'}, {name: 'profilePicture'}]), users.post);
     app.put('/api/users', auth.requiresRole('user'), users.put);
     app.get('/api/users/verify', users.verifyAccount);
     app.post('/api/users/rate', auth.requiresRole('user'), rates.post);
+    app.get('/api/users/rate', auth.requiresRole('user'), rates.get);
     app.get('/api/users/recover-notification', users.passRecoverNotification);
     app.get('/api/users/recover', users.passRecover);
     app.put('/api/users/change-password', auth.requiresRole('user'), users.changePassword);
 
     app.post('/api/notifications', auth.requiresRole('user'), notifications.postNotification);
     app.put('/api/notifications', auth.requiresRole('user'), notifications.putNotification);
+
+    app.post('/api/payu-confirmation', payU.confirmation);
+    app.post('/api/payu-lawyer-confirmation', payU.lawyerConfirmation);
+    app.get('/api/reference-code', auth.requiresRole('user'), payU.getRefCode);
 
     app.get('/api/chat/users', auth.requiresRole('user'), chats.getChatUsers);
     app.get('/api/chat', auth.requiresRole('user'), chats.get);

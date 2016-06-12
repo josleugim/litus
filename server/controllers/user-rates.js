@@ -1,7 +1,8 @@
 /**
  * Created by Mordekaiser on 14/03/16.
  */
-var User = require('mongoose').model('User');
+var User = require('mongoose').model('User'),
+    mongoose = require('mongoose');
 
 exports.post = function (req, res) {
     console.log('POST rate');
@@ -24,9 +25,6 @@ exports.post = function (req, res) {
     if(req.body.comment)
         data.comment = req.body.comment;
 
-    console.log(data);
-    console.log(query);
-
     User.update(query, {$addToSet: {rating: data}}, function (err, numAffected) {
         if (err) {
             console.log(err);
@@ -41,4 +39,35 @@ exports.post = function (req, res) {
             res.end();
         }
     });
+};
+
+exports.get = function (req, res) {
+    console.log('GET Average');
+
+    var pipeline = [];
+    pipeline.push({
+        $match: {
+            "email": req.query.email
+        }
+    },
+    {
+        $project: {
+            "rate": {
+                $avg: "$rating.rate"
+            }
+        }
+    });
+    User
+        .aggregate(pipeline)
+        .exec(function (err, result) {
+            if(err) {
+                console.log('Error when calculating average rating, for user_id: ' + req.query._id);
+                res.status(500);
+                res.end();
+            }
+            if(result) {
+                res.status(201).json({rate: result, success: true});
+                res.end();
+            }
+        });
 };

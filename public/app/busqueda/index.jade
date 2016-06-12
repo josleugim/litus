@@ -17,20 +17,33 @@
                         option(value="familiar") Familiar
                     label Búsqueda por palabra clave:
                     input(type="text", ng-model="search.keyWords")
-                    <br>
-                    button.btn.btn-primary(ng-click="payu()") Pagar
+                form(method="post", action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/")
+                    input(type="hidden", name="merchantId", value="{{payuData.merchantId}}")
+                    input(type="hidden", name="ApiKey", value="{{payuData.api_key}}")
+                    input(type="hidden", name="referenceCode", value="{{payuData.referenceCode}}")
+                    input(type="hidden", name="accountId", value="{{payuData.accountId}}")
+                    input(type="hidden", name="description", value="Sandbox desde litus")
+                    input(type="hidden", name="amount", value="100")
+                    input(type="hidden", name="tax", value="0")
+                    input(type="hidden", name="taxReturnBase", value="0")
+                    input(type="hidden", name="currency", value="MXN")
+                    input(type="hidden", name="signature", value="{{payuData.signature}}")
+                    input(type="hidden", name="test", value="1")
+                    input(type="hidden", name="buyerEmail", value="test@test.com")
+                    input(name="responseUrl", type="hidden", value="http://localhost:5002/response")
+                    input(name="confirmationUrl", type="hidden", value="http://localhost:5002/api/payu-confirmation")
+                    button.btn.btn-primary(name="submit", type="submit", disabled, id="payuBtn", ng-click="payu()") Continuar
     .row
         .col-md-12(ng-repeat="lawyer in lawyers | filter:{keyWords: search.keyWords, specialityArea: search.specialityArea}")
             .row
                 .col-md-6
-                    form(name="lawyersForm")
-                        h5 {{lawyer.name}} {{lawyer.lastName}}
-                        p {{lawyer.specialityArea}}
-                        label Con experiencia en:
-                        ul(ng-repeat="keyword in lawyer.keyWords")
-                            li {{keyword}}
-                        p Calificación: 0
-                        input(type="checkbox", ng-model="lawyersModel", ng-change="lawyerSelection(lawyersModel, lawyer.email)", value="{{lawyer.email}}")
+                    h5 {{lawyer.name}} {{lawyer.lastName}}
+                    p {{lawyer.specialityArea}}
+                    p Calificación: {{lawyer.rate}}
+                    label Con experiencia en:
+                    ul(ng-repeat="keyword in lawyer.keyWords")
+                        li {{keyword}}
+                    input(type="radio", ng-model="lawyersModel", ng-change="continue(lawyersModel)", name="lawyers", value="{{lawyer.email}}")
                 .col-md-6
                     informacion
                         label Descripción:

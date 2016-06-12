@@ -4,8 +4,6 @@
 (function () {
     var app = angular.module('app', ['ngResource', 'ngRoute', 'ngSanitize', 'vcRecaptcha']);
 
-    app.value('ApiUrl', 'http://localhost:5002/');
-
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         var routeRoleChecks = {
             admin: {
@@ -56,6 +54,16 @@
                 controller: 'AdminCtrl',
                 resolve: routeRoleChecks.admin
             })
+            .when('/admin/images', {
+                templateUrl: 'partials/administrator/images',
+                controller: 'ImageUploaderCtrl',
+                resolve: routeRoleChecks.admin
+            })
+            .when('/admin/image-uploader', {
+                templateUrl: 'partials/administrator/imageUploader',
+                controller: 'ImageUploaderCtrl',
+                resolve: routeRoleChecks.admin
+            })
             .when('/perfil', {
                 templateUrl: 'partials/perfil/index',
                 controller: 'PerfilCtrl',
@@ -71,15 +79,24 @@
                 controller: 'ChangePassCtrl',
                 resolve: routeRoleChecks.user
             })
-            .when('/chat', {
+            .when('/chat/:id', {
                 templateUrl: 'partials/chat/index',
                 controller: 'ChatCtrl',
+                resolve: routeRoleChecks.user
+            })
+            .when('/chat-list', {
+                templateUrl: 'partials/chat/chatList',
+                controller: 'ChatListCtrl',
                 resolve: routeRoleChecks.user
             })
             .when('/busqueda', {
                 templateUrl: 'partials/busqueda/index',
                 controller: 'SearchCtrl',
                 resolve: routeRoleChecks.client
+            })
+            .when('/response', {
+                templateUrl: 'partials/payu/response',
+                resolve: routeRoleChecks.user
             })
             .when('/account/verify', {
                 templateUrl: '../../partials/account/verify',

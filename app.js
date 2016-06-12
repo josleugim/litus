@@ -39,6 +39,7 @@ io.on('connection', function(socket){
 
     // when the user disconnects
     socket.on('disconnect', function () {
+        socket.broadcast.emit('updateConversation', 'Server', socket.username + ' has disconnected');
         socket.leave(socket.room);
     })
 });

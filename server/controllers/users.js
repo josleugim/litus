@@ -1,8 +1,7 @@
 /**
  * Created by Mordekaiser on 17/02/16.
  */
-var User = require('mongoose').model('User'),
-    encrypt = require('../utilities/encryption'),
+var encrypt = require('../utilities/encryption'),
     sendGrid = require('../utilities/sendGrid'),
     randomPass = require('random-password'),
     mongoose = require('mongoose'),
@@ -197,7 +196,8 @@ exports.getLawyers = function (req, res) {
         roles: {
             $nin: ['admin', 'cliente']
         },
-        isBusy: false
+        isBusy: false,
+        isActive: true
     };
     var limit, skip;
 
