@@ -3,7 +3,7 @@
  */
 (function () {
     var app = angular.module('app', ['ngResource', 'ngRoute', 'ngSanitize', 'vcRecaptcha']);
-
+    
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         var routeRoleChecks = {
             admin: {

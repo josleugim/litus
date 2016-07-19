@@ -3,28 +3,32 @@
 
 .container-fluid.chat
     .row
-        .col-md-3.user-list
-            .user-box
-                form(class="rate-box", name="rateForm")
-                    p Califica a {{lawyer.name}} {{lawyer.lastName}}
-                    input(type="checkbox", id="1", name="one", value="1", rate-star)
-                    label(for="1")
-                    input(type="checkbox", id="2", name="two", value="2", rate-star)
-                    label(for="2")
-                    input(type="checkbox", id="3", name="three", value="3", rate-star)
-                    label(for="3")
-                    input(type="checkbox", id="4", name="four", value="4", rate-star)
-                    label(for="4")
-                    input(type="checkbox", id="5", name="five", value="5", rate-star)
-                    label(for="5")
-                    p Comentario
-                    textarea(name="comment", ng-model="rate.comment", id="comment")
-                    button(class="btn btn-success", type="button", ng-click="sendRate(lawyer.email)") Enviar
-        .col-md-9.chat-content
-            .row#message-container
+        .col-md-9
+            div#message-container
                 .col-md-12
                     ul(id="conversation")
-                    form(name="messageForm")
-                        textarea(name="msg", id="msg", ng-model="chat.msg", ng-required)
-                        span(class="text-warning", ng-show="messageForm.chat.msg.$error.required") * requerido
-                        button(class="btn btn-primary", ng-click="sendMessage()", ng-disabled="messageForm.$invalid") Enviar mensaje
+                    form(name="messageForm",class="form-inline")
+                        div.form-group
+                            div.input-group
+                                textarea(class="form-control",name="msg", id="msg", ng-model="chat.msg", ng-required,cols="255")
+                                button(class="btn btn-primary", ng-click="sendMessage()", ng-disabled="messageForm.$invalid") Enviar mensaje
+                                span(class="text-warning", ng-show="messageForm.chat.msg.$error.required") * requerido
+        .col-md-3
+            form(class="rate-box ", name="rateForm")
+                p Califica a {{user.name}} {{user.lastName}}
+                input(type="checkbox", id="1", name="one", value="1", rate-star)
+                label(for="1")
+                input(type="checkbox", id="2", name="two", value="2", rate-star)
+                label(for="2")
+                input(type="checkbox", id="3", name="three", value="3", rate-star)
+                label(for="3")
+                input(type="checkbox", id="4", name="four", value="4", rate-star)
+                label(for="4")
+                input(type="checkbox", id="5", name="five", value="5", rate-star)
+                label(for="5")
+                div.form-group
+                    p Comentario
+                    textarea(name="comment", ng-model="rate.comment", id="comment" , class="form-control")
+                
+                button(class="btn btn-success", type="button", ng-click="sendRate(user.email)") Enviar
+            

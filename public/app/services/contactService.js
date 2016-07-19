@@ -6,7 +6,7 @@
         .factory('contactService', ['$q', '$http', '$location', contactService]);
 
     function contactService($q, $http, $location) {
-        var host = 'http://' + $location.host() + ':5002/';
+        var host = 'http://' + $location.host() + '/';
         return {
             post: postContact
         };

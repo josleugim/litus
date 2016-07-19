@@ -6,7 +6,7 @@
         .factory('notificationService', ['$q', '$http', '$location', notificationService]);
 
     function notificationService($q, $http, $location) {
-        var host = 'http://' + $location.host() + ':5002/';
+        var host = 'http://' + $location.host() + '/';
         return {
             post: postNotification,
             put: putNotification

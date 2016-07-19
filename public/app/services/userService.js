@@ -6,7 +6,7 @@
         .factory('userService', ['$q', '$http', '$location', userService]);
 
     function userService($q, $http, $location) {
-        var host = 'http://' + $location.host() + ':5002/';
+        var host = 'http://' + $location.host() + '/';
         return {
             getUserByID: getUserByID,
             post: postUser,
@@ -14,8 +14,7 @@
             getLawyers: getLawyers,
             postRate: postRate,
             recoverPassNotification: recoverPassNotification,
-            changePassword: changePassword,
-            getUserRate: getRate
+            changePassword: changePassword
         };
 
         function getUserByID(query) {
@@ -161,26 +160,6 @@
             }).then(function successCallback(response) {
                 if(response.data.success) {
                     dfd.resolve(true);
-                }
-            }, function errorCallback(response) {
-                dfd.resolve(false);
-            });
-
-            return dfd.promise;
-        }
-
-        function getRate(query) {
-            var dfd = $q.defer();
-            $http({
-                method: 'GET',
-                url: host + 'api/users/rate',
-                params: query,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function successCallback(response) {
-                if(response.data.success) {
-                    dfd.resolve(response.data.rate);
                 }
             }, function errorCallback(response) {
                 dfd.resolve(false);
