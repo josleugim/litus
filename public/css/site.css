@@ -1,6 +1,3 @@
-.navbar .container-fluid .navbar-header a img {
-  height: 100%;
-}
 .user-list .user-box {
   border: 1px solid #46b8da;
   border-radius: 4px;
@@ -45,26 +42,31 @@
 .chat .chat-content {
   height: 100vh;
 }
-.chat .chat-content #message-container {
+#message-container {
   height: 100%;
 }
-.chat .chat-content #message-container textarea {
-  float: left;
-  height: 60px;
-  width: 50%;
+#message-container textarea {
+  width: 830px;
 }
-.chat .chat-content #message-container button {
+#message-container button {
   float: left;
 }
-.chat .chat-content #message-container #conversation {
+#message-container #conversation {
   border: 1px solid #008000;
   height: 300px;
-  overflow: scroll;
+  overflow-y: auto;
+  padding: 20px;
+  list-style: none;
 }
-.chat .chat-content #message-container form[name="messageForm"] {
-  bottom: 50px;
-  position: fixed;
-  width: 100%;
+#message-container #conversation li{
+  border: 1px solid #AAA;
+  border-radius: 15px;
+  background-color: rgba(0,55,69,0.69);
+  color: #FFF;
+  margin: 10px 0;
+  padding: 10px;
+}
+#message-container form[name="messageForm"] {
 }
 .chat .rate-box label {
   display: inline-block;
