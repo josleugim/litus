@@ -1,23 +1,21 @@
-section(class="ayuda", id="ayuda", ng-controller="ayudaCtrl" ng-hide="hideContent")
-    .inner
-        h1 AYUDA
-        .grid
-            div
-                h2 ¿DE QUÉ DE TRATA LITUS?
-                img(src="assets/icons/de-que-se-trata.svg")
-                p.
-                    Se trata de que, como Usuario puedas elegir al Abogado que consideres pueda asesorarte mejor en tu asunto, tomando en cuenta su experiencia y calificación de otros usuarios.
-                p.
-                    Al mismo tiempo si eres Abogado, podrás calificar al Usuario o bien consultar si éste ha tenido calificaciones por parte de otros Abogados y decidir si lo asesoras o no.
-            div
-                h2 ¿TIENE ALGÚN COSTO?
-                img(src="assets/icons/tiene-agun-costo.svg")
-                p.
-                    El registro como Usuario o Abogado no tiene ningún costo, solo si se agenda una cita esta tendrá un costo de $100.00 (Cien Pesos 00/100 M.N) tanto para el Usuario como para el Abogado.
-                p.
-                    Una vez que se lleve a cabo la cita y si el Usuario decide encomendar el asunto al Abogado, LITUS recibirá una comisión del 15% de los honorarios acordados.
-             div
-                h2 ¿CÓMO FUNCIONA LITUS?
-                img(src="assets/icons/como-funciona.svg")
-                p.
-                    Una vez que como Usuario eliges a un Abogado, la plataforma da aviso al Abogado para que éste acepte y se genere una cita y se pueda plantear el asunto.
+section(class="ayuda row", id="ayuda", ng-controller="ayudaCtrl" ng-hide="hideContent").inner
+    h1 AYUDA
+    div(class="col-md-6 col-xs-12")
+        h2 ¿DE QUÉ DE TRATA LITUS?
+        img(src="assets/icons/de-que-se-trata.svg")
+        p.
+            Se trata de que, como Usuario puedas elegir al Abogado que consideres pueda asesorarte mejor en tu asunto, tomando en cuenta su experiencia y calificación de otros usuarios.
+        p.
+            Al mismo tiempo si eres Abogado, podrás calificar al Usuario o bien consultar si éste ha tenido calificaciones por parte de otros Abogados y decidir si lo asesoras o no.
+    div(class="col-md-6 col-xs-12")
+        h2 ¿TIENE ALGÚN COSTO?
+        img(src="assets/icons/tiene-agun-costo.svg")
+        p.
+            El registro como Usuario o Abogado no tiene ningún costo, solo si se agenda una cita esta tendrá un costo de $100.00 (Cien Pesos 00/100 M.N) tanto para el Usuario como para el Abogado.
+        p.
+            Una vez que se lleve a cabo la cita y si el Usuario decide encomendar el asunto al Abogado, LITUS recibirá una comisión del 15% de los honorarios acordados.
+    div(class="col-md-6 col-md-offset-3 col-xs-12")
+        h2 ¿CÓMO FUNCIONA LITUS?
+        img(src="assets/icons/como-funciona.svg")
+        p.
+            Una vez que como Usuario eliges a un Abogado, la plataforma da aviso al Abogado para que éste acepte y se genere una cita y se pueda plantear el asunto.
