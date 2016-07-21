@@ -66,14 +66,7 @@ ul,
 ol {
   margin: 20px 0 0;
 }
-.inner {
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  width: 1000px;
-}
 input,
-button,
 select,
 textarea {
   background-color: #FFF;
@@ -111,61 +104,12 @@ span.error {
   top: 0;
   right: 15px;
 }
-header {
-  background-color: #DADFE1;
-  overflow: hidden;
-  padding: 20px 0;
-  position: relative;
+header nav{
+  height: 90px;
+  margin-bottom: 0px!important;
 }
-header .inner .litus {
-  display: block;
-  float: left;
-  height: 50px;
-}
-header .inner .litus img {
-  display: block;
-  height: 100%;
-}
-header .inner nav {
-  float: right;
-  padding-top: 14px;
-}
-header .inner nav a {
-  color: #666;
-  display: block;
-  float: left;
-  line-height: 30px;
-  margin-left: 20px;
-  position: relative;
-  text-decoration: none;
-}
-header .inner nav a:before,
-header .inner nav a:after {
-  background-color: #003366;
-  content: '';
-  display: block;
-  height: 1px;
-  position: absolute;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 0;
-}
-header .inner nav a:before {
-  left: 0;
-  top: 90%;
-}
-header .inner nav a:after {
-  right: 0;
-  bottom: 100%;
-}
-header .inner nav a:hover {
-  color: #003366;
-}
-header .inner nav a:hover:before,
-header .inner nav a:hover:after {
-  width: 100%;
+header nav img{
+  height: 60px;
 }
 section h1 {
   text-align: center;
@@ -208,7 +152,7 @@ section .inner {
 }
 .home .banner .inner {
   height: 100%;
-  left: 50%;
+  left: 10%;
   overflow: visible;
   padding: 0;
   position: absolute;
@@ -236,7 +180,6 @@ section .inner {
   width: auto;
 }
 .home .banner .inner div a {
-  background-color: rgba(255, 255, 255, 0.25);
   display: block;
   color: #FFF;
   float: left;
@@ -261,8 +204,11 @@ section .inner {
 .home .inner h2 {
   text-transform: uppercase;
 }
-.abogados {
-  background-color: #abafa6;
+.abogados{
+  background-color: #eee;
+}
+.abogados .swiper-container{
+  min-height: 300px;
 }
 .abogados h2 {
   color: #003846;
@@ -308,24 +254,6 @@ section .inner {
 }
 .referidos .inner h1 + p {
   text-align: center;
-}
-.ayuda .inner .grid div img {
-  display: block;
-  float: left;
-  height: auto;
-  width: 60px;
-}
-.ayuda .inner .grid div h2 {
-  padding-left: 80px;
-}
-.ayuda .inner .grid div p {
-  margin-left: 80px;
-}
-.ayuda .inner .grid div:last-child {
-  clear: both;
-  float: none;
-  margin: auto;
-  padding-top: 20px;
 }
 .registration {
   background-color: #EEEEEE;
@@ -422,7 +350,7 @@ section .inner {
   bottom: 0;
   color: #FFF;
   left: 0;
-  height: 420px;
+  height: 400px;
   position: absolute;
   width: 100%;
 }
@@ -506,11 +434,71 @@ section .inner {
 .row .column.twothirds {
   width: 66.66%;
 }
-[ng\:cloak],
-[ng-cloak],
-[data-ng-cloak],
-[x-ng-cloak],
-.ng-cloak,
-.x-ng-cloak {
-  display: none !important;
+.btn-litus{
+    color: #fff;
+    background-color: #24535E;
+    border-color: #003744;
+}
+.btn-litus:hover{
+  background-color: rgba(36,83,94,0.4);
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.swiper-container p{
+  padding: 0 300px;
+}
+.swiper-container ul{
+  list-style: none;
+}
+.ayuda img{
+  width: 50px;
+  height: 50px;
+}
+.ayuda div{
+  text-align: center;
+  padding: 0 50px;
+  min-height: 300px;
+}
+.footer img{
+  width: 200px;
+}
+.perfil-container .panel{
+  margin-top: 10px;
+}
+.bottom a:hover{
+  color: #FFF;
+}
+.abogados-thumbnail .thumbnail{
+  cursor: pointer;
+}
+.abogados-thumbnail.active .thumbnail, .abogados-thumbnail.active .thumbnail .caption{
+  background-color: #003846;
+  color: #FFF;
+}
+@media (max-width: 600px) {
+  .img-nosotros{
+    display: none!important;
+  }
+  .home .banner .cycle-slideshow .cycle-slide {
+    width: 100%;
+  }
+  .home .banner .inner div a{
+    display: inline-block;
+    width: 300px;
+  }
+  .home .banner .inner div{
+    top: 20%;
+  }
+  .swiper-container p{
+    padding: 0 20px;
+  }
+  .bottom {
+    height: 600px;
+  }
+  .perfil-container,.well,.ayuda,.login{
+    margin-bottom: 170px;
+  }
 }

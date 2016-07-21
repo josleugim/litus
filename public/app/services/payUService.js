@@ -1,28 +1,36 @@
 /**
- * Created by Mordekaiser on 29/05/16.
+ * Created by Mordekaiser on 23/02/16.
  */
 (function () {
     angular.module('app')
-        .factory('payUService', ['$q', '$http', '$location', payUService]);
+        .factory('payuService', ['$q', '$http', payuService]);
 
-    function payUService($q, $http, $location) {
-        var host = 'http://' + $location.host() + ':5002/';
+    function payuService($q, $http) {
         return {
-            get: getReferenceCode
+            post: postPayUService
         };
 
-        function getReferenceCode() {
+        function postPayUService(data) {
             var dfd = $q.defer();
 
+            var fd = new FormData();
+            for(var key in data) {
+                fd.append(key, data[key]);
+            }
+
             $http({
-                method: 'GET',
-                url: host + 'api/reference-code',
+                method: 'POST',
+                url: "https://stg.api.payulatam.com/payments-api/4.0/service.cgi",
+                data: fd,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }).then(function successCallback(response) {
-                dfd.resolve(response.data);
-            }, function errorCallback() {
+                console.log(response);
+                if(response.data.success) {
+                    dfd.resolve(true);
+                }
+            }, function errorCallback(response) {
                 dfd.resolve(false);
             });
 

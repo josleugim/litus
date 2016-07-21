@@ -27,46 +27,42 @@ exports.getChatUsers = function (req, res) {
             // we send the array until the forEach finish
             var documents = [];
             var waiting = chats.length;
-            chats.forEach(function (chat) {
-                var innerQuery = {};
-                if(query.lawyer_id)
-                    innerQuery._id = chat.client_id;
-                if(query.client_id)
-                    innerQuery._id = chat.lawyer_id;
+            if(waiting > 0){
+                chats.forEach(function (chat) {
+                    var innerQuery = {};
+                    if(query.lawyer_id)
+                        innerQuery._id = chat.client_id;
+                    if(query.client_id)
+                        innerQuery._id = chat.lawyer_id;
 
-                User.findOne(innerQuery, function (err, doc) {
-                    if(err)
-                        console.log('Error retrieving user, error: ' + err);
+                    User.findOne(innerQuery, function (err, doc) {
+                        if(err)
+                            console.log('Error retrieving user, error: ' + err);
 
-                    if(doc) {
-                        var document = {
-                            completeName: doc.name + " " + doc.lastName,
-                            email: doc.email,
-                            phone: doc.phone,
-                            address: doc.address,
-                            chat_id: chat._id,
-                            languages: doc.languages,
-                            experienceYears: doc.experienceYears,
-                            schedule: doc.schedule,
-                            profilePicture: doc.profilePicture,
-                            specialityArea: doc.specialityArea,
-                            description: doc.description,
-                            references: doc.references,
-                            casePerMonth: doc.casePerMonth,
-                            rating: 4
-                        };
-                        if(doc.professionalLicense)
-                            document.professionalLicense = doc.professionalLicense;
-                        documents.push(document);
-                    }
-                    waiting--;
+                        if(doc) {
+                            var document = {
+                                completeName: doc.name + " " + doc.lastName,
+                                email: doc.email,
+                                phone: doc.phone,
+                                address: doc.address,
+                                chat_id: chat._id
+                            };
+                            if(doc.professionalLicense)
+                                document.professionalLicense = doc.professionalLicense;
+                            documents.push(document);
+                        }
+                        waiting--;
 
-                    if(waiting == 0) {
-                        res.status(200).json(documents);
-                        res.end();
-                    }
+                        if(waiting == 0) {
+                            res.status(200).json(documents);
+                            res.end();
+                        }
+                    });
                 });
-            });
+            }else{
+                res.status(200).json(documents);
+                res.end();
+            }
         }
     });
 };

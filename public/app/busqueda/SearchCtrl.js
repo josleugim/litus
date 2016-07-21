@@ -37,14 +37,6 @@
         userService.getLawyers({}).then(function (data) {
             if(data) {
                 $scope.lawyers = data;
-                angular.forEach($scope.lawyers, function (value, key) {
-                    // retrieves the rate of the user
-                    userService.getUserRate({email: value.email}).then(function (rating) {
-                        if(rating) {
-                            value.rate = rating[0].rate;
-                        }
-                    });
-                })
             }
         });
 

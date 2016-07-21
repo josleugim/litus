@@ -1,75 +1,68 @@
 //
    Created by Mordekaiser on 19/02/16.
 
-.container-fluid
+.container-fluid.perfil-container
     .row
         .col-md-6
-            h4 Información personal
-            a(href="/perfil/edit/{{user._id}}", ng-show="identity.isAuthorized('abogado')") Editar información
-            br
-            a(href="/perfil/change-password/{{user._id}}") Cambiar contraseña
-            .row
-                .col-md-2
-                    p Nombre
-                .col-md-2
-                    p {{user.name}} {{user.lastName}}
-            .row
-                .col-md-2
-                    p Email
-                .col-md-2
-                    p {{user.email}}
-            .row(ng-show="identity.isAuthorized('abogado')")
-                .col-md-2
-                    p Teléfono
-                .col-md-2
-                    p {{user.phone}}
-            .row(ng-show="identity.isAuthorized('abogado')")
-                .col-md-2
-                    p Persona
-                .col-md-2
-                    p {{user.economicActivities}}
-            .row(ng-show="identity.isAuthorized('abogado')")
-                .col-md-2
-                    p Área de especialidad
-                .col-md-2
-                    p {{user.specialityArea}}
-            .row(ng-show="identity.isAuthorized('abogado')")
-                .col-md-2
-                    p Descripción
-                .col-md-4
-                    p {{user.description}}
-            .row(ng-show="identity.isAuthorized('abogado')")
-                .col-md-2
-                    p Palabras clave
-                .col-md-4
-                    p {{user.keyWords}}
-            .row(ng-show="identity.isAuthorized('abogado')")
-                .col-md-2
-                    p Ocupado
-                .col-md-4
+            h3 Información personal
+            a(href="/perfil/edit/{{user._id}}", ng-show="identity.isAuthorized('abogado')",class="btn btn-primary")
+                i(class="mdi mdi-border-color") Editar información
+            a(href="/perfil/change-password/{{user._id}}",class="btn btn-primary pull-right") 
+                i(class="mdi mdi-cached") Cambiar contraseña
+
+            div.panel.panel-default
+                div.panel-heading 
+                    h3.panel-title Nombre
+                div.panel-body
+                    {{user.name}} {{user.lastName}}
+                div.panel-heading 
+                    h3.panel-title Email
+                div.panel-body
+                    {{user.email}}
+                div.panel-heading 
+                    h3.panel-title Teléfono
+                div.panel-body
+                    {{user.phone}}
+                div.panel-heading 
+                    h3.panel-title Persona
+                div.panel-body
+                    {{user.economicActivities}}
+                div.panel-heading 
+                    h3.panel-title Área de especialidad
+                div.panel-body
+                    {{user.specialityArea}}
+                div.panel-heading 
+                    h3.panel-title Descripción
+                div.panel-body
+                    {{user.description}}
+                div.panel-heading 
+                    h3.panel-title Palabras clave
+                div.panel-body
+                    {{user.keyWords}}
+                div.panel-heading 
+                    h3.panel-title Ocupado
+                div.panel-body
                     - if ("user.isBusy" == true)
                         input(type="checkbox", name="isBusy", disabled, checked)
                     - else
                         input(type="checkbox", name="isBusy", disabled)
         .col-md-6(ng-show="identity.isAuthorized('abogado')")
-            h4 Notificaciones de citas pendientes
-            .row
-                ul
-                    li(ng-repeat="info in notifications")
-                        p Un usuario de la plataforma ha solicitado una cita, para obtener el contacto realiza el pago.
-                        form(method="post", action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/")
-                            input(type="hidden", name="merchantId", value="{{payuData.merchantId}}")
-                            input(type="hidden", name="ApiKey", value="{{payuData.api_key}}")
-                            input(type="hidden", name="referenceCode", value="{{payuData.referenceCode}}")
-                            input(type="hidden", name="accountId", value="{{payuData.accountId}}")
-                            input(type="hidden", name="description", value="Sandbox desde litus")
-                            input(type="hidden", name="amount", value="100")
-                            input(type="hidden", name="tax", value="0")
-                            input(type="hidden", name="taxReturnBase", value="0")
-                            input(type="hidden", name="currency", value="MXN")
-                            input(type="hidden", name="signature", value="{{payuData.signature}}")
-                            input(type="hidden", name="test", value="1")
-                            input(type="hidden", name="buyerEmail", value="test@test.com")
-                            input(name="responseUrl", type="hidden", value="http://localhost:5002/response")
-                            input(name="confirmationUrl", type="hidden", value="http://localhost:5002/api/payu-lawyer-confirmation")
-                            button.btn.btn-primary(name="submit", type="submit", ng-click="acceptAppointment(info._id, payuData.referenceCode)") Pago mediante PAYU
+            h3 Notificaciones de citas pendientes
+            div.alert.alert-info(ng-repeat="info in notifications",role="alert")
+                p Un usuario de la plataforma ha solicitado una cita, para obtener el contacto realiza el pago.
+                form(method="post", action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/")
+                    input(type="hidden", name="merchantId", value="{{payuData.merchantId}}")
+                    input(type="hidden", name="ApiKey", value="{{payuData.api_key}}")
+                    input(type="hidden", name="referenceCode", value="{{payuData.referenceCode}}")
+                    input(type="hidden", name="accountId", value="{{payuData.accountId}}")
+                    input(type="hidden", name="description", value="Sandbox desde litus")
+                    input(type="hidden", name="amount", value="100")
+                    input(type="hidden", name="tax", value="0")
+                    input(type="hidden", name="taxReturnBase", value="0")
+                    input(type="hidden", name="currency", value="MXN")
+                    input(type="hidden", name="signature", value="{{payuData.signature}}")
+                    input(type="hidden", name="test", value="1")
+                    input(type="hidden", name="buyerEmail", value="test@test.com")
+                    input(name="responseUrl", type="hidden", value="http://www.litus.mx/response")
+                    input(name="confirmationUrl", type="hidden", value="http://www.litus.mx/api/payu-lawyer-confirmation")
+                    button.btn.btn-primary(name="submit", type="submit", ng-click="acceptAppointment(info._id, payuData.referenceCode)") Pago mediante PAYU

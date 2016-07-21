@@ -7,6 +7,14 @@ var express = require('express');
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
+app.all(/.*/, function(req, res, next) {
+  var host = req.header("host");
+  if (host.match(/^www\..*/i)) {
+    next();
+  } else {
+    res.redirect(301, "http://www." + host + req.url);
+  }
+});
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
