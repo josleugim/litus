@@ -26,7 +26,7 @@ fieldset,
 ul,
 ol,
 li {
-  font-family: 'Abadi MT Condensed Regular', sans-serif !important;
+  font-family: 'Abadi MT Condensed Regular', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
@@ -178,6 +178,9 @@ section .inner {
   text-align: center;
 }
 .home .banner {
+  background-image: url('../assets/img/home-1.jpg');
+  background-position: 50%;
+  background-size: cover;
   height: 420px;
   position: relative;
   width: 100%;
@@ -244,10 +247,10 @@ section .inner {
   text-decoration: none;
 }
 .home .banner .inner div a.abogado:hover {
-  background-color: #99CCFF;
+  background-color: #99ccff;
 }
 .home .banner .inner div a.usuario:hover {
-  background-color: #5CCAAB;
+  background-color: #5ccaab;
 }
 .home .inner {
   padding: 50px 0;
