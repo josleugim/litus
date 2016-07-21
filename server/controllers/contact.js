@@ -8,7 +8,7 @@ var config = require('../config/config'),
 
 exports.post = function (req, res) {
     var data = {
-        secret: config.development.captchaSecret,
+        secret: config.production.captchaSecret,
         response: req.body['g-recaptcha-response'],
         remoteip: ip.address()
     };
@@ -27,16 +27,19 @@ exports.post = function (req, res) {
                 res.status(500).json({error: err});
                 res.end();
             }
+            console.log("respinse: " + response.body);
             var resParse = JSON.parse(response.body);
             if(resParse.success) {
                 var htmlMessage = "Nombre: " + req.body.name + "<br>Email: " + req.body.email + "<br>Mensaje: " + req.body.message;
-                if(sendgrid.sendMail("josleugim@gmail.com", "josemiguel@heuristicforge.com", "Mensaje desde litus", htmlMessage)) {
-                    res.status(200).json({success: true});
-                    res.end();
-                } else {
-                    res.status(500);
-                    res.end();
-                }
+                sendgrid.sendMail("gerardo.flores.slaughter@gmail.com", "gvite1416@hotmail.com", "Mensaje desde litus", htmlMessage , function(status){
+                    if(status) {
+                        res.status(200).json({success: true});
+                        res.end();
+                    } else {
+                        res.status(500);
+                        res.end();
+                    }
+                });
             } else {
                 var error = {
                     message: "Robots Not allowed (Captcha verification failed)",

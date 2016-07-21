@@ -14,3 +14,7 @@
                         div.col-md-2
                             a(href="/chat/{{user.chat_id}}") 
                                 <i class="mdi mdi-login"></i> Chat
+                li.list-group-item(ng-if="users.length==0")
+                    div.row
+                        div.col-md-12
+                            h3 No hay Chat's disponibles
