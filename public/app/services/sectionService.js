@@ -6,7 +6,7 @@
        .factory('sectionService', ['$q', '$http', '$location', sectionService]);
 
    function sectionService($q, $http, $location) {
-       var host = 'http://' + $location.host() + '/';
+       var host = 'http://' + $location.host() + ':5002/';
        return {
            getAllSections: getAllSections,
           getSectionBySlug: getSectionBySlug,

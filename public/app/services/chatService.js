@@ -6,7 +6,7 @@
         .factory('chatService', ['$q', '$http', '$location', chatService]);
 
     function chatService($q, $http, $location) {
-        var host = 'http://' + $location.host() + '/';
+        var host = 'http://' + $location.host() + ':5002/';
         return {
             getChatsUsers: getChatsUsers,
             get: getChat,

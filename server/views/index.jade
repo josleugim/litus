@@ -3,8 +3,6 @@ block main-content
     div.container-fluid
         section(class="home row", id="home", ng-controller="HomeCtrl", ng-hide="hideContent")
             .banner
-                .cycle-slideshow(data-cycle-slides="> div")
-                    .home-a
                 .inner
                     div
                         img(src="assets/img/home-head.png",class="img-nosotros")
@@ -27,48 +25,52 @@ block main-content
                 div.swiper-container
                     div.swiper-wrapper
                         div.swiper-slide
-                            h2 CIVIL
-                            img(src="assets/icons/derecho-civil.svg")
-                            p.
-                                Se encargan de las acciones privadas de los individuos entre sí. Trasuntos entre otros: Contratos, Donaciones, Embargos y Lanzamientos, Negociación en caso de conflicto con Instituciones de Crédito.
-
-
+                            div.swiper-content
+                                h2 CIVIL
+                                img(src="assets/icons/derecho-civil.svg")
+                                p.
+                                    Se encargan de las acciones privadas de los individuos entre sí. Trasuntos entre otros: Contratos, Donaciones, Embargos y Lanzamientos, Negociación en caso de conflicto con Instituciones de Crédito
                         div.swiper-slide
-                            h2 FAMILIAR
-                            img(src="assets/icons/derecho-familiar.svg")
-                            ul
-                                li Divorcio
-                                li Pensión alimenticia
-                                li Violencia intrafamiliar
-                                li Tramites de Registro Civil
+                            div.swiper-content
+                                img(src="assets/icons/derecho-familiar.svg")
+                                h2 FAMILIAR
+                                ul
+                                    li Divorcio
+                                    li Pensión alimenticia
+                                    li Violencia intrafamiliar
+                                    li Tramites de Registro Civil
                         div.swiper-slide
-                            h2 LABORAL
-                            img(src="assets/icons/derecho-laboral.svg")
-                            ul
-                                li Contratos Colectivos e Individuales de Trabajo.
-                                li Pensiones y Jubilación.
-                                li Despidos, convenios y huelgas.
+                            div.swiper-content
+                                img(src="assets/icons/derecho-laboral.svg")
+                                h2 LABORAL
+                                ul
+                                    li Contratos Colectivos e Individuales de Trabajo
+                                    li Pensiones y Jubilación
+                                    li Despidos, convenios y huelgas
                         div.swiper-slide
-                            h2 PENAL
-                            img(src="assets/icons/derecho-penal.svg")
-                            ul
-                                li Denuncia por Delitos.
-                                li Defensa por denuncia.
+                            div.swiper-content
+                                img(src="assets/icons/derecho-penal.svg")
+                                h2 PENAL
+                                ul
+                                    li Denuncia por Delitos.
+                                    li Defensa por denuncia.
                         div.swiper-slide
-                            h2 FISCAL
-                            img(src="assets/icons/derecho-fiscal.svg")
-                            ul
-                                li Multas
-                                li Contratos con la Administración Pública
-                                li Procedimientos ante Profeco.
-                                li Responsabilidades de Servidores Públicos.
+                            div.swiper-content
+                                img(src="assets/icons/derecho-fiscal.svg")
+                                h2 FISCAL
+                                ul
+                                    li Créditos Fiscales (SAT, IMSS, INFONAVIT)
+                                    li Planeaciones y Estrategias Fiscales
+                                    li Convenios de Colaboración
                         div.swiper-slide
-                            h2 ADMINISTRATIVO
-                            img(src="assets/icons/derecho-administrativo.svg")
-                            ul
-                                li Créditos Fiscales (SAT, IMSS, INFONAVIT)
-                                li Planeaciones y Estrategias Fiscales.
-                                li Convenios de Colaboración.
+                            div.swiper-content
+                                img(src="assets/icons/derecho-administrativo.svg")
+                                h2 ADMINISTRATIVO
+                                ul
+                                    li Multas
+                                    li Contratos con la Administración Pública
+                                    li Procedimientos ante Profeco
+                                    li Responsabilidades de Servidores Públicos
                     div.swiper-pagination
                     div.swiper-button-next
                     div.swiper-button-prev

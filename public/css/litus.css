@@ -39,7 +39,7 @@ html {
 body {
   background-color: #fafafa;
   line-height: 120%;
-  margin: 0 0 420px;
+  margin: 0 0 460px;
 }
 h1 {
   font-size: 30px;
@@ -61,6 +61,14 @@ h3 {
   line-height: 120%;
   margin: 20px 0;
 }
+a {
+  color: #CCC;
+}
+.btn-primary {
+  border: 0;
+  background-color: #003846;
+  font-size: 20px;
+}
 p,
 ul,
 ol {
@@ -77,7 +85,7 @@ textarea {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: block;
-  font-size: 100%;
+  font-size: 20px !important;
   padding: 0 15px;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
@@ -104,11 +112,11 @@ span.error {
   top: 0;
   right: 15px;
 }
-header nav{
+header nav {
   height: 90px;
   margin-bottom: 0px!important;
 }
-header nav img{
+header nav img {
   height: 60px;
 }
 section h1 {
@@ -116,7 +124,10 @@ section h1 {
   margin: 0 0 20px;
 }
 section .inner {
-  padding: 50px 0;
+  margin: auto;
+  max-width: 1000px;
+  padding: 40px 0;
+  width: 80%;
 }
 .home {
   text-align: center;
@@ -165,7 +176,7 @@ section .inner {
   z-index: 999;
 }
 .home .banner .inner div {
-  left: 0;
+  left: 50%;
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -204,11 +215,12 @@ section .inner {
 .home .inner h2 {
   text-transform: uppercase;
 }
-.abogados{
+.abogados {
   background-color: #eee;
 }
-.abogados .swiper-container{
-  min-height: 300px;
+.abogados .swiper-container {
+  /*min-height: 300px;*/
+
 }
 .abogados h2 {
   color: #003846;
@@ -346,11 +358,11 @@ section .inner {
   width: auto;
 }
 .bottom {
-  background-color: #003846;
+  background-color: #343434;
   bottom: 0;
   color: #FFF;
   left: 0;
-  height: 400px;
+  height: 460px;
   position: absolute;
   width: 100%;
 }
@@ -367,12 +379,15 @@ section .inner {
 }
 .bottom .inner .onehalf ul.contacto li {
   list-style: none;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  padding-left: 30px;
 }
 .bottom .inner .onehalf ul.contacto li i {
   display: inline-block;
   font-size: 24px;
+  left: 15px;
   margin-right: 10px;
+  position: absolute;
   vertical-align: middle;
 }
 .bottom .inner .onehalf ul.contacto li span {
@@ -434,71 +449,96 @@ section .inner {
 .row .column.twothirds {
   width: 66.66%;
 }
-.btn-litus{
-    color: #fff;
-    background-color: #24535E;
-    border-color: #003744;
+.btn-litus {
+  color: #fff;
+  background-color: #24535E;
+  border-color: #003744;
 }
-.btn-litus:hover{
-  background-color: rgba(36,83,94,0.4);
+.btn-litus:hover {
+  background-color: rgba(36, 83, 94, 0.4);
 }
 .swiper-container {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+  width: 100%;
+  height: 100%;
 }
-.swiper-container p{
-  padding: 0 300px;
+.swiper-container .swiper-slide {
+  min-height: 80px;
+  position: relative;
 }
-.swiper-container ul{
-  list-style: none;
+.swiper-container .swiper-slide .swiper-content {
+  margin: auto;
+  width: 420px;
 }
-.ayuda img{
+.swiper-container .swiper-slide .swiper-content img {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+}
+.swiper-container .swiper-slide .swiper-content h2 {
+  margin: 0 0 20px 100px;
+}
+.swiper-container .swiper-slide .swiper-content p,
+.swiper-container .swiper-slide .swiper-content ul {
+  margin-left: 100px;
+}
+.swiper-container .swiper-slide .swiper-content ul {
+  padding-left: 20px;
+}
+.swiper-container .swiper-pagination {
+  bottom: auto;
+  margin: 20px 0 0;
+  position: relative;
+}
+.ayuda img {
   width: 50px;
   height: 50px;
 }
-.ayuda div{
+.ayuda div {
   text-align: center;
   padding: 0 50px;
   min-height: 300px;
 }
-.footer img{
+.footer img {
   width: 200px;
 }
-.perfil-container .panel{
+.perfil-container .panel {
   margin-top: 10px;
 }
-.bottom a:hover{
+.bottom a:hover {
   color: #FFF;
 }
-.abogados-thumbnail .thumbnail{
+.abogados-thumbnail .thumbnail {
   cursor: pointer;
 }
-.abogados-thumbnail.active .thumbnail, .abogados-thumbnail.active .thumbnail .caption{
+.abogados-thumbnail.active .thumbnail,
+.abogados-thumbnail.active .thumbnail .caption {
   background-color: #003846;
   color: #FFF;
 }
 @media (max-width: 600px) {
-  .img-nosotros{
+  .img-nosotros {
     display: none!important;
   }
   .home .banner .cycle-slideshow .cycle-slide {
     width: 100%;
   }
-  .home .banner .inner div a{
+  .home .banner .inner div a {
     display: inline-block;
     width: 300px;
   }
-  .home .banner .inner div{
+  .home .banner .inner div {
     top: 20%;
   }
-  .swiper-container p{
+  .swiper-container p {
     padding: 0 20px;
   }
   .bottom {
     height: 600px;
   }
-  .perfil-container,.well,.ayuda,.login{
+  .perfil-container,
+  .well,
+  .ayuda,
+  .login {
     margin-bottom: 170px;
   }
 }

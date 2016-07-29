@@ -6,7 +6,7 @@
         .factory('userService', ['$q', '$http', '$location', userService]);
 
     function userService($q, $http, $location) {
-        var host = 'http://' + $location.host() + '/';
+        var host = 'http://' + $location.host() + ':5002/';
         return {
             getUserByID: getUserByID,
             post: postUser,
