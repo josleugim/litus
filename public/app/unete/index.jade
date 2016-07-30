@@ -1,5 +1,26 @@
 //
    Created by Mordekaiser on 19/02/16.
 
-.well
-    div(ng-bind-html="section.content")
+section
+ .inner
+  form.row(name="uneteForm")
+   .column.onethird
+    ul
+     li
+      input(placeholder="Nombre", type="text", name="name", ng-model="name", required)
+      span(class="error", ng-show="uneteForm.name.$error.required") *
+     li
+      input(placeholder="Apellidos", type="text", name="lastName", ng-model="lastName", required)
+      span(class="error", ng-show="uneteForm.lastName.$error.required") *
+     li
+      input(placeholder="Email", type="email", name="email", ng-model="email", required)
+      span(class="error", ng-show="uneteForm.email.$error.required") *
+      span(class="error", ng-show="uneteForm.email.$error.email") Formato incorrecto
+     li
+      input(placeholder="Teléfono", type="text", name="phone", ng-model="phone", ng-required)
+      span(class="error", ng-show="uneteForm.phone.$error.required") *
+     li
+      textarea(placeholder="Comentarios", type="text", name="comments", ng-model="comments", required)
+      span(class="error", ng-show="uneteForm.comments.$error.required") *
+     li
+      button.btn.btn-primary(ng-click="join()", ng-disabled="uneteForm.$invalid") Enviar

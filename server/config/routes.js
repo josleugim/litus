@@ -12,7 +12,8 @@ var auth = require('./auth'),
     chats = require('../controllers/chats'),
     rates = require('../controllers/user-rates'),
     imagesUp = require('../controllers/image-uploader'),
-    payU = require('../controllers/payu');
+    payU = require('../controllers/payu'),
+    joins = require('../controllers/joins');
 
 module.exports = function (app) {
     // passing the function requireApiLogin, not invoke it
@@ -46,6 +47,7 @@ module.exports = function (app) {
     app.put('/api/chat', auth.requiresRole('user'), chats.put);
 
     app.post('/api/contact', contact.post);
+    app.post('/api/join', joins.post);
 
     app.get('/api/lawyers', auth.requiresRole('user'), users.getLawyers);
 
