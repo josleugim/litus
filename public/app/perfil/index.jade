@@ -23,25 +23,25 @@
                     h3.panel-title Teléfono
                 div.panel-body
                     {{user.phone}}
-                div.panel-heading 
+                div.panel-heading(ng-show="identity.isAuthorized('abogado')")
                     h3.panel-title Persona
-                div.panel-body
+                div.panel-body(ng-show="identity.isAuthorized('abogado')")
                     {{user.economicActivities}}
-                div.panel-heading 
+                div.panel-heading(ng-show="identity.isAuthorized('abogado')")
                     h3.panel-title Área de especialidad
-                div.panel-body
+                div.panel-body(ng-show="identity.isAuthorized('abogado')")
                     {{user.specialityArea}}
-                div.panel-heading 
+                div.panel-heading(ng-show="identity.isAuthorized('abogado')")
                     h3.panel-title Descripción
-                div.panel-body
+                div.panel-body(ng-show="identity.isAuthorized('abogado')")
                     {{user.description}}
-                div.panel-heading 
+                div.panel-heading(ng-show="identity.isAuthorized('abogado')")
                     h3.panel-title Palabras clave
-                div.panel-body
+                div.panel-body(ng-show="identity.isAuthorized('abogado')")
                     {{user.keyWords}}
-                div.panel-heading 
+                div.panel-heading(ng-show="identity.isAuthorized('abogado')")
                     h3.panel-title Ocupado
-                div.panel-body
+                div.panel-body(ng-show="identity.isAuthorized('abogado')")
                     - if ("user.isBusy" == true)
                         input(type="checkbox", name="isBusy", disabled, checked)
                     - else
