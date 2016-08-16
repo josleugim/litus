@@ -29,10 +29,10 @@
         };
         $scope.lawyersModel = "";
 
-        payUService.get().then(function (data) {
+        /*payUService.get().then(function (data) {
             $scope.payuData.referenceCode = data.refCode;
             $scope.payuData.signature = data.signature;
-        });
+        });*/
 
         userService.getLawyers({}).then(function (data) {
             if(data) {

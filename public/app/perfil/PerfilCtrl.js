@@ -13,10 +13,10 @@
             merchantId: '508029',
             accountId: '512324'
         };
-        payUService.get().then(function (data) {
+        /*payUService.get().then(function (data) {
             $scope.payuData.referenceCode = data.refCode;
             $scope.payuData.signature = data.signature;
-        });
+        });*/
 
         // Get the notifications for the current user
         userService.getUserByID({_id: mvIdentity.currentUser._id}).then(function (data) {

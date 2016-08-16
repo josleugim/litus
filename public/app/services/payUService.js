@@ -3,9 +3,9 @@
  */
 (function () {
     angular.module('app')
-        .factory('payuService', ['$q', '$http', payuService]);
+        .factory('payUService', ['$q', '$http', payUService]);
 
-    function payuService($q, $http) {
+    function payUService($q, $http) {
         return {
             post: postPayUService
         };
