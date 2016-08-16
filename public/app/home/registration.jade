@@ -1,102 +1,103 @@
 section(class="registration")
-    .inner
-        h1 REGISTRO DE ABOGADO
-        form.row(name="registerForm")
-            .column.onethird
-                ul
-                    li
-                        //label Nombre
-                        input(placeholder="Nombre", type="text", name="name", ng-model="name", required)
-                        span(class="error", ng-show="registerForm.name.$error.required") *
-                    li
-                        //label Apellidos
-                        input(placeholder="Apellidos", type="text", name="lastName", ng-model="lastName", required)
-                        span(class="error", ng-show="registerForm.lastName.$error.required") *
-                    li
-                        //label Email
-                        input(placeholder="Email", type="email", name="email", ng-model="email", required)
-                        span(class="error", ng-show="registerForm.email.$error.required") *
-                        span(class="error", ng-show="registerForm.email.$error.email") Formato incorrecto
-                    li
-                        //label Contraseña
-                        input(placeholder="Contraseña", type="password", id="password", name="password", ng-model="password", ng-required)
-                        span(class="error", ng-show="registerForm.password.$error.required") *
-                    li
-                        //label Confirmar contraseña
-                        input(placeholder="Confirmar contraseña", type="password", name="validatePassword", ng-model="validatePassword", pw-check="password", ng-required)
-                        span(class="error", ng-show="registerForm.validatePassword.$error.required") *
-                        span(class="msg-error", ng-show="registerForm.validatePassword.$error.pwmatch") Las contraseñas no coinciden
-                    li
-                        //label Teléfono
-                        input(placeholder="Teléfono", type="text", name="phone", ng-model="phone", ng-required)
-                        span(class="error", ng-show="registerForm.phone.$error.required") *
-                    li
-                        //label cases per month
-                        input(placeholder="No. de asuntos que puede atender por mes", type="number", name="casePerMonth", ng-model="casePerMonth", required)
-                        span(class="error", ng-show="registerForm.casePerMonth.$error.required") *
-                    li
-                        //label Dirección
-                        textarea(placeholder="Dirección", name="address", ng-model="address", required)
-                        span(class="error", ng-show="registerForm.address.$error.required") *
-                    li
-                        //label references
-                        textarea(placeholder="Referencias", name="references", ng-model="references", required)
-                        span(class="error", ng-show="registerForm.references.$error.required") *
-            .column.twothirds
-                ul.top
-                    li.select
-                        label Tipo de persona
-                        select(name="economicActivities", ng-model="economicActivities", required, economic-activities)
-                            option(value="fisica") Física
-                            option(value="moral") Moral
-                    li.select
-                        label Área de especialidad
-                        select(name="specialityArea", ng-model="specialityArea")
-                            option(value="penal") Penal
-                            option(value="civil") Civil
-                            option(value="administrativa") Administrativa
-                            option(value="laboral") Laboral
-                            option(value="fiscal") Fiscal
-                            option(value="familiar") Familiar
-                            option(value="otros") Otros
-                        span(class="error", ng-show="registerForm.specialityArea.$error.required") *
-                    li.file(id="constitutiveAct")
-                        input(type="file", name="constitutiveAct", file-constitutive="files")
-                        label Acta constitutiva <i class="mdi mdi-upload"></i>
-                        span(class="error", ng-show="registerForm.constitutiveAct.$error.required") *
-                    li.file
-                        input(type="file", name="professionalLicense", file-license="professionalLicense")
-                        label Cédula profesional <i class="mdi mdi-upload"></i>
-                        span(class="error", ng-show="registerForm.professionalLicense.$error.required") *
-                    li.file
-                        input(type="file", name="curriculum", file-cv="curriculum")
-                        label Curriculum
-                            i(class="mdi mdi-upload")
-                        span(class="error", ng-show="registerForm.curriculum.$error.required") *
-                    li.file
-                        input(type="file", name="profilePicture", file-profile="profilePicture")
-                        label Foto de perfil <i class="mdi mdi-upload"></i>
-                        span(class="error", ng-show="registerForm.profilePicture.$error.required") *
-                ul
-                    li
-                        //label Descripción
-                        textarea(placeholder="Descripción" name="description", ng-model="description", required)
-                        span(class="error", ng-show="registerForm.description.$error.required") *
-                    li
-                        //label Idiomas
-                        textarea(placeholder="Idiomas (Español, Ingles, Frances...)", name="languages", ng-model="languages", ng-list="&#10;", ng-required)
-                        span(class="error", ng-show="registerForm.languages.$error.required") *
-                    li
-                        //label Años de experiencia
-                        textarea(placeholder="Años de experiencia", name="experienceYears", ng-model="experienceYears", required)
-                        span(class="error", ng-show="registerForm.experienceYears.$error.required") *
-                    li
-                        //label Horario
-                        textarea(placeholder="Horario disponible de atención al cliente", name="schedule", ng-model="schedule", required)
-                        span(class="error", ng-show="registerForm.schedule.$error.required") *
-                    li
-                        //label Palabras clave, separadas por coma
-                        textarea(name="keyWords", ng-model="keyWords", ng-list="&#10;", placeholder="Palabras clave, separadas por coma (Hola, Hello, Hi...)", ng-required)
-                        span(class="error", ng-show="registerForm.keyWords.$error.required") *
-                    li
-                        button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar
+  .inner
+    h1 REGISTRO DE ABOGADO
+    form.columnas(name="registerForm")
+      .columna.untercio
+        ul
+          li
+            //label Nombre
+            input(placeholder="Nombre", type="text", name="name", ng-model="name", required)
+            span(class="error", ng-show="registerForm.name.$error.required") *
+          li
+            //label Apellidos
+            input(placeholder="Apellidos", type="text", name="lastName", ng-model="lastName", required)
+            span(class="error", ng-show="registerForm.lastName.$error.required") *
+          li
+            //label Email
+            input(placeholder="Email", type="email", name="email", ng-model="email", required)
+            span(class="error", ng-show="registerForm.email.$error.required") *
+            span(class="error", ng-show="registerForm.email.$error.email") Formato incorrecto
+          li
+            //label Teléfono
+            input(placeholder="Teléfono", type="text", name="phone", ng-model="phone", ng-required)
+            span(class="error", ng-show="registerForm.phone.$error.required") *
+          li
+            //label Contraseña
+            input(placeholder="Contraseña", type="password", id="password", name="password", ng-model="password", ng-required)
+            span(class="error", ng-show="registerForm.password.$error.required") *
+          li
+            //label Confirmar contraseña
+            input(placeholder="Confirmar contraseña", type="password", name="validatePassword", ng-model="validatePassword", pw-check="password", ng-required)
+            span(class="error", ng-show="registerForm.validatePassword.$error.required") *
+            span(class="msg-error", ng-show="registerForm.validatePassword.$error.pwmatch") Las contraseñas no coinciden
+          li.select
+            //label Tipo de persona
+            select(name="economicActivities", ng-model="economicActivities", required, economic-activities)
+                option(value="",disabled selected hidden) Tipo de persona
+                option(value="fisica") Física
+                option(value="moral") Moral
+          li.select
+            //label Área de especialidad
+            select(placeholder="Área de especialidad", name="specialityArea", ng-model="specialityArea")
+                option(value="",disabled selected hidden) Área de especialidad
+                option(value="penal") Penal
+                option(value="civil") Civil
+                option(value="administrativa") Administrativa
+                option(value="laboral") Laboral
+                option(value="fiscal") Fiscal
+                option(value="familiar") Familiar
+                option(value="otros") Otros
+            span(class="error", ng-show="registerForm.specialityArea.$error.required") *
+          li.file(id="constitutiveAct")
+            input(type="file", name="constitutiveAct", file-constitutive="files")
+            label Acta constitutiva <i class="icon-upload"></i>
+            span(class="error", ng-show="registerForm.constitutiveAct.$error.required") *
+          li.file
+            input(type="file", name="professionalLicense", file-license="professionalLicense")
+            label Cédula profesional <i class="icon-upload"></i>
+            span(class="error", ng-show="registerForm.professionalLicense.$error.required") *
+          li.file
+            input(type="file", name="profilePicture", file-profile="profilePicture")
+            label Foto de perfil / Logotipo <i class="icon-upload"></i>
+            span(class="error", ng-show="registerForm.profilePicture.$error.required") *
+          li.file
+            input(type="file", name="curriculum", file-cv="curriculum")
+            label Curriculum  <i class="icon-upload"></i>
+            span(class="error", ng-show="registerForm.curriculum.$error.required") *
+      .columna.dostercios
+        ul.dos
+          li
+            label No. de asuntos por mes
+            input(class="small" type="number", name="casePerMonth", ng-model="casePerMonth", required)
+            span(class="error", ng-show="registerForm.casePerMonth.$error.required") *
+          li
+            label Años de experiencia
+            input(class="small" type="number", name="experienceYears", ng-model="experienceYears", required)
+            span(class="error", ng-show="registerForm.experienceYears.$error.required") *
+          li
+            //label Dirección
+            textarea(placeholder="Dirección", name="address", ng-model="address", required)
+            span(class="error", ng-show="registerForm.address.$error.required") *
+          li
+            //label references
+            textarea(placeholder="Referencias", name="references", ng-model="references", required)
+            span(class="error", ng-show="registerForm.references.$error.required") *
+        ul
+          li
+            //label Descripción
+            textarea(placeholder="Descripción" name="description", ng-model="description", required)
+            span(class="error", ng-show="registerForm.description.$error.required") *
+          li
+            //label Idiomas
+            textarea(placeholder="Idiomas (Español, Ingles, Frances...)", name="languages", ng-model="languages", ng-list="&#10;", ng-required)
+            span(class="error", ng-show="registerForm.languages.$error.required") *
+          li
+            //label Horario
+            textarea(placeholder="Horario disponible de atención al cliente", name="schedule", ng-model="schedule", required)
+            span(class="error", ng-show="registerForm.schedule.$error.required") *
+          li
+            //label Palabras clave, separadas por coma
+            textarea(name="keyWords", ng-model="keyWords", ng-list="&#10;", placeholder="Palabras clave, separadas por coma (Hola, Hello, Hi...)", ng-required)
+            span(class="error", ng-show="registerForm.keyWords.$error.required") *
+          li
+            button.btn.btn-primary(ng-click="register()", ng-disabled="registerForm.$invalid") Enviar

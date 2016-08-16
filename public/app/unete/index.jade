@@ -1,11 +1,8 @@
-//
-   Created by Mordekaiser on 19/02/16.
-
 section
  .inner
-  div(ng-bind-html="section.content")
-  form.row(name="uneteForm")
-   .column.onethird
+  form.columnas(name="uneteForm")
+   .columna.untercio
+    div(ng-bind-html="section.content")
     ul
      li
       input(placeholder="Nombre", type="text", name="name", ng-model="name", required)

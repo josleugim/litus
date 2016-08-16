@@ -1,108 +1,100 @@
 doctype
 html
-    head
-        meta(charset="utf-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
-        base(href="http://localhost:5002/public")
-        title Litus
-        link(rel="shortcut icon", type="image/png", href="favicon.png")
-        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
-        link(rel="stylesheet", href="/vendor/toastr/toastr.css")
-        link(rel="stylesheet", href="/css/site.css")
-        link(rel="stylesheet", href="/css/litus.css")
-        link(rel="stylesheet", href="/css/mdi.min.css")
-        link(rel="stylesheet", href="/css/swiper.min.css")
-        script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
-        script(src="/vendor/jquery/dist/jquery.js")
-    body(ng-app='app')
-        header(ng-controller="loginCtrl")
-                nav(class="navbar navbar-default")
-                    div(class="container-fluid")
-                        div.navbar-header
-                            button(type="button" , class="navbar-toggle collapsed",data-toggle="collapse",data-target="#bs-example-navbar-collapse-1",aria-expanded="false")
-                                span(class="sr-only") Navegación Mobil
-                                span.icon-bar
-                                span.icon-bar
-                                span.icon-bar
-                            a(href="/", class="litus navbar-brand")
-                                img(src="assets/img/litus-top.png")
-
-                        div(class="collapse navbar-collapse",id="bs-example-navbar-collapse-1")
-                            ul(class="nav navbar-nav")
-                                li
-                                    a(href="/#home", ng-hide="identity.isAuthorized('user')")
-                                        span NOSOTROS
-                                li
-                                    a(href="/#abogados", ng-hide="identity.isAuthorized('user')")
-                                        span ÁREAS DE ESPECIALIDAD
-                                    //a(href="#referidos")
-                                        span REFERIDOS
-                                li
-                                    a(href="/#ayuda", ng-hide="identity.isAuthorized('user')")
-                                        span AYUDA
-                                li
-                                    a(href="/unete-a-litus", ng-hide="identity.isAuthorized('user')")
-                                        span ÚNETE A LITUS
-                                li
-                                    a(href="/admin/sections", ng-show="identity.isAuthorized('admin')")
-                                        span SECCIONES
-                                li
-                                    a(href="/admin/image-uploader", ng-show="identity.isAuthorized('admin')")
-                                        span SUBIR IMÁGENES
-                                li
-                                    a(href="/admin/images", ng-show="identity.isAuthorized('admin')")
-                                        span LISTADO DE IMÁGENES
-                                li
-                                    a(href="/busqueda", ng-show="identity.isAuthorized('cliente')")
-                                        span ABOGADOS
-                            ul(class="nav navbar-nav navbar-right")
-                                li
-                                    a(href="/login", ng-hide="identity.isAuthorized('user')")
-                                        <i class="mdi mdi-account"></i> INICIAR SESIÓN
-                                li
-                                    a(href="/perfil", ng-show="identity.isAuthorized('user')")
-                                        <i class="mdi mdi-account"></i> PERFIL
-                                li
-                                    a(href="/chat-list", ng-show="identity.isAuthorized('user')")
-                                        <i class="mdi mdi-comment"></i> CHAT
-                                li
-                                    a(href="/logout", ng-show="identity.isAuthenticated()", ng-click="signout()")
-                                        <i class="mdi mdi-account-off"></i> CERRAR SESIÓN
-        include currentUser
-        block main-content
-        section(class="bottom footer", ng-controller="ContactoCtrl")
-            .inner
-                .row
-                    .col-md-6.col-xs-12
-                        img(src="assets/img/litus-bottom.png")
-                        ul(class="contacto")
-                            li
-                                <i class="mdi mdi-phone"></i>
-                                a(href="tel:62677109") 6267 7109
-                            li
-                                <i class="mdi mdi-email"></i>
-                                a(href="mailto:xm.sutil@ofni") xm.sutil@ofni
-                            li
-                                <i class="mdi mdi-map-marker"></i>
-                                Isabel Lozano Viuda de Betty No. 120, Col. Vertiz Narvarte.
-
-                        a(href="/terminos-y-condiciones")
-                            span TÉRMINOS Y CONDICIONES
-                        
-                    .col-md-6.col-xs-12
-                        h2 Manda un mensaje
-                        form(name="contactForm")
-                            div.form-group
-                                input(type="text", name="name", class="form-control", placeholder="Nombre", ng-model="name", required)
-                                span(class="error", ng-show="contactForm.name.$error.required") *
-                            div.form-group
-                                input(class="form-control", type="email", name="email", placeholder="Email", ng-model="email", required)
-                                span(class="error", ng-show="contactForm.email.$error.required") *
-                                span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
-                            div.form-group
-                                textarea(class="form-control", name="message",placeholder="Mensaje", ng-model="message", required)
-                                span(class="error", ng-show="contactForm.message.$error.required") *
-                            div.form-group
-                                div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
-                                button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
-        include scripts
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    //base(href="http://localhost:5002/public")
+    title Litus
+    link(rel="shortcut icon", type="image/png", href="favicon.png")
+    link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/vendor/toastr/toastr.css")
+    link(rel="stylesheet", href="/css/litus.css")
+    link(rel="stylesheet", href="/css/mdi.min.css")
+    script(src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer)
+    script(src="/vendor/jquery/dist/jquery.js")
+    script(src="/js/ux.js")
+  body(ng-app='app')
+    header(ng-controller="loginCtrl")
+      div.inner
+        a(href="/", class="litus")
+          img(src="assets/img/litus-top.png")
+        i.icon-menu
+        nav
+          ul
+            li(ng-hide="identity.isAuthorized('user')")
+              a(href="/#home")
+                span NOSOTROS
+            li(ng-hide="identity.isAuthorized('user')")
+              a(href="/#abogados")
+                span ÁREAS DE ESPECIALIDAD
+              //a(href="#referidos")
+                span REFERIDOS
+            li(ng-hide="identity.isAuthorized('user')")
+              a(href="/#ayuda")
+                span AYUDA
+            li(ng-hide="identity.isAuthorized('user')")
+              a(href="/unete-a-litus")
+                span ÚNETE A LITUS
+            li(ng-show="identity.isAuthorized('admin')")
+              a(href="/admin/sections")
+                span SECCIONES
+            li(ng-show="identity.isAuthorized('admin')")
+              a(href="/admin/image-uploader")
+                span SUBIR IMÁGENES
+            li(ng-show="identity.isAuthorized('admin')")
+              a(href="/admin/images")
+                span LISTADO DE IMÁGENES
+            li(ng-show="identity.isAuthorized('cliente')")
+              a(href="/busqueda")
+                span ABOGADOS
+            li(ng-hide="identity.isAuthorized('user')")
+              a(href="/login")
+                <i class="icon-enter"></i> INICIAR SESIÓN
+            li(ng-show="identity.isAuthorized('user')")
+              a(href="/perfil")
+                <i class="icon-profile"></i> PERFIL
+            li(ng-show="identity.isAuthorized('user')")
+              a(href="/chat-list")
+                <i class="icon-chat"></i> CHAT
+            li(ng-show="identity.isAuthenticated()")
+              a(href="/logout", ng-click="signout()")
+                <i class="icon-exit"></i> CERRAR SESIÓN
+    include currentUser
+    block main-content
+    footer(ng-controller="ContactoCtrl")
+      .inner
+        .columnas
+          .columna.unmedio
+            img(src="assets/img/litus-bottom.png")
+            ul(class="contacto")
+              li
+                <i class="icon-phone"></i>
+                a(href="tel:62677109") 6267 7109
+              li
+                <i class="icon-mail"></i>
+                a(href="mailto:xm.sutil@ofni") xm.sutil@ofni
+              li
+                <i class="icon-location"></i>
+                Isabel Lozano Viuda de Betty No. 120, Col. Vertiz Narvarte.
+            p
+              small
+                a(href="/terminos-y-condiciones")
+                  |TÉRMINOS Y CONDICIONES
+          .columna.unmedio
+            h2 Manda un mensaje
+            form(name="contactForm")
+              ul
+                li
+                  input(type="text", name="name", placeholder="Nombre", ng-model="name", required)
+                  span(class="error", ng-show="contactForm.name.$error.required") *
+                li
+                  input(type="email", name="email", placeholder="Email", ng-model="email", required)
+                  span(class="error", ng-show="contactForm.email.$error.required") *
+                  span(class="error", ng-show="contactForm.email.$error.email") Formato incorrecto
+                li
+                  textarea(name="message",placeholder="Mensaje", ng-model="message", required)
+                  span(class="error", ng-show="contactForm.message.$error.required") *
+                li
+                  div(vc-recaptcha key="'6LcnUxkTAAAAAE85ul_h1_UrnL_HaD091hBUGl75'", class="g-recaptcha")
+                  button.btn.btn-primary(ng-click="sendMessage()", ng-disabled="contactForm.$invalid") Enviar
+    include scripts

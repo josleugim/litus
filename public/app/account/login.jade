@@ -1,15 +1,14 @@
-//
-   Created by Mordekaiser on 17/02/16.
-
 section(class="login")
-    .container
-        .row
-            .col-md-4
-            .col-md-4
-                h4 Para acceder a la plataforma
-                form.navbar-form
-                    input.form-control(placeholder="Email", ng-model="email", type="text")
-                    input.form-control(type="password", placeholder="Contraseña", ng-model="password")
-                    button.btn.btn-primary(ng-click="signin(email, password)") Iniciar sesión
-                    a(href="/password-recover", target="_self") ¿Olvidaste la contraseña?
-            .col-md-4
+  .inner
+    form.columnas
+      h1 INICIAR SESIÓN
+      .columna.untercio
+        ul
+          li
+            input.form-control(placeholder="Email", ng-model="email", type="text")
+          li
+            input.form-control(type="password", placeholder="Contraseña", ng-model="password")
+          li
+            button.btn.btn-primary(ng-click="signin(email, password)") Iniciar sesión
+          li
+            a(href="/password-recover", target="_self") ¿Olvidaste la contraseña?
