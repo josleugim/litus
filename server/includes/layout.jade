@@ -3,7 +3,7 @@ html
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
-    //base(href="http://localhost:5002/public")
+    base(href="http://localhost:5002/public")
     title Litus
     link(rel="shortcut icon", type="image/png", href="favicon.png")
     link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
@@ -19,7 +19,7 @@ html
         a(href="/", class="litus")
           img(src="assets/img/litus-top.png")
         i.icon-menu
-        nav
+        nav(ng-cloak)
           ul
             li(ng-hide="identity.isAuthorized('user')")
               a(href="/#home")
@@ -33,7 +33,7 @@ html
               a(href="/#ayuda")
                 span AYUDA
             li(ng-hide="identity.isAuthorized('user')")
-              a(href="/unete-a-litus")
+              a(href="/#unete-a-litus")
                 span ÚNETE A LITUS
             li(ng-show="identity.isAuthorized('admin')")
               a(href="/admin/sections")
